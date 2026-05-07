@@ -1,4 +1,0 @@
-interface:
-  display_name: "Rust Reviewer"
-  short_description: "Review Rust code for correctness, safety, and idiom"
-  default_prompt: "Use $rust-reviewer to review this Rust change."

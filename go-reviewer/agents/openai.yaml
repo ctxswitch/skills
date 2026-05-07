@@ -1,4 +1,0 @@
-interface:
-  display_name: "Go Reviewer"
-  short_description: "Review Go code for correctness and idiom"
-  default_prompt: "Use $go-reviewer to review this Go change."

@@ -1,4 +1,0 @@
-interface:
-  display_name: "Python Engineer"
-  short_description: "Implement focused, idiomatic Python changes"
-  default_prompt: "Use $python-engineer to implement this Python change."

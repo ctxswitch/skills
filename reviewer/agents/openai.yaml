@@ -1,0 +1,4 @@
+interface:
+  display_name: "Reviewer"
+  short_description: "Review code across supported languages"
+  default_prompt: "Use $reviewer to review this change."
