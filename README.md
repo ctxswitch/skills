@@ -1,4 +1,4 @@
-# ctxswitch skills
+# Skills
 
 My personal Codex skills.
 
