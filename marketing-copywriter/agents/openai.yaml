@@ -1,0 +1,4 @@
+interface:
+  display_name: "Marketing Copywriter"
+  short_description: "Write and critique marketing copy"
+  default_prompt: "Use $marketing-copywriter to draft or improve this marketing copy."

@@ -45,6 +45,7 @@ Claude Code can invoke installed skills directly with `/skill-name`, and can als
 - `grill-me`
 - `humanize`
 - `improve-codebase-architecture`
+- `marketing-copywriter`
 - `setup-project`
 - `tdd`
 - `to-issues`
