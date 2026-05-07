@@ -36,3 +36,9 @@ make install CODEX_SKILLS_DIR=/path/to/skills
 - `to-prd`
 - `triage`
 - `zoom-out`
+
+## Credits
+
+Some of these skills are adapted from Matt Pocock's [Skills For Real Engineers](https://github.com/mattpocock/skills), especially `diagnose`, `grill-me`, `improve-codebase-architecture`, `setup-project`, `to-issues`, `to-prd`, and `triage`.
+
+Matt's skills repo is MIT licensed. See [THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md) for the upstream notice.
