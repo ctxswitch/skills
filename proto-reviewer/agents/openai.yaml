@@ -1,0 +1,4 @@
+interface:
+  display_name: "Proto Reviewer"
+  short_description: "Review protobuf schemas, gRPC APIs, and compatibility"
+  default_prompt: "Use $proto-reviewer to review this protobuf change."

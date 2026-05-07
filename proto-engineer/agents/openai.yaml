@@ -1,0 +1,4 @@
+interface:
+  display_name: "Proto Engineer"
+  short_description: "Implement focused protobuf schema and gRPC changes"
+  default_prompt: "Use $proto-engineer to implement this protobuf change."

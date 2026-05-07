@@ -42,6 +42,8 @@ Recent Claude Code builds use a small skill listing budget, currently 1% of cont
 Engineering:
 
 - `engineer`
+- `proto-engineer`
+- `proto-reviewer`
 - `reviewer`
 - `tdd`
 
