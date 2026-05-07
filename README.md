@@ -35,6 +35,8 @@ The install targets replace matching skill directories in the destination and le
 
 Claude Code can invoke installed skills directly with `/skill-name`, and can also infer them when their descriptions match the task.
 
+Recent Claude Code builds use a small skill listing budget, currently 1% of context by default. When the installed skills exceed that budget, Claude may warn, truncate descriptions, or silently drop some descriptions from the inferred skill list. The current install reports about 1.4k skill-listing tokens, which is roughly 1.1% of a 128k context; trimming further would start cutting trigger language the skills need to infer correctly.
+
 ## Skills
 
 Engineering:
