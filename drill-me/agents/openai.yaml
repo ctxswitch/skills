@@ -1,0 +1,4 @@
+interface:
+  display_name: "Drill Me"
+  short_description: "Socratic distributed systems design drilling"
+  default_prompt: "Use $drill-me to drill me on this distributed systems design."

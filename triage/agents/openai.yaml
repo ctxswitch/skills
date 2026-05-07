@@ -1,0 +1,4 @@
+interface:
+  display_name: "Triage"
+  short_description: "Move issues through triage roles"
+  default_prompt: "Use $triage to triage this issue or issue queue."

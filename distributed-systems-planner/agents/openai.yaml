@@ -1,0 +1,4 @@
+interface:
+  display_name: "Distributed Systems Planner"
+  short_description: "Plan and review distributed systems designs"
+  default_prompt: "Use $distributed-systems-planner to plan or review this distributed system."

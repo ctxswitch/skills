@@ -1,0 +1,4 @@
+interface:
+  display_name: "Humanize"
+  short_description: "Rewrite botlike prose into natural language"
+  default_prompt: "Use $humanize to revise this document so it sounds natural while preserving meaning."

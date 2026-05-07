@@ -1,0 +1,4 @@
+interface:
+  display_name: "TDD"
+  short_description: "Use red-green-refactor with behavior-focused tests"
+  default_prompt: "Use $tdd to implement this with test-driven development."

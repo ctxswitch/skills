@@ -1,0 +1,4 @@
+interface:
+  display_name: "Setup Project"
+  short_description: "Configure issue tracker, labels, and domain docs"
+  default_prompt: "Use $setup-project to configure this repo for the engineering skills."

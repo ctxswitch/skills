@@ -1,0 +1,4 @@
+interface:
+  display_name: "Go Engineer"
+  short_description: "Implement focused, idiomatic Go changes"
+  default_prompt: "Use $go-engineer to implement this Go change."
