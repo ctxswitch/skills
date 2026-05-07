@@ -20,6 +20,7 @@ Use this skill to produce practical marketing copy grounded in buyer research, p
    - Customer stories, interview prompts, proof narratives, or case study outlines: read `references/case-studies.md`.
    - SEO articles, search intent, content outlines, on-page SEO, or content briefs: read `references/seo-content.md`.
    - Editing, humanizing, AI copy review, fact checks, or final QA: read `references/qa-editing.md`.
+   - Copywriting terminology, marketing vocabulary, or distinctions between similar concepts: read `references/vocabulary.md`.
 5. Draft or review using concrete buyer language, specific claims, evidence near the claims that need belief, and one clear next action.
 6. If important inputs are missing, either ask the smallest useful question or provide a clearly labeled assumption-based draft with placeholders.
 
@@ -81,3 +82,4 @@ For briefs:
 - `references/case-studies.md`: customer interview flow, story spine, quote capture, approval checklist.
 - `references/seo-content.md`: search intent, SEO content briefs, outlines, on-page essentials, measurement.
 - `references/qa-editing.md`: AI-assisted copy QA, factuality, specificity, differentiation, human warmth, publishing checks.
+- `references/vocabulary.md`: copywriting and marketing vocabulary, concept distinctions, and usage guidance.
