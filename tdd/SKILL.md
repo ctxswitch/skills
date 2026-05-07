@@ -1,6 +1,6 @@
 ---
 name: tdd
-description: "Use test-driven development for feature work, bug fixes, refactors, and behavior changes. Trigger when the user asks for TDD, test-first work, red-green-refactor, reproducing tests, integration tests, characterization tests, or wants implementation guided by behavior-focused tests rather than implementation-detail assertions."
+description: "Use TDD, test-first, red-green-refactor, reproducing tests, integration tests, characterization tests, and behavior-focused tests for features, bugs, refactors, and behavior changes."
 ---
 
 # Test-Driven Development
