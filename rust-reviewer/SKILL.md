@@ -1,6 +1,6 @@
 ---
 name: rust-reviewer
-description: "Review Rust code for correctness, safety, security, test coverage, idiom, ownership, borrowing, traits, public API design, async/concurrency, Cargo features, errors, unsafe boundaries, performance, and maintainability. Use when the user asks to review Rust diffs, pull requests, changed Rust files, crates, tests, Cargo changes, async code, unsafe code, or Rust architecture decisions without making implementation changes."
+description: "Review Rust diffs, PRs, crates, tests, Cargo, async, unsafe, and architecture for correctness, safety, security, idiom, ownership, borrowing, traits, APIs, errors, performance, and maintainability."
 ---
 
 # Rust Reviewer

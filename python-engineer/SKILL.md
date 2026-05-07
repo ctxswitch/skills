@@ -1,6 +1,6 @@
 ---
 name: python-engineer
-description: "Implement focused, idiomatic Python changes in existing codebases. Use when the user asks to add, fix, or modify Python code, tests, packages, CLIs, async code, type annotations, packaging, dependency management, error handling, logging, security, or production behavior while staying tightly scoped to the requested change."
+description: "Implement focused, idiomatic Python changes. Use when asked to add, fix, or modify Python code, tests, packages, CLIs, async, typing, packaging, errors, logging, security, or production behavior."
 ---
 
 # Python Engineer

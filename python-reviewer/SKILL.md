@@ -1,6 +1,6 @@
 ---
 name: python-reviewer
-description: "Review Python code for correctness, security, test coverage, idiomatic Python, packaging, typing, async/resource handling, module boundaries, error handling, logging, and maintainability. Use when the user asks to review Python diffs, pull requests, changed Python files, Python tests, packaging changes, type annotations, or Python architecture decisions without making implementation changes."
+description: "Review Python diffs, PRs, tests, packaging, typing, and architecture for correctness, security, idiom, async/resources, module boundaries, errors, logging, and maintainability."
 ---
 
 # Python Reviewer

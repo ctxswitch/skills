@@ -1,6 +1,6 @@
 ---
 name: rust-engineer
-description: "Implement focused, idiomatic Rust changes in existing codebases. Use when the user asks to add, fix, or modify Rust code, crates, modules, traits, async/concurrency, errors, tests, Cargo configuration, unsafe boundaries, performance-sensitive paths, serialization, CLIs, services, or production behavior while staying tightly scoped to the requested change."
+description: "Implement focused, idiomatic Rust changes. Use when asked to add, fix, or modify Rust code, crates, modules, traits, async/concurrency, errors, tests, Cargo, unsafe, performance, serialization, CLIs, services, or production behavior."
 ---
 
 # Rust Engineer

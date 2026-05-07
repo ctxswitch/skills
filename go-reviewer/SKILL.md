@@ -1,6 +1,6 @@
 ---
 name: go-reviewer
-description: "Review Go code for correctness, security, test coverage, idiomatic Go, package boundaries, deep module design, concurrency, error handling, and maintainability. Use when the user asks to review Go diffs, pull requests, changed Go files, Go tests, or Go architecture decisions without making implementation changes."
+description: "Review Go diffs, PRs, tests, and architecture for correctness, security, idiom, coverage, package boundaries, deep modules, concurrency, errors, and maintainability."
 ---
 
 # Go Reviewer

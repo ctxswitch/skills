@@ -1,6 +1,6 @@
 ---
 name: typescript-engineer
-description: "Implement focused, idiomatic TypeScript changes with special strength in React and Tailwind CSS. Use when the user asks to add, fix, or modify TypeScript, JavaScript, React components, hooks, JSX/TSX, frontend state, Tailwind styling, tests, build tooling, lint/type-check config, accessibility, or production UI behavior while staying tightly scoped to the requested change."
+description: "Implement focused TypeScript, React, and Tailwind changes. Use when asked to add, fix, or modify TS/JS, components, hooks, TSX/JSX, state, styling, tests, tooling, accessibility, or UI behavior."
 ---
 
 # TypeScript Engineer

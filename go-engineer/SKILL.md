@@ -1,6 +1,6 @@
 ---
 name: go-engineer
-description: "Implement focused, idiomatic Go changes in existing codebases with a preference for deep modules: narrow, stable interfaces backed by cohesive implementation that hides complexity. Use when the user asks to add, fix, or modify Go code, Go tests, Go services, APIs, concurrency, error handling, package structure, or production behavior while staying tightly scoped to the requested change."
+description: "Implement focused, idiomatic Go changes with deep module boundaries. Use when asked to add, fix, or modify Go code, tests, services, APIs, concurrency, errors, or production behavior."
 ---
 
 # Go Engineer

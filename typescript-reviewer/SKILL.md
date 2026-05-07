@@ -1,6 +1,6 @@
 ---
 name: typescript-reviewer
-description: "Review TypeScript, React, and Tailwind CSS code for correctness, security, test coverage, idiom, typing, component boundaries, hooks, accessibility, responsive behavior, styling maintainability, tooling, performance, and production UI risks. Use when the user asks to review TypeScript diffs, React components, hooks, TSX, Tailwind styling, tests, package/build config, or frontend architecture decisions without making implementation changes."
+description: "Review TypeScript, React, and Tailwind diffs, components, hooks, TSX/JSX, styling, tests, package/build config, or frontend architecture for correctness, security, typing, accessibility, responsive behavior, tooling, performance, and UI risk."
 ---
 
 # TypeScript Reviewer
