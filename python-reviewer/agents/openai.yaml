@@ -1,0 +1,4 @@
+interface:
+  display_name: "Python Reviewer"
+  short_description: "Review Python code for correctness and idiom"
+  default_prompt: "Use $python-reviewer to review this Python change."
