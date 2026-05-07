@@ -3,11 +3,13 @@ name: grill-me
 description: Grilling session that challenges your plan against the existing domain model, sharpens terminology, and updates the appropriate CONTEXT.md or ADRs inline as decisions crystallise, including routing new domain language to the right bounded context. Use when user wants to stress-test a plan against their project's language and documented decisions.
 ---
 
-Interview me relentlessly about every aspect of this plan until we reach a shared understanding.
-Walk down each branch of the design tree, resolving dependencies between decisions one-by-one.
+Press on unresolved decisions and consequences until we reach a shared understanding.
+Walk down the branches of the design tree that can change the plan, implementation, domain language, or documentation.
 For each question, provide your recommended answer.
 Ask the questions one at a time, waiting for feedback on each question before continuing.
 If a question can be answered by exploring the codebase, explore the codebase instead.
+Do not ask a question if the answer is already stated, directly implied by prior answers, or discoverable from local code/docs. If the answer is discoverable, inspect first and ask only to resolve a contradiction or missing decision.
+Continue while the next question exposes a real unresolved decision, contradiction, risk, or implementation consequence. When the next question would only restate known tradeoffs or ask for preference without consequence, summarize what is resolved and identify the next concrete action.
 
 ## Domain awareness
 
@@ -71,7 +73,7 @@ When the user uses a term that conflicts with the existing language in `CONTEXT.
 
 ### Sharpen fuzzy language
 
-When the user uses vague or overloaded terms, propose a precise canonical term.
+When the user uses vague or overloaded terms, propose a precise canonical term only if the ambiguity could lead to different code, ownership, user behavior, operational behavior, tests, or documentation.
 
 "You're saying 'account' — do you mean the Customer or the User? Those are different things."
 
