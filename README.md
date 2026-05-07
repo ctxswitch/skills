@@ -1,24 +1,24 @@
 # ctxswitch skills
 
-Personal Codex skills used by ctxswitch.
+My personal Codex skills.
 
-This repository intentionally excludes Codex system skills from `.system/`. It only contains custom skills that can be installed into a local Codex home.
+This repo leaves out Codex's built-in `.system/` skills. It only includes the custom skills I want to keep under version control and install across machines.
 
 ## Install
 
-Install all skills into `~/.codex/skills`:
+Install the skills into the default Codex skills directory:
 
 ```sh
 make install
 ```
 
-To install somewhere else:
+Or point the install somewhere else:
 
 ```sh
 make install CODEX_SKILLS_DIR=/path/to/skills
 ```
 
-The install target replaces matching skill directories in the destination and leaves unrelated directories, including `.system`, alone.
+`make install` replaces matching skill directories in the destination. It leaves unrelated directories alone, including `.system`.
 
 ## Skills
 
