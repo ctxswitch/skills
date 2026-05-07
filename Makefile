@@ -20,6 +20,7 @@ install-claude:
 		echo "Installing $$skill -> $(CLAUDE_SKILLS_DIR)/$$skill"; \
 		rm -rf "$(CLAUDE_SKILLS_DIR)/$$skill"; \
 		cp -R "$$skill" "$(CLAUDE_SKILLS_DIR)/"; \
+		rm -rf "$(CLAUDE_SKILLS_DIR)/$$skill/agents"; \
 	done
 
 list:

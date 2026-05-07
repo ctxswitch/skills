@@ -1,6 +1,6 @@
 ---
 name: distributed-systems-planner
-description: Plan, review, and diagnose distributed systems projects and designs. Use when Codex is asked to design or critique systems involving services, replicas, queues, RPC, clusters, caches, naming/discovery, clocks, leader election, distributed locks, consistency, replication, fault tolerance, recovery, security boundaries, observability, multi-region architecture, or correctness/completeness analysis of distributed behavior.
+description: Plan, review, and diagnose distributed systems projects and designs. Use when the user asks to design or critique systems involving services, replicas, queues, RPC, clusters, caches, naming/discovery, clocks, leader election, distributed locks, consistency, replication, fault tolerance, recovery, security boundaries, observability, multi-region architecture, or correctness/completeness analysis of distributed behavior.
 ---
 
 # Distributed Systems Planner
