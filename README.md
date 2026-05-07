@@ -48,6 +48,8 @@ Claude Code can invoke installed skills directly with `/skill-name`, and can als
 - `marketing-copywriter`
 - `python-engineer`
 - `python-reviewer`
+- `rust-engineer`
+- `rust-reviewer`
 - `setup-project`
 - `tdd`
 - `to-issues`
