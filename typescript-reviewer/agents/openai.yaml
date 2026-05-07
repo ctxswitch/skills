@@ -1,0 +1,4 @@
+interface:
+  display_name: "TypeScript Reviewer"
+  short_description: "Review TypeScript, React, and Tailwind code"
+  default_prompt: "Use $typescript-reviewer to review this TypeScript change."

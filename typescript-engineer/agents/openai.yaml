@@ -1,0 +1,4 @@
+interface:
+  display_name: "TypeScript Engineer"
+  short_description: "Implement focused TypeScript, React, and Tailwind changes"
+  default_prompt: "Use $typescript-engineer to implement this TypeScript change."

@@ -53,6 +53,8 @@ Claude Code can invoke installed skills directly with `/skill-name`, and can als
 - `to-issues`
 - `to-prd`
 - `triage`
+- `typescript-engineer`
+- `typescript-reviewer`
 - `zoom-out`
 
 ## Credits
