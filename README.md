@@ -6,19 +6,34 @@ This repo leaves out Codex's built-in `.system/` skills. It only includes the cu
 
 ## Install
 
-Install the skills into the default Codex skills directory:
+Install the skills for both Codex and Claude Code:
 
 ```sh
 make install
 ```
 
-Or point the install somewhere else:
+That copies each skill into:
+
+- `~/.codex/skills`
+- `~/.claude/skills`
+
+Install for just one agent:
 
 ```sh
-make install CODEX_SKILLS_DIR=/path/to/skills
+make install-codex
+make install-claude
 ```
 
-`make install` replaces matching skill directories in the destination. It leaves unrelated directories alone, including `.system`.
+Or point either install somewhere else:
+
+```sh
+make install-codex CODEX_SKILLS_DIR=/path/to/codex/skills
+make install-claude CLAUDE_SKILLS_DIR=/path/to/claude/skills
+```
+
+The install targets replace matching skill directories in the destination. They leave unrelated directories alone, including `.system`.
+
+Claude Code can invoke installed skills directly with `/skill-name`, and can also load them automatically when their descriptions match the task.
 
 ## Skills
 
