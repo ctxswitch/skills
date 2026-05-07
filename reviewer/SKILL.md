@@ -1,6 +1,6 @@
 ---
 name: reviewer
-description: "Review Go, Python, Rust, and TypeScript/React/Tailwind diffs or PRs for correctness, security, tests, idiom, APIs, packages/crates, ownership/borrowing, async/concurrency, unsafe code, typing, hooks, TSX/JSX, styling, build config, accessibility, performance, and maintainability."
+description: "Use when asked to review, audit, critique, inspect, or check a diff, PR, patch, tests, API, package/crate, frontend, or architecture across Go, Python, Rust, or TypeScript/React/Tailwind. Finds correctness, security, coverage, idiom, ownership/borrowing, async/concurrency, unsafe code, typing, hooks, TSX/JSX, Tailwind styling, build config, accessibility, performance, and maintainability issues."
 ---
 
 # Reviewer

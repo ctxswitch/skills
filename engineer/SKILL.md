@@ -1,6 +1,6 @@
 ---
 name: engineer
-description: "Implement focused, idiomatic code changes across Go, Python, Rust, and TypeScript/React/Tailwind. Use when asked to add, fix, or modify code, tests, services, APIs, CLIs, packages/crates, async/concurrency, errors, ownership/borrowing, typing, packaging/Cargo, hooks, TSX/JSX, styling, tooling, security, or production behavior."
+description: "Use when asked to implement, build, add, fix, modify, debug, refactor, or test production code across Go, Python, Rust, or TypeScript/React/Tailwind. Covers services, APIs, CLIs, packages/crates, tests, async/concurrency, errors, ownership/borrowing, typing, packaging/Cargo, hooks, TSX/JSX, Tailwind styling, tooling, security, performance, and multi-language contracts."
 ---
 
 # Engineer
