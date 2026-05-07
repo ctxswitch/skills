@@ -1,18 +1,18 @@
 # Skills
 
-My personal Codex skills.
+My personal skills for Codex and Claude Code.
 
-This repo leaves out Codex's built-in `.system/` skills. It only includes the custom skills I want to keep under version control and install across machines.
+I use this repo to keep the skills I care about versioned, installable, and consistent across machines. Most of them are working notes for engineering, architecture, planning, reviews, and writing.
 
 ## Install
 
-Install the skills for both Codex and Claude Code:
+Install everything for both agents:
 
 ```sh
 make install
 ```
 
-That copies each skill into:
+That copies the skills into:
 
 - `~/.codex/skills`
 - `~/.claude/skills`
@@ -24,40 +24,48 @@ make install-codex
 make install-claude
 ```
 
-Or point either install somewhere else:
+Or point either target somewhere else:
 
 ```sh
 make install-codex CODEX_SKILLS_DIR=/path/to/codex/skills
 make install-claude CLAUDE_SKILLS_DIR=/path/to/claude/skills
 ```
 
-The install targets replace matching skill directories in the destination. They leave unrelated directories alone, including `.system`.
+The install targets replace matching skill directories in the destination and leave unrelated directories alone.
 
-Claude Code can invoke installed skills directly with `/skill-name`, and can also load them automatically when their descriptions match the task.
+Claude Code can invoke installed skills directly with `/skill-name`, and can also infer them when their descriptions match the task.
 
 ## Skills
 
-- `diagnose`
-- `distributed-systems-planner`
-- `drill-me`
+Engineering:
+
 - `go-engineer`
 - `go-reviewer`
-- `grill-me`
-- `humanize`
-- `improve-codebase-architecture`
-- `marketing-copywriter`
 - `python-engineer`
 - `python-reviewer`
 - `rust-engineer`
 - `rust-reviewer`
-- `setup-project`
+- `typescript-engineer`
+- `typescript-reviewer`
 - `tdd`
+
+Architecture, planning, and project work:
+
+- `diagnose`
+- `distributed-systems-planner`
+- `drill-me`
+- `grill-me`
+- `improve-codebase-architecture`
+- `setup-project`
 - `to-issues`
 - `to-prd`
 - `triage`
-- `typescript-engineer`
-- `typescript-reviewer`
 - `zoom-out`
+
+Writing:
+
+- `humanize`
+- `marketing-copywriter`
 
 ## Credits
 
