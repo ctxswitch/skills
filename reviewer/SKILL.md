@@ -1,6 +1,6 @@
 ---
 name: reviewer
-description: "Use when asked to review, audit, critique, inspect, or check a diff, PR, patch, tests, API, package/crate, frontend, or architecture across Go, Python, Rust, or TypeScript/React/Tailwind. Finds correctness, security, coverage, idiom, ownership/borrowing, async/concurrency, unsafe code, typing, hooks, TSX/JSX, Tailwind styling, build config, accessibility, performance, and maintainability issues."
+description: "Use when asked to review, audit, critique, inspect, or check a diff, PR, patch, tests, API, package/crate, frontend, architecture, .proto schema, gRPC/ConnectRPC service, generated client, or build config across Go, Python, Rust, TypeScript/React/Tailwind, or Protocol Buffers. Finds correctness, compatibility, security, coverage, idiom, ownership/borrowing, async/concurrency, unsafe code, typing, hooks, TSX/JSX, Tailwind styling, accessibility, performance, and maintainability issues."
 ---
 
 # Reviewer
@@ -13,6 +13,7 @@ Review as a senior engineer. Be independent, direct, and evidence based. Do not 
 - Python: read the relevant files under `references/python/`.
 - Rust: read the relevant files under `references/rust/`.
 - TypeScript, React, or Tailwind: read the relevant files under `references/typescript/`.
+- Protocol Buffers, gRPC, or ConnectRPC: read the relevant files under `references/proto/`.
 - Mixed-language changes: read `references/cross-language/contracts.md` plus only the touched language references.
 
 Load references incrementally. Prefer the most specific file for the changed code.
@@ -23,6 +24,7 @@ Load references incrementally. Prefer the most specific file for the changed cod
 - Python: `references/python/python-standards.md`, `typing-and-api-design.md`, `testing.md`, `packaging-tooling.md`, `async-and-resources.md`, `security-performance.md`.
 - Rust: `references/rust/rust-standards.md`, `errors-observability.md`, `async-concurrency.md`, `cargo-tooling.md`, `testing.md`, `unsafe-security-performance.md`.
 - TypeScript/React/Tailwind: `references/typescript/typescript-standards.md`, `react-components-hooks.md`, `tailwind-ui.md`, `testing.md`, `tooling-config.md`, `security-performance-accessibility.md`.
+- Protocol Buffers/gRPC/ConnectRPC: `references/proto/schema-design.md`, `compatibility.md`, `services-generation.md`, `connectrpc.md`, `tooling-validation.md`.
 - Cross-language: `references/cross-language/contracts.md`.
 
 ## Review Stance

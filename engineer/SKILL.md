@@ -1,6 +1,6 @@
 ---
 name: engineer
-description: "Use when asked to implement, build, add, fix, modify, debug, refactor, or test production code across Go, Python, Rust, or TypeScript/React/Tailwind. Covers services, APIs, CLIs, packages/crates, tests, async/concurrency, errors, ownership/borrowing, typing, packaging/Cargo, hooks, TSX/JSX, Tailwind styling, tooling, security, performance, and multi-language contracts."
+description: "Use when asked to implement, build, add, fix, modify, debug, refactor, or test production code across Go, Python, Rust, TypeScript/React/Tailwind, or Protocol Buffers. Covers services, APIs, CLIs, packages/crates, .proto schemas, gRPC/ConnectRPC, tests, async/concurrency, errors, ownership/borrowing, typing, packaging/Cargo, hooks, TSX/JSX, Tailwind styling, tooling, security, performance, and multi-language contracts."
 ---
 
 # Engineer
@@ -23,6 +23,7 @@ Write correct, idiomatic code. Stay in scope, match the repository's existing st
 - Python: read the relevant files under `references/python/`.
 - Rust: read the relevant files under `references/rust/`.
 - TypeScript, React, or Tailwind: read the relevant files under `references/typescript/`.
+- Protocol Buffers, gRPC, or ConnectRPC: read the relevant files under `references/proto/`.
 - Mixed-language changes: read `references/cross-language/contracts.md` plus only the touched language references.
 
 Load references incrementally. Prefer the most specific file for the changed code.
@@ -33,6 +34,7 @@ Load references incrementally. Prefer the most specific file for the changed cod
 - Python: `references/python/python-standards.md`, `typing-and-api-design.md`, `testing.md`, `packaging-tooling.md`, `async-and-resources.md`, `security-performance.md`.
 - Rust: `references/rust/rust-standards.md`, `errors-observability.md`, `async-concurrency.md`, `cargo-tooling.md`, `testing.md`, `unsafe-security-performance.md`.
 - TypeScript/React/Tailwind: `references/typescript/typescript-standards.md`, `react-components-hooks.md`, `tailwind-ui.md`, `testing.md`, `tooling-config.md`, `security-performance-accessibility.md`.
+- Protocol Buffers/gRPC/ConnectRPC: `references/proto/schema-design.md`, `compatibility.md`, `services-generation.md`, `connectrpc.md`, `tooling-validation.md`.
 - Cross-language: `references/cross-language/contracts.md`.
 
 ## Implementation Stance
