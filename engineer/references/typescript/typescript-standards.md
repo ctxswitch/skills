@@ -14,7 +14,6 @@ Use this reference for TypeScript source, module structure, public APIs, narrowi
 
 ## Public APIs
 
-- Public functions should have clear parameter and return types.
 - Public component props should be named and exported when they are reused by callers or tests.
 - Use `readonly` and immutable collection types for inputs that must not be mutated.
 - Prefer literal unions or discriminated unions over boolean flag combinations when states are mutually exclusive.
@@ -25,7 +24,6 @@ Use this reference for TypeScript source, module structure, public APIs, narrowi
 
 ## Narrowing and Runtime Data
 
-- Narrow nullable and optional values before use. Prefer early returns when they reduce nested code.
 - Validate data from network responses, local storage, URL params, postMessage, forms, cookies, and server-provided JSON before trusting it.
 - Keep parsing at the boundary. Convert unknown/raw shapes into domain shapes once, then pass the parsed shape inward.
 - Do not silence nullable errors with `!` unless the invariant is already proven nearby or enforced by the framework.

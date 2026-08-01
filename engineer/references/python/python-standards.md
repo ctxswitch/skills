@@ -2,26 +2,12 @@
 
 Use this for implementation and review of general Python code. Prefer the repo's established conventions when they conflict with generic guidance.
 
-## Table of Contents
-
-- Core rules
-- Imports and modules
-- Functions and classes
-- Exceptions
-- Logging
-- Data model choices
-- Documentation and comments
-- Common review findings
-
 ## Core Rules
 
-- Readability matters more than cleverness.
 - Follow existing project style before introducing new style rules.
 - Prefer simple functions and cohesive modules over deep inheritance.
 - Keep public APIs small and explicit.
 - Avoid module import side effects except constants, type declarations, and cheap setup.
-- Avoid mutable default arguments.
-- Avoid broad `except:` and bare `except Exception` without a concrete recovery or boundary.
 - Prefer context managers for resources.
 - Keep dependencies narrow and justified.
 - Do not add framework magic when ordinary Python is clearer.
@@ -33,7 +19,6 @@ Import rules:
 - Keep imports at module top unless delayed import solves a real cycle, optional dependency, or performance problem.
 - Use absolute imports unless the package already uses relative imports consistently.
 - Avoid wildcard imports outside `__init__.py` export shims.
-- Remove unused imports.
 - Do not create import cycles to share constants or types.
 - Guard typing-only imports with `if TYPE_CHECKING:` when they cause runtime cycles or heavy imports.
 
@@ -129,10 +114,6 @@ Docstring rules:
 - Do not restate the signature in prose.
 - Keep comments current; a stale comment is worse than none.
 
-Comment rules:
-
-- Explain why, not what.
-- Comment non-obvious invariants, ordering, compatibility constraints, and workarounds.
 - Remove commented-out code.
 
 ## Common Review Findings

@@ -20,7 +20,6 @@ Use this for both implementing and reviewing Go code.
 - Accept interfaces and return concrete types.
 - Define interfaces at the consumer only when that consumer truly owns a reusable dependency boundary.
 - Do not introduce a single-use interface to move orchestration across package boundaries or avoid passing the concrete module that owns the behavior.
-- Do not mock code owned by the repo just to expose private structure.
 - Do not return interfaces when a concrete type gives callers a clearer contract.
 - One-method interfaces that do not use the `-er` suffix are not a problem by themselves.
 

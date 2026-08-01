@@ -21,15 +21,6 @@ Best practices:
 - Tie informational content to a logical next step.
 - Use internal links to connect educational and commercial pages.
 
-Anti-patterns:
-
-- Keyword list with no reader task.
-- Generic intro that delays the answer.
-- Outline copied from top-ranking pages without a point of view.
-- FAQ stuffing.
-- CTA unrelated to the reader's stage.
-- Measuring a new article only by final conversion.
-
 ## Intent Classification
 
 Intent types:
@@ -264,8 +255,13 @@ Commercial dead end:
 
 Keyword stuffing:
 
-- Evidence: repeated phrase hurts readability.
-- Fix: use natural language and related entities.
+- Evidence: repeated phrase hurts readability, or an FAQ block exists to absorb query variants rather than answer real questions.
+- Fix: use natural language and related entities; cut FAQ entries no reader would ask.
+
+Conversion-only measurement:
+
+- Evidence: an asset is judged against an outcome it was never positioned to produce.
+- Fix: measure against the stage it actually serves.
 
 ## Output Templates
 

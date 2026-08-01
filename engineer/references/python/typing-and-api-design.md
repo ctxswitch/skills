@@ -2,17 +2,6 @@
 
 Use this when adding or reviewing type annotations, public APIs, dataclasses, protocols, generics, overloads, or mypy/pyright behavior.
 
-## Table of Contents
-
-- Typing stance
-- Annotation rules
-- Public API design
-- Protocols and structural typing
-- Dataclasses and typed dictionaries
-- Generics and collections
-- Runtime typing pitfalls
-- Common review findings
-
 ## Typing Stance
 
 - Type hints document intent and help tools catch errors; they should not make simple code obscure.

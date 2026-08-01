@@ -284,7 +284,7 @@ Unsupported claim:
 Generic AI tone:
 
 - Evidence: boilerplate phrases and no buyer context.
-- Fix: restore specific reader, task, and mechanism.
+- Fix: ground it in a specific reader doing a specific thing.
 
 Differentiation gap:
 

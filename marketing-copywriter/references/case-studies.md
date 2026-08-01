@@ -21,14 +21,6 @@ Best practices:
 - Use specific before/after evidence.
 - Include caveats where they increase trust.
 
-Anti-patterns:
-
-- Vendor hero story disguised as customer story.
-- "Challenge, solution, results" with no tension or decision detail.
-- Metrics without timeframe.
-- Quotes that sound like approved brochure copy.
-- Too many product features and not enough operational change.
-
 ## Story Selection
 
 Good case study candidates have:
@@ -215,7 +207,7 @@ No tension:
 Vendor-centered:
 
 - Evidence: company actions dominate customer experience.
-- Fix: rewrite around customer problem, decision, and outcome.
+- Fix: make the customer the subject.
 
 Unsupported metric:
 
@@ -231,6 +223,11 @@ CTA disconnected:
 
 - Evidence: case study ends without next action.
 - Fix: point similar reader to relevant demo, guide, comparison, or consultation.
+
+Feature-led narrative:
+
+- Evidence: the product is the subject; the customer's change in how they work is thin or absent.
+- Fix: make the operational change the spine, and let capability appear only where it caused that change.
 
 ## Output Templates
 

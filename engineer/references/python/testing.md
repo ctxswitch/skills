@@ -2,17 +2,6 @@
 
 Use this for adding, changing, or reviewing Python tests.
 
-## Table of Contents
-
-- Coverage expectations
-- pytest layout and discovery
-- Test shape
-- Fixtures
-- Parametrization
-- Mocking and monkeypatching
-- Determinism
-- Review findings
-
 ## Coverage Expectations
 
 Add or update tests for:

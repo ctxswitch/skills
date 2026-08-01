@@ -2,17 +2,6 @@
 
 Use this when touching packaging, dependencies, `pyproject.toml`, lint/format/type-check config, entry points, package layout, or lock files.
 
-## Table of Contents
-
-- Packaging stance
-- pyproject.toml
-- Dependencies
-- Project layout
-- Entry points and CLIs
-- Format, lint, and type check
-- Lock files
-- Common review findings
-
 ## Packaging Stance
 
 - Follow the repo's existing packaging tool before introducing a new one.

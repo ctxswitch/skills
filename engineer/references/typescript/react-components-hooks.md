@@ -5,7 +5,6 @@ Use this reference for React components, hooks, JSX/TSX, state, effects, context
 ## Core Stance
 
 - Components and hooks must be pure during render: same inputs should produce the same output, and side effects should run in event handlers or effects.
-- Props and state are immutable snapshots. Never mutate them directly.
 - Prefer deriving render data from props/state during render over storing duplicated derived state.
 - Use effects to synchronize with external systems, not to compute values that can be derived during render.
 - Match the app's framework conventions for server components, client components, routing, data loading, mutations, cache invalidation, and forms.
@@ -40,9 +39,7 @@ Use this reference for React components, hooks, JSX/TSX, state, effects, context
 
 ## Hooks
 
-- Call hooks only at the top level of React functions or custom hooks.
-- Custom hooks should be named `use*`, hide reusable stateful behavior, and expose a small API.
-- A custom hook is worthwhile when it removes real duplication or clarifies a reusable external-system synchronization.
+- A custom hook is worthwhile when it removes real duplication or clarifies a reusable external-system synchronization. It should hide reusable stateful behavior behind a small API, not just group calls.
 - Do not return unstable objects/functions from hooks when callers reasonably depend on referential stability, unless local convention accepts it.
 - Avoid memoization by reflex. Use `useMemo` and `useCallback` for expensive calculations, referential contracts, or preventing real rerenders, not as decoration.
 

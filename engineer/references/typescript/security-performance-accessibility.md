@@ -6,7 +6,6 @@ Use this reference for untrusted input, HTML injection, links, tokens, storage, 
 
 - Treat user input, URL params, route params, form data, local/session storage, cookies, postMessage, server-rendered JSON, and API responses as untrusted.
 - Avoid `dangerouslySetInnerHTML`. If HTML rendering is required, sanitize with an established sanitizer at the boundary and document the trust source.
-- Do not put secrets, private tokens, service keys, or server-only environment variables in client bundles.
 - Use safe link behavior. External links opened in a new tab should avoid opener access where the framework does not handle it.
 - Validate redirect targets and return URLs. Avoid open redirects.
 - Avoid string-built SQL, shell commands, URLs, HTML, CSS, or selectors from untrusted data.

@@ -2,17 +2,6 @@
 
 Use this when touching `asyncio`, concurrency, cancellation, files, network clients, database sessions, context managers, or cleanup.
 
-## Table of Contents
-
-- Async stance
-- asyncio rules
-- Cancellation and timeouts
-- Task ownership
-- Context managers
-- File and network resources
-- Database/session resources
-- Common review findings
-
 ## Async Stance
 
 - Prefer synchronous code unless concurrency is required by the caller, framework, or performance target.

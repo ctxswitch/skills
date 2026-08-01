@@ -44,8 +44,6 @@ Mock only:
 - time, randomness, filesystem, network, or hard-to-trigger boundary failures
 - behavior outside the package's ownership
 
-Do not mock code owned by the repo just to make private structure visible.
-
 ## Determinism
 
 Avoid:

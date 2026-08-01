@@ -2,18 +2,6 @@
 
 Use this for Python security, resource, and performance checks.
 
-## Table of Contents
-
-- Security rules
-- Input and deserialization
-- Secrets and randomness
-- Subprocesses
-- SQL and storage
-- HTTP and network
-- Path handling
-- Performance rules
-- Common review findings
-
 ## Security Rules
 
 - No hardcoded secrets. Read credentials from environment, config, or secret store.

@@ -21,14 +21,6 @@ Best practices:
 - Include a useful enemy: old way, incumbent, manual workaround, false belief, or avoidable risk.
 - Make the statement narrow enough to guide actual copy.
 
-Anti-patterns:
-
-- "For everyone who needs growth."
-- Positioning based on adjectives: faster, better, easier, smarter.
-- A category so broad that the buyer cannot compare options.
-- Differentiation no one can verify.
-- Voice traits without examples.
-
 ## Positioning Inputs
 
 Collect:
@@ -225,12 +217,12 @@ Score 0-2:
 
 Positioning too broad:
 
-- Evidence: copy could address many unrelated buyers.
-- Fix: specify segment, trigger, and use case.
+- Evidence: copy could address many unrelated buyers — "for everyone who needs growth."
+- Fix: narrow until one buyer recognises themselves and the rest do not.
 
 Differentiation by adjective:
 
-- Evidence: "better/faster/easier" without mechanism.
+- Evidence: "better/faster/easier" without mechanism, or a differentiator the buyer has no way to verify.
 - Fix: name mechanism and proof.
 
 Voice without guardrails:

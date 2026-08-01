@@ -5,7 +5,6 @@ Use this reference for package metadata, dependency changes, `tsconfig`, ESLint,
 ## Core Stance
 
 - Match the repository's package manager, workspace layout, script names, build tool, formatter, linter, and TypeScript version.
-- Treat lock files as part of dependency changes. Do not edit lock files by hand.
 - Avoid tool churn. Do not introduce or replace ESLint, Prettier, Biome, Vite, Next, Tailwind, Jest, Vitest, Playwright, or package managers without explicit scope.
 - Preserve CI behavior. Local scripts should align with what CI runs.
 - Config changes have broad blast radius. Keep them narrow and validate with the affected script.
@@ -18,7 +17,6 @@ Use this reference for package metadata, dependency changes, `tsconfig`, ESLint,
 - Prefer existing dependencies and local utilities before adding new packages.
 - Verify Node engine, ESM/CJS compatibility, bundler compatibility, tree-shaking, and browser support.
 - Avoid adding dependencies for small helpers that are easy and clear locally.
-- For monorepos, add dependencies to the package that actually uses them.
 
 ## TypeScript Config
 

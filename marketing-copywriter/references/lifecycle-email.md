@@ -20,14 +20,6 @@ Best practices:
 - Let each email earn the next open.
 - Keep a consistent sender voice.
 
-Anti-patterns:
-
-- Asking for a demo before showing relevance.
-- Sending three emails in a row with the same sales ask.
-- Subject line that creates curiosity the email does not satisfy.
-- Newsletter with five unrelated ideas and no thesis.
-- "Checking in" with no value.
-
 ## Sequence Strategy
 
 Define:

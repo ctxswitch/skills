@@ -20,15 +20,6 @@ Best practices:
 - Put risk reducers before the reader has to commit.
 - Make the CTA describe what happens next.
 
-Anti-patterns:
-
-- Hero headline that is clever but hides the category.
-- CTA that asks for a meeting before establishing relevance.
-- Feature dump before the reader believes the problem matters.
-- Proof wall detached from claims.
-- Multiple equal CTAs with different intent.
-- FAQ used as a junk drawer for unresolved messaging.
-
 ## Narrative Spine
 
 Use this order as the default:
@@ -200,7 +191,7 @@ Interpretation:
 Generic hero:
 
 - Evidence: headline could apply to any competitor.
-- Fix: include category, audience, and outcome.
+- Fix: make it unusable by one.
 
 Unsupported promise:
 
@@ -221,6 +212,16 @@ Objection gap:
 
 - Evidence: high-friction issue absent from page.
 - Fix: add FAQ, comparison row, proof block, or risk reversal.
+
+Competing CTAs:
+
+- Evidence: multiple actions compete at equal weight, so the reader commits to none.
+- Fix: establish one primary action and subordinate the rest.
+
+FAQ as junk drawer:
+
+- Evidence: the FAQ carries messaging the page failed to resolve earlier.
+- Fix: resolve it where the question arises.
 
 ## Landing Page Brief
 
