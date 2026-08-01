@@ -1,6 +1,6 @@
 ---
 name: grill-me
-description: Grilling session that challenges your plan against the existing domain model, sharpens terminology, and updates the appropriate CONTEXT.md or ADRs inline as decisions crystallise, including routing new domain language to the right bounded context. Use when user wants to stress-test a plan against their project's language and documented decisions.
+description: "Interrogate a plan against the project's own domain language and recorded decisions, sharpening terminology and updating CONTEXT.md or ADRs inline as answers land. Use when the plan's vocabulary or its fit with documented decisions is what needs testing. For correctness under failure, use distributed-systems."
 ---
 
 Press on unresolved decisions and consequences until we reach a shared understanding.

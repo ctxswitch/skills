@@ -2,20 +2,6 @@
 
 Use this for brand messaging, positioning statements, voice guides, tone adjustments, and edits that need to sound like a coherent brand rather than generic marketing prose.
 
-## Table of Contents
-
-- Positioning method
-- Positioning inputs
-- Benefit ladder
-- Claim hierarchy
-- Brand voice method
-- Reader relationship
-- Tone by context
-- Lexicon and house rules
-- Review rubric
-- Common findings
-- Output templates
-
 ## Positioning Method
 
 1. Name the target customer.

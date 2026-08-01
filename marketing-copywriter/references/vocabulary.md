@@ -2,19 +2,6 @@
 
 Use this when the task depends on precise marketing-copy terminology, when the user asks for a critique, or when similar terms could lead to different copy decisions.
 
-## Table of Contents
-
-- Core copy concepts
-- Audience and awareness
-- Positioning and messaging
-- Proof and persuasion
-- Conversion vocabulary
-- Content and SEO vocabulary
-- Email vocabulary
-- Brand voice vocabulary
-- Common distinctions
-- Words to handle carefully
-
 ## Core Copy Concepts
 
 **Copy**

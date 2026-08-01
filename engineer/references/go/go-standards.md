@@ -11,9 +11,6 @@ Use this for both implementing and reviewing Go code.
 - Use `any` in new code, not `interface{}`. Never pass `*SomeInterface`.
 - Keep receiver names short and consistent. Do not mix pointer and value receivers without a reason.
 - Pass `context.Context` as the first parameter for I/O or cancellable work. Never store it on a struct.
-- Handle every error. Wrap useful context with `%w`. Use `errors.Is` and `errors.As`, not string comparisons.
-- Avoid panic, `log.Fatal`, and `os.Exit` outside `main` or startup paths.
-- Keep control flow flat with guard clauses. Avoid `else` after `return`, `break`, `continue`, or `goto`.
 - Prefer nil slices unless JSON or API behavior requires `[]`.
 - Use keyed literals for structs from other packages.
 - Keep business logic out of `cmd/`; `cmd/` should wire and call.
@@ -40,7 +37,6 @@ Use this for both implementing and reviewing Go code.
 ## Error Handling
 
 - Error messages should include useful operation context.
-- Use `%w` when callers may need to unwrap.
 - Use sentinel errors sparingly and only when callers branch on them.
 - Avoid string comparisons on errors.
 - Avoid returning concrete error types from exported APIs unless that type is a stable part of the contract.

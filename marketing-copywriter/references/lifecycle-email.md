@@ -2,19 +2,6 @@
 
 Use this for welcome sequences, onboarding, lifecycle nurture, newsletters, subject lines, and email copy reviews.
 
-## Table of Contents
-
-- Email method
-- Sequence strategy
-- Onboarding arc
-- Nurture lanes
-- Message structure
-- Subject lines
-- CTA and segmentation
-- Review rubric
-- Common findings
-- Sequence planner
-
 ## Email Method
 
 1. Identify the subscriber or contact trigger.

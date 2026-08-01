@@ -2,20 +2,6 @@
 
 Use this for customer story interviews, case study outlines, proof narratives, testimonial editing, and customer-proof sections on pages.
 
-## Table of Contents
-
-- Case study method
-- Story selection
-- Before the interview
-- Interview flow
-- Probe bank
-- Story spine
-- Evidence handling
-- Quote capture
-- Approval and risk
-- Common findings
-- Output templates
-
 ## Case Study Method
 
 1. Choose one story outcome.

@@ -2,19 +2,6 @@
 
 Use this before writing copy from scratch, reviewing vague copy, or building a brief. The goal is to turn buyer evidence into useful claims, objections, proof points, and page/email direction.
 
-## Table of Contents
-
-- Research method
-- Buyer insight
-- Jobs-to-be-done prompts
-- Voice-of-customer capture
-- Objection map
-- Competitor lens
-- Website and messaging audit
-- Search intent inputs
-- Proof inventory
-- Research output skeleton
-
 ## Research Method
 
 1. State the asset and desired action.

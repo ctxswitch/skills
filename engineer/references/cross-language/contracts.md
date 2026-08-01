@@ -1,14 +1,14 @@
 # Cross-Language Contracts
 
-Use this reference when a change crosses language, package, service, frontend/backend, generated-code, schema, or tooling boundaries.
+Use this reference when a change or review crosses language, package, service, frontend/backend, generated-code, schema, or tooling boundaries.
 
 ## Core Stance
 
-- Identify both sides of a contract before changing either side.
+- A change to one side of a contract is incomplete until the other side is inspected. Identify both sides before changing either.
 - Prefer changing the source of truth, then regenerate or update dependents through the repo's existing tooling.
-- Validate each affected language/package with its local tools.
+- Mixed-language changes need validation in **every** affected language/package, not only the one where the diff is largest.
 - Do not hand-edit generated clients, schemas, protobuf output, OpenAPI clients, GraphQL types, ORM output, or bindings unless that is the established workflow.
-- Keep backward compatibility explicit. Know whether the change is additive, breaking, version-gated, feature-gated, or migration-dependent.
+- Keep backward compatibility explicit. Know whether the change is additive, breaking, version-gated, feature-gated, or migration-dependent — it matters whenever clients, workers, databases, queues, or events can outlive a deploy.
 
 ## Boundaries To Check
 
@@ -35,3 +35,4 @@ Use this reference when a change crosses language, package, service, frontend/ba
 - Generated code was edited directly instead of regenerated.
 - API/schema change lacks a migration, versioning, or rollout path.
 - Only one language's tests ran after a cross-language contract changed.
+- A package export changed without checking downstream imports.

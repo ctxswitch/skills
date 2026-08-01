@@ -1,6 +1,6 @@
 ---
 name: marketing-copywriter
-description: Write, critique, and improve marketing copy and marketing prose. Use when the user asks for copywriting, landing pages, website copy, email nurture sequences, case studies, brand voice, positioning, SEO content briefs, campaign messaging, conversion-focused edits, or AI-assisted copy QA.
+description: "Write, critique, and QA marketing assets — landing pages, website copy, nurture email, case studies, positioning, SEO briefs, campaign messaging — including claim checks and cleanup passes on AI-drafted copy. Use when the goal is to persuade a buyer toward an action."
 ---
 
 # Marketing Copywriter

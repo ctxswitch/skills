@@ -1,20 +1,6 @@
 # QA and Editing
 
-Use this for polishing marketing copy, reviewing AI-assisted drafts, humanizing generic prose, checking claims, and preparing copy for publication.
-
-## Table of Contents
-
-- QA method
-- Claim checks
-- Specificity checks
-- Differentiation checks
-- Voice checks
-- Conversion checks
-- AI-assisted copy checks
-- Sensitive claims
-- Rewrite patterns
-- Review rubric
-- Output templates
+Use this for polishing marketing copy, reviewing AI-assisted drafts, checking claims, and preparing copy for publication.
 
 ## QA Method
 
@@ -333,16 +319,4 @@ Review:
 ## Proof Needed
 
 ## Optional Variants
-```
-
-Publish checklist:
-
-```markdown
-- [ ] Claims checked
-- [ ] Proof placed near claim
-- [ ] CTA clear
-- [ ] Voice aligned
-- [ ] Objections handled
-- [ ] Sensitive claims reviewed
-- [ ] Links and microcopy checked
 ```

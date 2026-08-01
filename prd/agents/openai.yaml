@@ -1,0 +1,4 @@
+interface:
+  display_name: "PRD"
+  short_description: "Turn current context into a PRD and publish it"
+  default_prompt: "Use $prd to turn this context into a product requirements document."

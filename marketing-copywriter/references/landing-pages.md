@@ -2,19 +2,6 @@
 
 Use this for landing pages, homepages, product pages, conversion pages, above-the-fold sections, CTA rewrites, and page critiques.
 
-## Table of Contents
-
-- Landing page method
-- Narrative spine
-- Above the fold
-- Message hierarchy
-- Body sections
-- Proof and objection handling
-- CTA rules
-- Page review rubric
-- Common findings
-- Landing page brief
-
 ## Landing Page Method
 
 1. Define the primary conversion.

@@ -1,6 +1,6 @@
 # Skills
 
-My personal skills for Codex and Claude Code.
+My personal skills for Codex, Claude Code, and OpenCode.
 
 I use this repo to keep the skills I care about versioned, installable, and consistent across machines. Most of them are working notes for engineering, architecture, planning, reviews, and writing.
 
@@ -16,12 +16,14 @@ That copies the skills into:
 
 - `~/.codex/skills`
 - `~/.claude/skills`
+- `~/.config/opencode/skills`
 
 Install for just one agent:
 
 ```sh
 make install-codex
 make install-claude
+make install-opencode
 ```
 
 Or point either target somewhere else:
@@ -29,42 +31,40 @@ Or point either target somewhere else:
 ```sh
 make install-codex CODEX_SKILLS_DIR=/path/to/codex/skills
 make install-claude CLAUDE_SKILLS_DIR=/path/to/claude/skills
+make install-opencode OPENCODE_SKILLS_DIR=/path/to/opencode/skills
 ```
 
-The install targets replace matching skill directories in the destination and leave unrelated directories alone.
+Each install wipes its destination directory first, so renames and deletions never leave anything behind. The destinations are assumed to be owned by this repo. `make uninstall` removes them.
 
 Claude Code can invoke installed skills directly with `/skill-name`, and can also infer them when their descriptions match the task.
 
-Recent Claude Code builds use a small skill listing budget, currently 1% of context by default. That budget appears to be calculated against an effective 128k context, even for models that support larger context windows. When the installed skills exceed the budget, Claude may warn, truncate descriptions, or silently drop some descriptions from the inferred skill list. This set keeps the always-loaded listing compact by using role-level engineering skills with language-specific references loaded on demand.
+OpenCode discovers installed skills through its native `skill` tool.
+
+Every skill's name and description sit in context in every session, whether or not the skill is used — only the body and references load on demand. Claude Code caps that always-loaded listing at a fraction of the context window (`skillListingBudgetFraction`); past the cap, descriptions get truncated or dropped and routing degrades. Keeping the set small and the descriptions situational is what keeps that budget comfortable.
 
 ## Skills
 
 Engineering:
 
-- `engineer`
-- `reviewer`
-- `tdd`
+- `engineer` — write or review code; per-language references load on demand
+- `architecture` — survey for shallow modules and design the replacement interface
+- `diagnose` — disciplined loop for hard bugs and performance regressions
+- `distributed-systems` — plan, review, diagnose, or drill a distributed design
 
-Architecture, planning, and project work:
+Planning and project work:
 
-- `diagnose`
-- `distributed-systems-planner`
-- `drill-me`
-- `grill-me`
-- `improve-codebase-architecture`
-- `setup-project`
-- `to-issues`
-- `to-prd`
-- `triage`
-- `zoom-out`
+- `grill-me` — interrogate a plan against the project's domain language and ADRs
+- `issues` — triage, break down, PRD, and issue-tracker setup
 
 Writing:
 
-- `humanize`
-- `marketing-copywriter`
+- `humanize` — make existing prose read as though a person wrote it
+- `marketing-copywriter` — write, critique, and QA marketing assets
+
+Each skill states its own default failure mode and the rules that counter it. Guidance that merely restates what a capable model already does earns no place here; guidance that pulls against the most common pattern is the entire point.
 
 ## Credits
 
-Some of these skills are adapted from Matt Pocock's [Skills For Real Engineers](https://github.com/mattpocock/skills), especially `diagnose`, `grill-me`, `improve-codebase-architecture`, `setup-project`, `to-issues`, `to-prd`, and `triage`.
+Some of these skills are adapted from Matt Pocock's [Skills For Real Engineers](https://github.com/mattpocock/skills) — `diagnose` and `grill-me` directly, `architecture` (formerly `improve-codebase-architecture`), and `issues` (which absorbed the former `triage`, `to-issues`, `to-prd`, and `setup-project`).
 
 Matt's skills repo is MIT licensed. See [THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md) for the upstream notice.

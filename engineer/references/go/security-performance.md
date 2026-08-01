@@ -2,40 +2,26 @@
 
 Use this for Go security, resource, and performance checks.
 
-## Security Rules
+## Security
 
-- No hardcoded secrets. Read credentials from configuration, environment, or a secret store.
-- Validate external input at boundaries.
-- Parameterize SQL.
-- Use `exec.Command(name, args...)`, not shell strings.
-- Use `subtle.ConstantTimeCompare` for secrets and tokens.
-- Use `crypto/rand` for keys, tokens, nonces, salts, and session IDs.
-- Do not disable TLS verification outside test-only code with explicit guardrails.
-- Give production HTTP clients and I/O operations timeouts or deadlines.
-- Avoid logging secrets, tokens, credentials, PII, or sensitive request bodies.
-- Preserve authorization checks when moving code across packages or async boundaries.
+- Use `crypto/rand` for keys, tokens, nonces, salts, and session IDs. `math/rand` is the reflex and it is wrong for all of these.
+- Use `subtle.ConstantTimeCompare` for secrets and tokens. `==` is the reflex and it leaks timing.
+- Use `exec.Command(name, args...)`. `exec.Command("sh", "-c", ...)` with any dynamic input is injection.
+- Give every production HTTP client and I/O operation a timeout or deadline. `http.Client{}` has none, and the zero value is what gets written.
+- Preserve authorization checks when moving code across packages or async boundaries. A worker that inherits no caller authority is the common way this silently breaks.
 
-## Performance Rules
+## Resources and performance
 
-- Bound collections that grow with input.
-- Use maps for membership checks on non-trivial sets.
-- Use `strings.Builder` for loop concatenation.
-- Avoid avoidable O(n squared) paths on unbounded input.
-- Avoid goroutine, timer, ticker, file, response-body, and channel leaks.
-- Close response bodies and files.
-- Stop tickers and timers when appropriate.
-- Do not hold locks during slow operations.
-
-## I/O and Timeouts
-
-- Use context deadlines or client timeouts for external calls.
-- Treat missing timeouts as correctness risk when calls are on request paths or workers.
+- Bound collections that grow with request input.
+- Avoid goroutine, timer, ticker, file, response-body, and channel leaks. Close response bodies and files; stop tickers and timers.
+- Do not hold a lock across network or disk I/O.
 - Avoid retry loops without limits, backoff, or context cancellation.
 - Keep long-running workers observable and cancellable.
+- Treat a missing timeout as a correctness risk, not a performance one, when the call is on a request path or in a worker.
 
-## Review Red Flags
+## Review red flags
 
-- `http.Client{}` without timeout in production path.
+- `http.Client{}` without timeout in a production path.
 - SQL built through string concatenation.
 - `exec.Command("sh", "-c", ...)` with dynamic input.
 - `math/rand` for tokens or secrets.

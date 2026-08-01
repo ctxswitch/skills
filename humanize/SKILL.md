@@ -1,6 +1,6 @@
 ---
 name: humanize
-description: Use this when the user asks to humanize, naturalize, de-bot, de-AI, soften, rewrite, or polish prose so it sounds like a real person wrote it. Applies to emails, docs, posts, essays, marketing copy, support replies, status updates, proposals, and other written documents. Focus on reducing botlike phrasing, stiff structure, generic filler, and unnatural punctuation while preserving the author's meaning, facts, intent, and appropriate voice.
+description: "Rewrite prose so it reads as though a person wrote it — removing botlike phrasing, stiff structure, generic filler, and punctuation tells while preserving meaning, facts, and voice. Use when the ask is to humanize, de-AI, soften, or naturalize existing writing. For marketing assets written from scratch, use marketing-copywriter."
 ---
 
 # Humanize

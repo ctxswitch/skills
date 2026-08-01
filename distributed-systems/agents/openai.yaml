@@ -1,0 +1,4 @@
+interface:
+  display_name: "Distributed Systems"
+  short_description: "Plan, review, diagnose, or drill distributed systems designs"
+  default_prompt: "Use $distributed-systems to plan, review, or drill this distributed system."

@@ -1,4 +1,4 @@
 interface:
   display_name: "Engineer"
-  short_description: "Implement focused code changes across supported languages"
-  default_prompt: "Use $engineer to implement this change."
+  short_description: "Write or review code across supported languages"
+  default_prompt: "Use $engineer to implement or review this change."

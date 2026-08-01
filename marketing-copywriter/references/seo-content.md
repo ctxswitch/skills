@@ -2,20 +2,6 @@
 
 Use this for SEO content briefs, search-driven articles, content outlines, on-page review, and SEO-focused marketing prose.
 
-## Table of Contents
-
-- SEO content method
-- Intent classification
-- SERP review
-- Unique point of view
-- Brief inputs
-- Outline design
-- On-page essentials
-- Evidence and compliance
-- Measurement
-- Common findings
-- Output templates
-
 ## SEO Content Method
 
 1. Identify the primary query or topic.

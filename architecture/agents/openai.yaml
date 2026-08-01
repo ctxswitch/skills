@@ -1,0 +1,4 @@
+interface:
+  display_name: "Architecture"
+  short_description: "Find module-deepening opportunities in codebases"
+  default_prompt: "Use $architecture to find deepening opportunities in this codebase."
