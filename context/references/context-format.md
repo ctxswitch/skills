@@ -82,7 +82,11 @@ services/billing/ledger/CONTEXT.md  the ledger's own terms
 
 A reader loads the root file down to the directory being worked in, and every level assumes its ancestors. Nothing is repeated from a parent.
 
-A directory owning nothing at its own level carries no file and inherits from its parent. `internal/util` stays empty rather than padded.
+Every directory holding authored source of its own carries a `CONTEXT.md`, including packages whose language is narrow or mechanical — a utility package records what its callers may rely on. Whether an entry is "obvious" is not the test. Obviousness varies by reader, so a file one run creates and the next deletes churns the hierarchy for no gain.
+
+A directory holding only subdirectories carries a file only where it records something true of every scope beneath it. With nothing spanning, it carries none.
+
+Generated output carries none. Its language belongs to the scope owning the generator input — the protobuf definitions, not the emitted client.
 
 An entry whose directory does not exist yet lives at the nearest existing ancestor and moves down once the directory arrives. `_Pending_:` names the intended home.
 

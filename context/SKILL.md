@@ -28,7 +28,7 @@ Track the run under `.claude/drift/<session>/` — the session identifier where 
 
 These files are the run's memory, not a report on it. A sweep over a large repository will not fit in one context: assume compaction at any point, and treat everything not yet written under `.claude/drift/<session>/` as lost. Write a scope's record when that scope is finished, never batched at the end.
 
-A scope is finished when its record is written **and** its box is ticked in `index.md`. Both, before the next scope is read. A record whose box is unticked is invisible to the rebuild, which will sweep that scope again from source.
+A scope is finished when its record is written **and** its box is ticked in `index.md`. Both, before the next scope is read, never batched once the sweep is over. A record whose box is unticked is invisible to the rebuild, which sweeps that scope again from source. A ticked box with no record behind it is worse: the rebuild trusts it, skips the scope, and the findings are gone. Never tick what you have not written.
 
 - `index.md` — the root scope and the dependency-ordered scope list, each scope pending or swept.
 - `ledger.md` — every ambiguity in flight: what the code shows, what the docs claim, what is unresolved, and the evidence gathered since it was raised. Resolved entries stay in the file with their decision and where it was written.
@@ -111,13 +111,15 @@ A question must be answerable without opening the repo. It carries these and not
 
 A term a prior sweep introduced with nothing in the sources behind it is not a naming question. Ask whether it should exist at all, and say that is what you are asking.
 
+Never bundle items whose answers diverge. Several entries sharing a symptom rarely share a cause — one may be a library object recorded as language, another shadowed by a parent that already says it, a third correct but thinly written. A single question over all of them forces one verdict onto three findings. Split them, or ask about the one and name the rest as separate entries.
+
 Rank by blast radius — a term crossing contexts before one local to a scope.
 
 The user's answer is the decision. When it contradicts the code, record the decision and report the code as defective; do not edit it.
 
 ## 5. Write
 
-Write each fact at the shallowest directory where it holds for everything beneath it, creating the file where a scope owns language and carries none. Use the format in [context-format.md](./references/context-format.md).
+Write each fact at the shallowest directory where it holds for everything beneath it, creating a file for any scope that holds authored source and carries none. Use the format in [context-format.md](./references/context-format.md).
 
 Write each entry as its decision lands, not in a batch at the end. Every ambiguity the user settles is recorded under `## Flagged ambiguities` with its resolution. Record a decision only while someone would still reach for the alternative — `_Fixed_:` on the term it governs, or the scope's `## Decisions` section. Drop a recorded decision whose alternative nobody would now propose.
 
