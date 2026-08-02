@@ -67,8 +67,14 @@ because the run directory is deleted and the context file is not.
   file. The split happened and the entry did not move. Count a parent's terms that exist nowhere below
   it: a file whose children were created from source rather than from it will show almost all of them.
 - **Under-scoped** — sibling files carrying the same term with the same meaning. Lift it to the parent.
-- **Shadowed** — a child restating an entry its parent already carries. Delete the child copy. Where
-  the two meanings differ, the disagreement is the finding, not the duplication.
+- **Shadowed** — a child and an ancestor both carrying the same entry. A fact belongs at exactly one
+  scope, so this cannot arise from correct writing: it is evidence that an earlier write recorded a fact
+  without draining where it came from, and the hierarchy has been inconsistent with itself since. Do not
+  resolve it by position. Establish which entry is right and which scope owns the fact, then keep that
+  one — an ancestor holding it is not what makes it canonical, and a child's wording is often the better
+  of the two because it was written closer to the code. Where the two differ in meaning rather than
+  wording, neither is deleted; the disagreement is recorded under `## Flagged ambiguities` at the scope
+  that owns the fact.
 - **Split meaning** — one term defined differently in two scopes. Neither file can settle it; open a
   ledger entry.
 
