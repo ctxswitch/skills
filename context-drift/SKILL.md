@@ -21,12 +21,13 @@ The default failure mode is treating every difference as a conflict and asking t
 
 ## Tracking the run
 
-Track the run under `.claude/drift/<session>/` — the session identifier where the harness exposes one, a scope slug otherwise — written as you go and deleted when the run completes. Create it lazily.
+Track the run under `.claude/drift/<session>/` — the session identifier where the harness exposes one, a scope slug otherwise — written as you go and deleted when the run completes. Create it lazily. Every file follows the templates in [run-format.md](./references/run-format.md).
 
-- `index.md` — the scope, the dependency-ordered module list with each module marked pending or swept, and the decisions the user settled.
-- `<module>.md` — one per swept module: the terms it owns and what each means, its limits and restrictions, what was written to its context, and any ledger entry raised there.
+- `index.md` — the scope and the dependency-ordered module list, each module pending or swept.
+- `ledger.md` — every ambiguity in flight: what the code shows, what the docs claim, what is unresolved, and the evidence gathered since it was raised. Resolved entries stay in the file with their decision and where it was written.
+- `<module>.md` — one per swept module: the terms it owns, its limits and restrictions, what was written to its context, and the ledger entries it raised.
 
-A ledger entry carries the term or rule, the code evidence with `file:line`, the competing claim, and what is unresolved. When a later module bears on an open entry, append that evidence to the entry where it was raised.
+When a later module bears on an open entry, append that evidence to the entry in `ledger.md` as you read it.
 
 A dependency's file exists before anything depending on it is read. Check a term there before re-reading its source.
 
@@ -57,7 +58,7 @@ Then compare against the module's recorded context and any docs covering it. Thr
 
 - **Agreement** — nothing to do.
 - **Gap** — the code clearly defines a domain term that context does not record, or records nothing at all. Write it.
-- **Conflict** — log it to the ledger. Do not ask, do not write.
+- **Conflict** — open an entry in `ledger.md`. Do not ask, do not write.
 
 Validate the recorded context against [context-format.md](../grill-me/references/context-format.md) in the same pass:
 
@@ -75,7 +76,7 @@ Write the module's file and mark it swept in `index.md` before moving to the nex
 
 ## 3. Close the ledger
 
-When the sweep completes, re-test every open entry against the evidence collected under it, re-reading the source the entry names. An entry closes when a later module names the owner, an ADR states the decision, or a second call site disambiguates. Only entries surviving the re-test reach the user.
+When the sweep completes, re-test every entry under `## Open` in `ledger.md` against the evidence collected beneath it, re-reading the source the entry names. An entry closes when a later module names the owner, an ADR states the decision, or a second call site disambiguates. Only entries surviving the re-test reach the user.
 
 ## 4. Ask what is left
 
