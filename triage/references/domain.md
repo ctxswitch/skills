@@ -4,39 +4,27 @@ How the engineering skills should consume this repo's domain documentation when 
 
 ## Before exploring, read these
 
-- **`CONTEXT.md`** at the repo root, or
-- **`CONTEXT-MAP.md`** at the repo root if it exists — it points at one `CONTEXT.md` per context. Read each one relevant to the topic.
-- **`docs/adr/`** — read ADRs that touch the area you're about to work in. In multi-context repos, also check `src/<context>/docs/adr/` for context-scoped decisions.
+- **`CONTEXT.md`** from the repo root down to the area you're working in — every level assumes its ancestors.
+- **`CONTEXT-MAP.md`** at the repo root if it exists — cross-cutting relationships between sibling areas.
+- **`docs/adr/`** — read ADRs that touch the area you're about to work in, including any `docs/adr/` nested under it.
 
 If any of these files don't exist, **proceed silently**. Don't flag their absence; don't suggest creating them upfront.
 The producer skill (`grill-me`) creates them lazily when terms or decisions actually get resolved.
 
 ## File structure
 
-Single-context repo (most repos):
+Context files form a hierarchy — one per directory that owns language, each describing only its own level.
 
 ```
 /
-├── CONTEXT.md
-├── docs/adr/
-│   ├── 0001-event-sourced-orders.md
-│   └── 0002-postgres-for-write-model.md
+├── CONTEXT.md                the product
+├── CONTEXT-MAP.md            cross-cutting relationships only
+├── docs/adr/                 system-wide decisions
 └── src/
-```
-
-Multi-context repo (presence of `CONTEXT-MAP.md` at the root):
-
-```
-/
-├── CONTEXT-MAP.md
-├── docs/adr/              ← system-wide decisions
-└── src/
-    ├── ordering/
-    │   ├── CONTEXT.md
-    │   └── docs/adr/      ← context-specific decisions
-    └── billing/
-        ├── CONTEXT.md
-        └── docs/adr/
+    ├── CONTEXT.md            what the areas are
+    └── ordering/
+        ├── CONTEXT.md        the ordering domain
+        └── docs/adr/         area-scoped decisions
 ```
 
 ## Use the glossary's vocabulary

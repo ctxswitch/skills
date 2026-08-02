@@ -44,10 +44,10 @@ Default: each role's string equals its name. Ask whether any need overriding. If
 
 **Section C — Domain docs.**
 
-> Some skills read `CONTEXT.md` for the project's domain language and `docs/adr/` for past architectural decisions. They need to know whether the repo has one context or several, so they look in the right place.
+> Some skills read `CONTEXT.md` for the project's domain language and `docs/adr/` for past architectural decisions. Context files form a hierarchy, so they need to know how deep it goes.
 
-- **Single-context** — one `CONTEXT.md` + `docs/adr/` at the repo root. Most repos.
-- **Multi-context** — `CONTEXT-MAP.md` at the root pointing to per-context `CONTEXT.md` files. Typically a monorepo.
+- **Root only** — one `CONTEXT.md` + `docs/adr/` at the repo root.
+- **Nested** — a `CONTEXT.md` at each directory that owns language, plus `CONTEXT-MAP.md` at the root for cross-cutting relationships. Typical of monorepos.
 
 ## 3. Confirm and edit
 
@@ -70,7 +70,7 @@ Edit `AGENTS.md` at the repo root, creating it if absent. If an `## Agent skills
 
 ### Domain docs
 
-[one-line summary of layout — "single-context" or "multi-context"]. See `docs/agents/domain.md`.
+[one-line summary of layout — "root only" or "nested"]. See `docs/agents/domain.md`.
 ```
 
 Then write the three docs files from the seed templates:

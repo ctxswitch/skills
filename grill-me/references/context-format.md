@@ -3,9 +3,9 @@
 ## Structure
 
 ```md
-# {Context Name}
+# {Scope Name}
 
-{One or two sentence description of what this context is and why it exists.}
+{One or two sentence description of what this scope covers and why it exists.}
 
 ## Language
 
@@ -43,32 +43,44 @@ _Avoid_: Client, buyer, account
 - **Group terms under subheadings** when natural clusters emerge. If all terms belong to a single cohesive area, a flat list is fine.
 - **Write an example dialogue.** A conversation between a dev and a domain expert that demonstrates how the terms interact naturally and clarifies boundaries between related concepts.
 
-## Single vs multi-context repos
+## Scope
 
-**Single context (most repos):** One `CONTEXT.md` at the repo root.
+Context files form a hierarchy. Each directory that owns language carries one, describing only what is true at its own level.
 
-**Multiple contexts:** A `CONTEXT-MAP.md` at the repo root lists the contexts, where they live, and how they relate to each other:
+**A fact belongs at the shallowest directory where it holds for everything beneath it, and no shallower.**
+
+```
+CONTEXT.md                          the product — what it is, who uses it
+services/CONTEXT.md                 the services and what each is for
+services/billing/CONTEXT.md         the billing domain
+services/billing/ledger/CONTEXT.md  the ledger's own terms
+```
+
+A reader loads the root file down to the directory being worked in, and every level assumes its ancestors. Nothing is repeated from a parent.
+
+A directory owning nothing at its own level carries no file and inherits from its parent. `internal/util` stays empty rather than padded.
+
+### Misplacement
+
+- **Over-scoped** — the file states something untrue of part of its subtree. Move it down to where it holds.
+- **Under-scoped** — sibling files carry the same term with the same meaning. Lift it to the parent.
+- **Shadowed** — a child restates an entry its parent already carries. Delete the child copy. Where the two meanings differ, the disagreement is the finding, not the duplication.
+- **Missing** — a directory owns language true across its subtree and records it nowhere. Create the file.
+
+A file that has grown large is over-scoped before it is verbose. Check what it holds against its subtree before cutting words.
+
+## CONTEXT-MAP.md
+
+The tree routes; the map does not. `CONTEXT-MAP.md` at the root records only what the hierarchy cannot express — how sibling contexts interact.
 
 ```md
 # Context Map
 
-## Contexts
-
-- [Ordering](./src/ordering/CONTEXT.md) — receives and tracks customer orders
-- [Billing](./src/billing/CONTEXT.md) — generates invoices and processes payments
-- [Fulfillment](./src/fulfillment/CONTEXT.md) — manages warehouse picking and shipping
-
 ## Relationships
 
-- **Ordering → Fulfillment**: Ordering emits `OrderPlaced` events; Fulfillment consumes them to start picking
-- **Fulfillment → Billing**: Fulfillment emits `ShipmentDispatched` events; Billing consumes them to generate invoices
-- **Ordering ↔ Billing**: Shared types for `CustomerId` and `Money`
+- **Ordering → Fulfillment**: Ordering emits `OrderPlaced`; Fulfillment consumes it to start picking
+- **Fulfillment → Billing**: Fulfillment emits `ShipmentDispatched`; Billing generates the invoice
+- **Ordering ↔ Billing**: shared `CustomerId` and `Money` types
 ```
 
-The skill infers which structure applies:
-
-- If `CONTEXT-MAP.md` exists, read it to find contexts
-- If only a root `CONTEXT.md` exists, single context
-- If neither exists, create a root `CONTEXT.md` lazily when the first term is resolved
-
-When multiple contexts exist, infer which one the current topic relates to. If unclear, ask.
+Create it lazily, once a cross-cutting relationship is worth recording.

@@ -19,32 +19,18 @@ During codebase exploration, also look for existing documentation:
 
 ### File structure
 
-Most repos have a single context:
+Context files form a hierarchy — one per directory that owns language, each describing only its own level. `docs/adr/` holds decisions. See [context-format.md](./references/context-format.md).
 
 ```
 /
-├── CONTEXT.md
-├── docs/
-│   └── adr/
-│       ├── 0001-event-sourced-orders.md
-│       └── 0002-postgres-for-write-model.md
-└── src/
-```
-
-If a `CONTEXT-MAP.md` exists at the root, the repo has multiple contexts. The map points to where each one lives:
-
-```
-/
-├── CONTEXT-MAP.md
-├── docs/
-│   └── adr/              ← system-wide decisions
-├── src/
-│   ├── ordering/
-│   │   ├── CONTEXT.md
-│   │   └── docs/adr/    ← context-specific decisions
-│   └── billing/
-│       ├── CONTEXT.md
-│       └── docs/adr/
+├── CONTEXT.md                    the product
+├── CONTEXT-MAP.md                cross-cutting relationships only
+├── docs/adr/
+└── services/
+    ├── CONTEXT.md                the services and what each is for
+    └── billing/
+        ├── CONTEXT.md            the billing domain
+        └── ledger/CONTEXT.md     the ledger's own terms
 ```
 
 Create files lazily — only when you have something to write.
@@ -53,17 +39,15 @@ If no `docs/adr/` exists, create it when the first ADR is needed.
 
 ### Context placement
 
-Before writing or updating any `CONTEXT.md` or ADR, decide where the resolved language belongs.
+Before writing or updating any `CONTEXT.md` or ADR, decide which level owns the language. **A fact belongs at the shallowest directory where it holds for everything beneath it, and no shallower.**
 
-Read `CONTEXT-MAP.md` first when it exists. Treat the map as the routing table for domain language:
-
-- Use the root or docs context only for product-wide, cross-context language that multiple areas should share.
-- Use a context-specific `CONTEXT.md` when the term, invariant, relationship, or workflow mainly belongs to one bounded area.
-- If the context-specific file named by `CONTEXT-MAP.md` does not exist, create it lazily when a real term or relationship is resolved for that area.
-- If a decision spans multiple contexts, write the shared product term once in the cross-cutting context, then write area-specific responsibilities or invariants in each relevant context.
+- Language every area shares goes at the root.
+- Language true across one area goes at that area's directory.
+- Language local to one package goes at that package.
+- A decision spanning areas is written once at their common ancestor, with area-specific responsibilities recorded in each.
 - Do not put implementation details in `CONTEXT.md` unless they express a domain-facing invariant or responsibility.
 
-Do not append to the existing populated context just because it exists. Existing context is vocabulary to respect, not necessarily the correct destination for new language.
+Do not append to an existing file because it exists. Existing context is vocabulary to respect, not necessarily the right level for new language.
 
 ## During the session
 
@@ -97,14 +81,7 @@ If you find a contradiction, surface it:
 When a term, relationship, invariant, or responsibility is resolved, update the appropriate `CONTEXT.md` right there.
 Don't batch these up — capture them as they happen.
 
-Before writing:
-
-1. Identify the bounded context using `CONTEXT-MAP.md` when present.
-2. Read the existing cross-cutting context and the target context if they exist.
-3. Choose the narrowest context that owns the language.
-4. Create the target context lazily if it does not exist and the resolved language belongs there.
-
-Use cross-cutting context only for language shared across bounded contexts. Use context-specific files for area-local responsibilities, lifecycle rules, state semantics, API behavior, runtime behavior, or operational ownership.
+Before writing, read the context files from the root down to the target directory, then place the entry by the rule in *Context placement* above. Create that file lazily if it does not exist.
 
 Use the format in [context-format.md](./references/context-format.md).
 Don't couple `CONTEXT.md` to implementation details.

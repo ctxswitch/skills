@@ -20,9 +20,8 @@ Do not capture generic distributed-systems concepts like "quorum," "cache," "lea
 
 Look first for:
 
-- `CONTEXT-MAP.md`
-- root `CONTEXT.md`
-- nested `CONTEXT.md`
+- root `CONTEXT.md`, then each nested `CONTEXT.md` down to the area
+- `CONTEXT-MAP.md` for cross-cutting relationships
 - nearby design docs
 
 If a context file exists and the drill resolves a domain term or invariant, update it immediately.
@@ -44,7 +43,7 @@ _Avoid_: Ambiguous alias, misleading alias
 - **Invariant Name**: Statement of the invariant, its scope, and enforcement mechanism.
 ```
 
-For multi-context repos, update the nearest relevant `CONTEXT.md`. If the relevant context is unclear, ask before writing.
+Write the entry at the shallowest directory where it holds for everything beneath it. If the level is unclear, ask before writing.
 
 ## ADR Threshold
 
