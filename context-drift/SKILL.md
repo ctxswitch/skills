@@ -19,13 +19,23 @@ The default failure mode is treating every difference as a conflict and asking t
 - **A term is defined by the module that owns it**, not by a caller that uses it or a doc that mentions it.
 - **Record domain language, not implementation.** A term belongs in `CONTEXT.md` when a domain expert would recognise it. Struct names, handler names, and package layout do not qualify unless they carry a domain invariant or responsibility.
 
+## The run file
+
+Track the run in `.context-drift.md` at the repo root, written as you go and deleted when the run completes. Read it before anything else — where it exists, resume from the first pending module instead of starting over.
+
+- **Scope** — the dependency-ordered module list, each marked pending or swept.
+- **Ledger** — one entry per open conflict: the term or rule, the code evidence with `file:line`, the competing claim, and what is unresolved. When a later module bears on an open entry, append that evidence to the entry as you read it.
+- **Decisions** — what the user settled, and where it was written.
+
+An entry closes from the evidence recorded under it, never from recall.
+
 ## 1. Scope the run
 
 Read `CONTEXT-MAP.md` if it exists, otherwise `CONTEXT.md`, then build the internal dependency graph for the scope and order it dependencies-first.
 
 Check the map while reading it: every link resolves, every `CONTEXT.md` in scope is listed, each entry carries its one-line purpose, and the relationships between contexts are recorded.
 
-State the scope and the module count before reading anything else. If the graph does not fit in one pass, narrow it with the user first.
+State the scope and the module count before reading anything else, then record the ordered module list in the run file.
 
 ## 2. Sweep dependencies-first
 
@@ -56,11 +66,11 @@ A format defect that does not change meaning is fixed in place. One that would a
 
 Divergence introduced over time shows up as two spellings of one concept, or one concept split across two names that both survive. Look for it at every seam where two modules exchange a domain object.
 
+Mark each module swept in the run file before moving to the next.
+
 ## 3. Close the ledger
 
-Each entry carries the term or rule, the code evidence with `file:line`, the competing doc or context claim, and what is unresolved.
-
-When the sweep completes, re-test every open entry against everything read since it was logged. An entry closes when a later module names the owner, an ADR states the decision, or a second call site disambiguates. Only entries surviving the re-test reach the user.
+When the sweep completes, re-test every open entry against the evidence collected under it, re-reading the source the entry names. An entry closes when a later module names the owner, an ADR states the decision, or a second call site disambiguates. Only entries surviving the re-test reach the user.
 
 ## 4. Ask what is left
 
@@ -81,5 +91,7 @@ The user's answer is the decision. When it contradicts the code, record the deci
 Placement follows `CONTEXT-MAP.md`, using the narrowest context that owns the language. Use the formats in the `grill-me` skill: [context-format.md](../grill-me/references/context-format.md) and [adr-format.md](../grill-me/references/adr-format.md).
 
 Write each entry as its decision lands, not in a batch at the end. Every ambiguity the user settles is recorded under `## Flagged ambiguities` with its resolution. Offer an ADR only when it is hard to reverse, surprising without context, and the result of a real trade-off.
+
+When every decision is written, delete the run file.
 
 Report what was written, what the user decided, and every code defect the sweep exposed.
