@@ -8,9 +8,7 @@ misplaced entry rewritten in place is wasted work.
 
 ## Tracking
 
-A review tracks itself under `.claude/context/<session>/`, created lazily and deleted when the review is
-clean. It shares that directory with a sweep but not its files: a run holding `findings.md` is a review,
-one holding `index.md` is a sweep, and neither writes the other's records.
+A review writes two files of its own plus the shared per-scope records.
 
 ```
 .claude/context/<session>/
@@ -35,15 +33,15 @@ before any repair begins. No `Repaired` box is ticked while a `Checked` box is e
 | `internal/api` | x | |
 ```
 
-The findings themselves go in the same per-scope records a sweep writes, at the same paths — `## Checked`
-for what the checks turned up, `## Written` for what the repair changed, `## Raised` for what it ledgered.
-A review reads no source, so the source-derived sections simply do not appear.
+The findings themselves go in the per-scope records — `## Checked` for what the checks turned up,
+`## Written` for what the repair changed, `## Raised` for what it ledgered.
 
 Keeping the detail in the record rather than a column is what makes the validation survive: a scope's
 `## Checked` names every check that fired and says `clean:` for the groups that passed, so a later run can
 tell "checked and fine" from "never checked". A table cell cannot carry that.
 
-`ledger.md` follows the sweep's ledger shape. A review reads no source, so its entries stay open.
+`ledger.md` follows the sweep's ledger shape, and its entries stay open — a review reads no source, so
+neither claim in a conflict can be checked against the code.
 
 ## Shape
 
