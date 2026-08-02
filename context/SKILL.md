@@ -1,6 +1,6 @@
 ---
 name: context
-description: "Build and maintain a repository's .context.md hierarchy from current source, working dependencies-first, and surface where code, docs, and recorded language disagree. Use to create context for a repo that has none, or to repair it once it has drifted. Invoke with `review` to test an existing hierarchy against the format without reading source — placement, naming, narration, and missing or padded scopes. Owns the context format the other skills write to. For settling a new design's vocabulary in conversation use grill-me."
+description: "Build and maintain a repository's .context.md hierarchy from current source, working dependencies-first, and surface where code, docs, and recorded language disagree. Use to create context for a repo that has none, or to repair it once it has drifted. Invoke with `review` to test an existing hierarchy against the format without reading source, or `defects` to collect the code faults it has recorded and group them into work. Owns the context format the other skills write to. For settling a new design's vocabulary in conversation use grill-me."
 ---
 
 # Context
@@ -14,6 +14,8 @@ This skill writes documentation. It does not change source. Code defects it expo
 **Sweep** is the default and runs all seven steps, crossing the scope list twice — extract, then reconcile. It is the only mode that finds drift between code and context, and the expensive one.
 
 **Review** runs step 7 alone. It opens no source file, tests the recorded hierarchy against the format, and finds what a sweep introduces but never looks for: entries at the wrong level, names that outrun their definitions, narration, scopes holding source and no file. Invoke it with `review`.
+
+**Defects** collects the `## Defects` entries already recorded across a hierarchy and groups them into work by cause rather than by file — a dozen citations of one deleted document are one job, not a dozen. It reads no source, repairs nothing, and writes nothing to a context file. Invoke it with `defects`, or when asked to scan for defects and plan the fixes. Each entry is re-verified by whoever acts on the plan, since entries outlive the run that recorded them; hand the grouping to `issues` to file.
 
 ## Guard against the defaults
 
