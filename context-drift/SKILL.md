@@ -25,7 +25,7 @@ Track the run under `.claude/drift/<session>/` — the session identifier where 
 
 - `index.md` — the scope and the dependency-ordered module list, each module pending or swept.
 - `ledger.md` — every ambiguity in flight: what the code shows, what the docs claim, what is unresolved, and the evidence gathered since it was raised. Resolved entries stay in the file with their decision and where it was written.
-- `<module>.md` — one per swept module: the terms it owns, its limits and restrictions, what was written to its context, and the ledger entries it raised.
+- `<module path>.md` — one per swept module, mirroring the repo tree: the terms it owns, its limits and restrictions, what was written to its context, and the ledger entries it raised.
 
 When a later module bears on an open entry, append that evidence to the entry in `ledger.md` as you read it.
 

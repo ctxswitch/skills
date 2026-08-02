@@ -1,6 +1,20 @@
 # Run File Format
 
-Three files under `.claude/drift/<session>/`. Use these templates exactly — a resumed run reads them without the session that wrote them.
+Two index files and one record per module, under `.claude/drift/<session>/`. Module records mirror the repo tree, so a record's path is its module's path plus `.md`.
+
+```
+.claude/drift/<session>/
+├── index.md
+├── ledger.md
+├── internal/
+│   ├── order.md          ← internal/order
+│   └── order/
+│       └── parser.md     ← internal/order/parser
+└── pkg/
+    └── billing.md        ← pkg/billing
+```
+
+Use these templates exactly — a resumed run reads them without the session that wrote them.
 
 ## index.md
 
@@ -48,9 +62,7 @@ An entry moves from `## Open` to `## Resolved` when the code closes it or the us
 
 **Evidence** accumulates as the sweep proceeds. Each line carries a `file:line` and what it adds — not that it was read.
 
-## {module}.md
-
-One per swept module, named for its path with separators flattened: `internal-order.md`.
+## {module path}.md
 
 ```md
 # internal/order
