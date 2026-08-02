@@ -87,7 +87,7 @@ A line is a kind, a `file:line`, and what is wrong. Nothing else — no proposed
 
 A fault that changes what a recorded term means is not a defect entry. It is current behaviour and belongs in `## Relationships` — that nothing registers a metric family says what the family *is*, and a reader of the term needs it.
 
-Entries are verified against source on each sweep and dropped once the fault is gone. Recording one is not fixing it; this skill does not change source.
+Entries are verified against source on each sweep and dropped once the fault is gone.
 
 ## Scope
 

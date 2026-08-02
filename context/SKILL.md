@@ -100,7 +100,7 @@ Run the checks in [review.md](./references/review.md) against each scope as you 
 - **Open items** — an entry under `## Flagged ambiguities` carrying no resolution is a ledger entry, not a format defect.
 - **Divergence** — two spellings of one concept, or one concept split across two surviving names. Look at every seam where two scopes exchange a domain object; pass one recorded both sides, so the seam is visible without re-reading either.
 
-Rewrite the scope's `## Defects` section from what pass one verified: the faults still present, plus any this pass exposed, and nothing that has since been fixed. A fault that changes what a recorded term means is not a defect entry — it is current behaviour and belongs in `## Relationships`.
+Rewrite the scope's `## Defects` section from what pass one verified: the faults still present, plus any this pass exposed, and nothing that has since been fixed.
 
 Append `## Written` and `## Raised` to the scope's record, then tick its reconciled box in `index.md` — both before moving to the next scope. Pass two produces three artifacts per scope: the edit to the `CONTEXT.md`, the record of what that edit was, and the tick. Only the first survives outside the run directory, and it is the one the rebuild cannot see.
 

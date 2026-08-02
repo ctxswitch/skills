@@ -47,9 +47,8 @@ misplaced entry rewritten in place is wasted work.
 
 ## Defects
 
-- Each line is a kind, a `file:line`, and what is wrong — no proposed fix, no severity, no reasoning.
-- Nothing here changes what a recorded term means. A fault that does belongs in `## Relationships` as
-  current behaviour, where a reader of the term will meet it.
+- Each line is a kind, a `file:line`, and what is wrong — nothing else.
+- No entry changes what a recorded term means; one that does belongs in `## Relationships`.
 - A review reads no source, so it cannot confirm a fault still exists. Leave the entries alone; the next
   sweep verifies them.
 
