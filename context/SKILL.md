@@ -48,11 +48,9 @@ An unticked box makes finished work invisible to the rebuild, which redoes the s
 
 When a later scope bears on an open entry, append that evidence to the entry in `ledger.md` as you read it.
 
-A dependency's file exists before anything depending on it is read. Check a term there before re-reading its source.
+A dependency's scope record exists before anything depending on it is read. Take a term's meaning from that record rather than re-deriving it from the dependency's source.
 
-After compaction, rebuild from the run directory before reading anything else: `index.md` for which pass each scope has reached, `ledger.md` for the entries in flight, and the scope records for the terms pass one established. Resume at the first scope whose current pass is unticked.
-
-Scan `.claude/drift/` before starting. Where an incomplete run covers the requested scope, resume it rather than restarting — pass one at its first unextracted scope, pass two at its first unreconciled one.
+Rebuild from the run directory before reading anything else, both after compaction and when `.claude/drift/` already holds an incomplete run covering the requested scope: `index.md` for which pass each scope has reached, `ledger.md` for the entries in flight, and the scope records for the terms pass one established. Resume at the first scope whose current pass is unticked — never restart a run that has a directory.
 
 An entry closes from the evidence recorded under it, never from recall.
 
@@ -95,9 +93,9 @@ Work the same dependency order. For each scope, compare its record against its `
 
 - **Agreement** — nothing to do.
 - **Gap** — the sources define a term context does not record, or the scope records nothing at all. Write it. Where the scope carries no `.context.md`, creating one is how the gap is written, not a separate decision to defer.
+- **Conflict** — open an entry in `ledger.md`. Do not ask, do not write.
 
 Creating a scope's file and draining its parent are one operation. As the file is created, every entry an ancestor holds that is true only of this scope moves into it and out of the ancestor, in the same step. Populating a new file from the sources while leaving the parent's copy in place creates the duplication the hierarchy exists to prevent, and a parent still carrying a child's language after that child has a file is the over-scope defect surviving the split rather than progress against it.
-- **Conflict** — open an entry in `ledger.md`. Do not ask, do not write.
 
 A term two scopes appear to share is settled here, not parked. Pass one recorded both sides, so the owner is decidable from the records without re-reading source.
 
