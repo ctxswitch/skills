@@ -66,6 +66,7 @@ misplaced entry rewritten in place is wasted work.
 The repair rule is the sweep's: a defect that does not change meaning is fixed in place; one that would
 alter or remove recorded language goes to the ledger and then to the user. Creating a file for a scope
 that has source and none, and moving an entry to the scope it describes, remove nothing and are done
-rather than raised.
+rather than raised. Splitting an over-scoped file is the fix, never a question for the user — neither
+whether to split it nor how much of it to split.
 
 Report what was fixed, what reached the ledger, and every scope whose file was created or deleted.
