@@ -11,7 +11,7 @@ The only file this skill writes is the plan document. No source file changes —
 
 ## Guard against the defaults
 
-The default failure mode is a plan written from what the code is assumed to do, organised the way the code already is, and padded until it looks thorough. Each rule runs against that grain.
+The default failure mode is a plan written from what the code is assumed to do, organised the way the code already is, and padded until it looks thorough.
 
 - **Verify specifics before planning around them.** Signatures, callers, config keys, error types, current behaviour, existing tests, pinned versions. A plan built on a remembered call graph is a plan to break something. Read it, or mark the step as unverified so the executor knows to check.
 - **Do not manufacture links.** Before writing that one phase blocks another, that two modules are coupled, or that a change contradicts an ADR, name the concrete case where it holds. Shared vocabulary is not a dependency. If you cannot name the case, drop the claim.

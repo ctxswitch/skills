@@ -11,7 +11,7 @@ When exploring the codebase, read `AGENTS.md` and `docs/agents/domain.md` if the
 
 ## Phase 1 — Build a feedback loop
 
-**This is the skill.** Everything else is mechanical. If you have a fast, deterministic, agent-runnable pass/fail signal for the bug, you will find the cause — bisection, hypothesis-testing, and instrumentation all just consume that signal. If you don't have one, no amount of staring at code will save you.
+A loop is a fast, deterministic, agent-runnable pass/fail signal for the bug. Bisection, hypothesis-testing, and instrumentation all consume it.
 
 Spend disproportionate effort here. Exhaust the list below before concluding no loop exists.
 
@@ -36,7 +36,7 @@ Treat the loop as a product. Once you have _a_ loop, ask:
 - Can I make the signal sharper? (Assert on the specific symptom, not "didn't crash".)
 - Can I make it more deterministic? (Pin time, seed RNG, isolate filesystem, freeze network.)
 
-Target a deterministic loop of a few seconds. A 30-second flaky one is barely better than none.
+Target a deterministic loop of a few seconds.
 
 ### Non-deterministic bugs
 
@@ -62,7 +62,7 @@ Do not proceed until you reproduce the bug.
 
 ## Phase 3 — Hypothesise
 
-Generate **3–5 ranked hypotheses** before testing any of them. Single-hypothesis generation anchors on the first plausible idea.
+Generate **3–5 ranked hypotheses** before testing any of them.
 
 Each hypothesis must be **falsifiable**: state the prediction it makes.
 
@@ -110,7 +110,7 @@ Required before declaring done:
 - [ ] Regression test passes (or absence of seam is documented)
 - [ ] All `[DEBUG-...]` instrumentation removed (`grep` the prefix)
 - [ ] Throwaway prototypes deleted (or moved to a clearly-marked debug location)
-- [ ] The hypothesis that turned out correct is stated in the commit / PR message — so the next debugger learns
+- [ ] The hypothesis that turned out correct is stated in the commit / PR message
 
 Report the cause, the fix, and what remains unverified. The hypotheses you discarded, the instrumentation you added and removed, and the order you tried things in are not findings.
 

@@ -49,7 +49,7 @@ Then ask:
 - Should any slices be merged or split further?
 - Are the right slices marked HITL vs AFK?
 
-Iterate until the breakdown is approved. The next step publishes to a shared tracker, so get it right first.
+Iterate until the breakdown is approved.
 
 ## 5. Publish
 

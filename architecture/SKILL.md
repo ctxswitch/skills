@@ -9,9 +9,9 @@ Surface architectural friction and propose **deepening opportunities** — refac
 
 ## Right-size first (read before proposing anything)
 
-The default failure mode of this skill is **proposing abstraction**: adding a layer, extracting an interface, introducing a helper, splitting a file. Most of those make modules shallower, not deeper. Guard against it:
+The default failure mode of this skill is **proposing abstraction**: adding a layer, extracting an interface, introducing a helper, splitting a file. Guard against it:
 
-- **Prefer merging and deleting over adding.** The most common correct deepening is fewer modules, not more. If a proposal's net effect is more files, more indirection, or more names to learn, say why the leverage is worth it.
+- **Prefer merging and deleting over adding.** If a proposal's net effect is more files, more indirection, or more names to learn, say why the leverage is worth it.
 - **Apply the deletion test before proposing anything.** Imagine deleting the module. If complexity vanishes, it was a pass-through. If complexity reappears across N callers, it was earning its keep. A candidate that fails this test is not a finding.
 - **One adapter is a hypothetical seam.** Do not propose a port, interface, or injection point that will have exactly one implementation. The test adapter is what makes the second one real.
 - **Extracting for testability is not deepening.** Pulling a pure function out so it can be unit-tested, while the real bugs live in how it is called, moves the code without moving the risk.

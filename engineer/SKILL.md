@@ -9,7 +9,7 @@ Write correct, idiomatic code, or review it. Stay in scope, match the repository
 
 ## Guard against the defaults
 
-The default failure mode is producing the *most common* pattern rather than the right one, without noticing a choice was made. Each rule below runs against that grain.
+The default failure mode is producing the *most common* pattern rather than the right one, without noticing a choice was made.
 
 - **Verify specifics before asserting them.** Signatures, struct fields, props, flags, config keys, error types, version-specific behaviour, and pinned tool versions are the highest-fabrication surface there is. Read the definition, the lockfile, or the generated output before relying on it. A helper mentioned in the prompt is a claim, not a fact.
 - **Do not manufacture links.** Before reporting a conflict, contradiction, or coupling, name the concrete case where following one thing violates the other. Shared vocabulary is not a relationship — two rules can use the same words and never interact. If you cannot name the failing case, it is not a finding.
@@ -32,13 +32,13 @@ When the touched code shows one: if the deepening is small, local, and directly 
 
 ## Over-engineering
 
-Over-engineering is a rare case driving the design — handling sized to how interesting a failure is rather than how likely it is. The structure is permanent whether or not the case occurs.
+Over-engineering is a rare case driving the design — handling sized to how interesting a failure is rather than how likely it is.
 
 Before adding a branch, a layer, or a mechanism for a failure, name the failure and say how the code reaches it. "In principle" is not a path.
 
 - **Detect impossible states; do not recover from them.** Checking an error is not optional. What is optional is the recovery path, the fallback value, the retry, the repair routine — written for a state the caller cannot produce, then never exercised. Return the error or halt; do not invent a recovery.
 - **Do not add resilience machinery the change did not ask for** — retry, backoff, caching, pooling, rate limiting, circuit breaking, degraded-mode fallbacks. Each is a policy with its own failure modes, and it binds every caller. When the change does need one, say which failure it covers and how often that failure happens.
-- **Do not build for a second caller that does not exist.** One implementation needs no interface, port, or injection point. One instantiation needs no type parameter. One consumer needs no registry, factory, or strategy selector. Adding the seam when the second case is real costs less than removing the wrong seam later.
+- **Do not build for a second caller that does not exist.** One implementation needs no interface, port, or injection point. One instantiation needs no type parameter. One consumer needs no registry, factory, or strategy selector.
 - **Do not make a value configurable** until something needs to configure it. A constant with one call site is a constant.
 - **Do not extract in order to give something a name.** A helper called once, a wrapper that forwards, a layer that renames its parameters and passes them on. Extraction earns its place when it removes duplication that already exists, hides complexity the caller should not see, or matches a boundary the repo already has.
 - **Do not create `util`, `common`, `misc`, `types`, `helpers` packages** — or their per-language equivalents.

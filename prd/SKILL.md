@@ -31,7 +31,7 @@ Show the sketch and confirm two things before writing: that the module shape mat
 
 Write the PRD using the template below, publish it to the issue tracker, and apply the `needs-triage` role so it enters the normal triage flow.
 
-The template lists what to cover when it exists, not blanks to complete. A section with nothing behind it is deleted. No restating the problem inside the solution, no narrating how the design was reached, no defending a decision nobody contested. A PRD that fills every section is more likely padded than complete.
+The template lists what to cover when it exists, not blanks to complete. A section with nothing behind it is deleted. No restating the problem inside the solution, no narrating how the design was reached, no defending a decision nobody contested.
 
 <prd-template>
 
