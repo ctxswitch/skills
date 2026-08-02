@@ -1,6 +1,6 @@
 ---
 name: context
-description: "Build and maintain a repository's CONTEXT.md hierarchy from current source, working dependencies-first, and surface where code, docs, and recorded language disagree. Use to create context for a repo that has none, or to repair it once it has drifted. Owns the context format the other skills write to. For settling a new design's vocabulary in conversation use grill-me."
+description: "Build and maintain a repository's CONTEXT.md hierarchy from current source, working dependencies-first, and surface where code, docs, and recorded language disagree. Use to create context for a repo that has none, or to repair it once it has drifted. Invoke with `review` to test an existing hierarchy against the format without reading source — placement, naming, narration, and missing or padded scopes. Owns the context format the other skills write to. For settling a new design's vocabulary in conversation use grill-me."
 ---
 
 # Context
@@ -8,6 +8,14 @@ description: "Build and maintain a repository's CONTEXT.md hierarchy from curren
 Build and maintain recorded domain language from what the code does now. Code is evidence; docs and existing context are claims about it.
 
 This skill writes documentation. It does not change source. Code defects it exposes are reported and routed to `engineer` or `diagnose`.
+
+## Modes
+
+**Sweep** is the default. It reads source and reconciles it against recorded language — steps 1 to 5. It is the only mode that finds drift between code and context, and the expensive one.
+
+**Review** reads the recorded hierarchy alone and tests it against the format — step 6. It opens no source file and finds what a sweep introduces but never looks for: entries at the wrong level, names that outrun their definitions, narration, scopes holding source and no file. Invoke it with `review`.
+
+A sweep ends by reviewing what it wrote. A review also runs alone, over a hierarchy no sweep is touching.
 
 ## Guard against the defaults
 
@@ -20,7 +28,7 @@ The default failure mode is treating every difference as a conflict and asking t
 - **Placement is not a preference.** Where an entry belongs follows from the rule, not from taste or the size of the resulting diff. Never offer a choice between splitting an over-scoped file and leaving it — split it and report what moved.
 - **Folding a scope into its parent is the mirror failure.** Writing a scope's language into the nearest file that already exists feels conservative and is not — it buries the boundary the language belongs to. The hierarchy's shape is an output of the sweep, never an input to it.
 - **Record current behaviour, not the history behind it.** The sweep reads code to learn what happens now. What a migration changed, which issue proposed it, and what the previous shape was are recoverable from `git log`, the migrations, and the tracker — carrying them into a context file makes it a changelog that drifts twice. A legacy path still executing is current behaviour and is recorded as such, without the story of how it became legacy.
-- **Record domain language, not implementation.** A term belongs in `CONTEXT.md` when a domain expert would recognise it. Struct names, handler names, and package layout do not qualify unless they carry a domain invariant or responsibility.
+- **Record what callers rely on, not how it is built.** An entry names a concept, contract, or invariant a caller must hold to use the scope correctly. Internal structure — struct names, file layout, helper names — qualifies only where it carries a responsibility or boundary that constrains change. "Would a domain expert recognise it" is too narrow a test: it discards the architectural terms that carry writer boundaries.
 
 ## Tracking the run
 
@@ -123,6 +131,14 @@ Write each fact at the shallowest directory where it holds for everything beneat
 
 Write each entry as its decision lands, not in a batch at the end. Every ambiguity the user settles is recorded under `## Flagged ambiguities` with its resolution. Record a decision only while someone would still reach for the alternative — `_Fixed_:` on the term it governs, or the scope's `## Decisions` section. Drop a recorded decision whose alternative nobody would now propose.
 
-When every decision is written, delete `.claude/drift/<session>/`.
-
 Report what was written, what the user decided, every entry still pending, and every code defect the sweep exposed.
+
+## 6. Review
+
+Test the hierarchy against [review.md](./references/review.md), which lists the checks and the order to run them. No source is read here; the subject is the context files.
+
+A sweep reviews only the scopes it wrote — its own output, before the run directory goes. A standalone review covers every scope beneath its root, and starts here.
+
+The repair rule is unchanged: a defect that does not change meaning is fixed in place, one that would alter or remove recorded language goes to the ledger and then to the user.
+
+When the review is clean, delete `.claude/drift/<session>/`.
