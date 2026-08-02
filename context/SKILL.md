@@ -11,9 +11,9 @@ This skill writes documentation. It does not change source. Code defects it expo
 
 ## Modes
 
-**Sweep** is the default. It reads source and reconciles it against recorded language — steps 1 to 5. It is the only mode that finds drift between code and context, and the expensive one.
+**Sweep** is the default. It reads source and reconciles it against recorded language — steps 1 to 6, in two passes over the scope list. It is the only mode that finds drift between code and context, and the expensive one.
 
-**Review** reads the recorded hierarchy alone and tests it against the format — step 6. It opens no source file and finds what a sweep introduces but never looks for: entries at the wrong level, names that outrun their definitions, narration, scopes holding source and no file. Invoke it with `review`.
+**Review** reads the recorded hierarchy alone and tests it against the format — step 7. It opens no source file and finds what a sweep introduces but never looks for: entries at the wrong level, names that outrun their definitions, narration, scopes holding source and no file. Invoke it with `review`.
 
 A sweep ends by reviewing what it wrote. A review also runs alone, over a hierarchy no sweep is touching.
 
@@ -21,7 +21,7 @@ A sweep ends by reviewing what it wrote. A review also runs alone, over a hierar
 
 The default failure mode is treating every difference as a conflict and asking the user what the codebase already answers.
 
-- **Do not ask what the codebase answers.** An ambiguity raised in one scope is usually settled by a scope not yet read. Nothing becomes a question until the sweep is finished and the entry has been re-tested against everything read since.
+- **Do not ask what the codebase answers.** An ambiguity raised in one scope is usually settled by a scope not yet read — which is why extraction finishes before reconciliation begins. Nothing becomes a question until pass two is finished and the entry has been re-tested against everything read since.
 - **Different words for different things is not a conflict.** A conflict is one term carrying two meanings, one rule implemented two ways, or recorded language the code no longer supports. Scopes that never interact can name things freely.
 - **Docs are claims, not evidence.** A README, design doc, or CONTEXT.md states what someone intended. Only code states what happens. Where they differ, both go to the user — the doc is not the tiebreaker. A `_Pending_:` entry is the exception: it claims nothing about code that exists.
 - **A term is defined by the scope that owns it**, not by a caller that uses it or a doc that mentions it.
@@ -36,19 +36,19 @@ Track the run under `.claude/drift/<session>/` — the session identifier where 
 
 These files are the run's memory, not a report on it. A sweep over a large repository will not fit in one context: assume compaction at any point, and treat everything not yet written under `.claude/drift/<session>/` as lost. Write a scope's record when that scope is finished, never batched at the end.
 
-A scope is finished when its record is written **and** its box is ticked in `index.md`. Both, before the next scope is read, never batched once the sweep is over. A record whose box is unticked is invisible to the rebuild, which sweeps that scope again from source. A ticked box with no record behind it is worse: the rebuild trusts it, skips the scope, and the findings are gone. Never tick what you have not written.
+A scope is finished in a pass when that pass's work is on disk **and** its box for that pass is ticked in `index.md` — both before the next scope is read, never batched once the pass is over. Pass one ticks `Extracted` when the scope record is written; pass two ticks `Reconciled` when the comparison is written or ledgered. An unticked box makes finished work invisible to the rebuild, which redoes the scope. A ticked box with nothing behind it is worse: the rebuild trusts it, skips the scope, and the findings are gone. Never tick what you have not written.
 
-- `index.md` — the root scope and the dependency-ordered scope list, each scope pending or swept.
+- `index.md` — the root scope and the dependency-ordered scope list, each scope carrying an extracted box and a reconciled box.
 - `ledger.md` — every ambiguity in flight: what the code shows, what the docs claim, what is unresolved, and the evidence gathered since it was raised. Resolved entries stay in the file with their decision and where it was written.
-- `<scope path>.md` — one per swept scope, mirroring the repo tree: the terms it owns, its limits and restrictions, what was written to its context, and the ledger entries it raised.
+- `<scope path>.md` — one per extracted scope, mirroring the repo tree: the terms it owns and its limits and restrictions from pass one, then what was written to its context and the ledger entries it raised from pass two.
 
 When a later scope bears on an open entry, append that evidence to the entry in `ledger.md` as you read it.
 
 A dependency's file exists before anything depending on it is read. Check a term there before re-reading its source.
 
-After compaction, rebuild from the run directory before reading any further source: `index.md` for what is swept and what is still pending, `ledger.md` for the entries in flight, and the records of swept scopes for the terms they established. Resume at the first pending scope.
+After compaction, rebuild from the run directory before reading anything else: `index.md` for which pass each scope has reached, `ledger.md` for the entries in flight, and the scope records for the terms pass one established. Resume at the first scope whose current pass is unticked.
 
-Scan `.claude/drift/` before starting. Where an incomplete run covers the requested scope, resume from the first pending scope in its `index.md`.
+Scan `.claude/drift/` before starting. Where an incomplete run covers the requested scope, resume it rather than restarting — pass one at its first unextracted scope, pass two at its first unreconciled one.
 
 An entry closes from the evidence recorded under it, never from recall.
 
@@ -58,13 +58,13 @@ A **scope** is a directory that owns language its parent does not. That test is 
 
 Do not enumerate by a language's own unit. "Module" names a different thing in Go, Rust, Python, and npm, and a repo's scopes rarely line up with any of them — a whole repo is often one Go module. A scope need not hold a programming language at all: protocol definitions, infrastructure roots, and deployment packaging own language too.
 
-Walk the tree, enumerate candidate scopes from the sources, build the dependency graph over them, and order it dependencies-first. Read the existing `CONTEXT.md` files only after that list is fixed.
+Walk the tree, enumerate candidate scopes from the sources, build the dependency graph over them, and order it dependencies-first. Existing `CONTEXT.md` files are not read here; pass two opens them.
 
-Existing files never bound the list. A scope owning language and carrying no file is a finding to write, not a scope to fold into its parent.
+Existing files never bound the list. A scope holding source and carrying no file is a finding to write, not a scope to fold into its parent.
 
 State the root scope and the scope count before reading anything else, then record the ordered scope list in `index.md`.
 
-## 2. Sweep dependencies-first
+## 2. Extract from source — pass one
 
 A scope is read before anything that depends on it. The owner fixes a term's meaning; every later use is measured against that definition.
 
@@ -75,37 +75,49 @@ From the sources of each scope, establish:
 - **Restrictions** — preconditions, invariants, illegal states, orderings that must hold, authorization points.
 - **Terms owned** — the domain concepts this scope defines, and what each means here.
 
-Then compare against the scope's recorded context and any docs covering it. Three outcomes:
+**Recorded context is not opened in this pass.** Reading it here anchors the extraction to what someone already wrote, and forces ownership questions before the scopes that would settle them have been read. Nothing is compared, nothing is written to a `CONTEXT.md`, and no ledger entry is raised for a disagreement — there is nothing yet to disagree with.
+
+Write the scope's record and tick its extracted box before reading the next scope.
+
+Pass one ends with every scope's terms, limits, and restrictions on disk, derived from source alone.
+
+## 3. Reconcile against recorded language — pass two
+
+Only now open the recorded context. Every scope's terms are established, so ownership is decidable from the records rather than deferred.
+
+Work the same dependency order. For each scope, compare its record against its `CONTEXT.md` and any docs covering it. Three outcomes:
 
 - **Agreement** — nothing to do.
-- **Gap** — the sources clearly define a domain term that context does not record, or the scope records nothing at all. Write it. Where the scope carries no `CONTEXT.md`, creating one is how the gap is written, not a separate decision to defer.
+- **Gap** — the sources define a term context does not record, or the scope records nothing at all. Write it. Where the scope carries no `CONTEXT.md`, creating one is how the gap is written, not a separate decision to defer.
 - **Conflict** — open an entry in `ledger.md`. Do not ask, do not write.
+
+A term two scopes appear to share is settled here, not parked. Pass one recorded both sides, so the owner is decidable from the records without re-reading source.
 
 An entry marked `_Pending_:` is intent, not a description, and is never drift. Check one thing: whether the code has arrived. If it has, drop the marker, move the entry to the level that now owns it, and reconcile it like any other. If it has not, leave it and carry it forward as pending. A term carrying no `_Pending_:` and no code behind it is the opposite finding — the code was removed or renamed — and opens a ledger entry.
 
-Validate the recorded context against [context-format.md](./references/context-format.md) in the same pass:
+Validate the recorded context against [context-format.md](./references/context-format.md) as you reconcile each scope:
 
 - **Structure** — `## Language`, `## Relationships`, `## Example dialogue`, `## Flagged ambiguities`, each carrying content.
 - **Entries** — one canonical term per concept, its aliases under `_Avoid_`, and a one-sentence definition saying what the term is rather than what it does.
 - **Relationships** — bold term names, with cardinality wherever the code fixes it.
-- **Scope** — general programming concepts are not domain terms. A recorded term a domain expert would not recognise is a defect.
+- **Scope** — a recorded term naming internal structure rather than something a caller relies on is a defect, unless it carries a responsibility or boundary that constrains change.
 - **Placement** — a fact belongs at the shallowest directory where it holds for everything beneath it. Move an over-scoped entry down, lift a term repeated identically across siblings to the parent, and delete a child that restates its parent. Where a child and parent disagree, the disagreement is the finding rather than the duplication. A context file under a documentation directory is misfiled — move its entries to the code they describe and delete it.
 - **Over-scope** — test a file's entries against its whole subtree, never its length. Entries holding for only part of what sits beneath it mean the file is over-scoped, and the fix is moving each one down to the scope it describes. Split it as you sweep. A file that grew while its subtree gained scopes is the signal to run this check, not a reason to cut words.
 - **Open items** — an entry under `## Flagged ambiguities` carrying no resolution is a ledger entry, not a format defect.
 
 A format defect that does not change meaning is fixed in place. Only altering what a term means, or dropping recorded language altogether, reaches the ledger.
 
-Relocation is neither. Creating a file for a scope that owns unrecorded language, and moving an entry down to the scope it describes, preserve every word — both are carried out during the sweep. Splitting an over-scoped file is the fix, never a question for the user.
+Relocation is neither. Creating a file for a scope that holds source and carries none, and moving an entry down to the scope it describes, preserve every word — both are carried out during this pass. Splitting an over-scoped file is the fix, never a question for the user.
 
-Divergence introduced over time shows up as two spellings of one concept, or one concept split across two names that both survive. Look for it at every seam where two scopes exchange a domain object.
+Divergence introduced over time shows up as two spellings of one concept, or one concept split across two names that both survive. Look for it at every seam where two scopes exchange a domain object; pass one recorded both sides, so the seam is visible without re-reading either.
 
-Write the scope's file and mark it swept in `index.md` before moving to the next.
+Tick the scope's reconciled box in `index.md` before moving to the next.
 
-## 3. Close the ledger
+## 4. Close the ledger
 
-When the sweep completes, re-test every entry under `## Open` in `ledger.md` against the evidence collected beneath it, re-reading the source the entry names. An entry closes when a later scope names the owner, a recorded decision settles it, or a second call site disambiguates. Only entries surviving the re-test reach the user.
+When pass two completes, re-test every entry under `## Open` in `ledger.md` against the evidence collected beneath it, re-reading the source the entry names. An entry closes when a later scope names the owner, a recorded decision settles it, or a second call site disambiguates. Only entries surviving the re-test reach the user.
 
-## 4. Ask what is left
+## 5. Ask what is left
 
 Ask interactively, one decision at a time, each with your recommended answer.
 
@@ -125,7 +137,7 @@ Rank by blast radius — a term crossing contexts before one local to a scope.
 
 The user's answer is the decision. When it contradicts the code, record the decision and report the code as defective; do not edit it.
 
-## 5. Write
+## 6. Write
 
 Write each fact at the shallowest directory where it holds for everything beneath it, creating a file for any scope that holds authored source and carries none. Use the format in [context-format.md](./references/context-format.md).
 
@@ -133,7 +145,7 @@ Write each entry as its decision lands, not in a batch at the end. Every ambigui
 
 Report what was written, what the user decided, every entry still pending, and every code defect the sweep exposed.
 
-## 6. Review
+## 7. Review
 
 Test the hierarchy against [review.md](./references/review.md), which lists the checks and the order to run them. No source is read here; the subject is the context files.
 
