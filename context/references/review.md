@@ -6,6 +6,36 @@ context files themselves. Everything here is checkable from the tree and the fil
 Work outward-in: the shape of the tree, then placement across files, then entries, then decisions. A
 misplaced entry rewritten in place is wasted work.
 
+## Tracking
+
+A review tracks itself under `.claude/review/<session>/`, created lazily and deleted when the review is
+clean. It is not a sweep and does not use a sweep's directory or records.
+
+```
+.claude/review/<session>/
+├── findings.md
+└── ledger.md
+```
+
+`findings.md` is one row per scope, and the two columns are what keep every check finished before any
+repair begins — no `Repaired` box is ticked while a `Checked` box is empty.
+
+```md
+# Review: {root scope}
+
+| Scope | Checked | Repaired | Found |
+| ----- | ------- | -------- | ----- |
+| `internal/order` | x | x | over-scoped ×3, redundant relationship |
+| `internal/billing` | x | | undrained parent ×10 |
+| `internal/api` | x | | — |
+```
+
+`Found` is what the checks turned up, in the words of the check that found it. A scope with an empty
+`Found` and a ticked `Checked` passed, and that is worth recording — it is the evidence the checklist
+actually ran everywhere rather than stopping at the first large finding.
+
+`ledger.md` follows the sweep's ledger shape. A review reads no source, so its entries stay open.
+
 ## Shape
 
 - Every directory holding authored source of its own carries a `.context.md`. A missing one is a finding.

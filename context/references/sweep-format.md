@@ -1,9 +1,9 @@
-# Run File Format
+# Sweep Run Format
 
-Two index files and one record per scope, under `.claude/drift/<session>/`. Scope records mirror the repo tree, so a record's path is its scope's path plus `.md`.
+Two index files and one record per scope, under `.claude/sweep/<session>/`. Scope records mirror the repo tree, so a record's path is its scope's path plus `.md`.
 
 ```
-.claude/drift/<session>/
+.claude/sweep/<session>/
 ├── index.md
 ├── ledger.md
 ├── internal/
@@ -19,7 +19,7 @@ Use these templates exactly — a resumed run reads them without the session tha
 ## index.md
 
 ```md
-# Drift run: {root scope}
+# Sweep: {root scope}
 
 ## Scopes
 
@@ -100,3 +100,4 @@ Record what the code establishes, with a `file:line` for each. A claim with no c
 `## Terms owned`, `## Limits`, and `## Restrictions` come from pass one and cite source only. `## Written` and `## Raised` are appended in pass two, once the scope's recorded context has been compared against them. A record carrying the first three and not the last two is an extracted scope awaiting reconciliation, which is exactly what its `index.md` row should say.
 
 `## Raised` lists ledger entry headings verbatim so an entry can be traced back to the scope that found it.
+
