@@ -40,19 +40,19 @@ A scope is finished in a pass when that pass's work is on disk **and** its box f
 
 Pass one ticks `Extracted` once the scope record is written.
 
-Pass two ticks `Reconciled` only once all three of these are true: the scope's `.context.md` exists, its comparison outcome is recorded — in that file or in the ledger — and the scope record carries `## Written` and `## Raised`. A scope whose file has not been created yet is not reconciled, however much comparing has been done. Deciding what a file should contain is not the same as the file containing it.
+Pass two ticks `Reconciled` only once all three of these are true: the scope's `.context.md` exists, its comparison outcome is recorded — in that file or in the ledger — and the scope record carries `## Checked`, `## Written`, and `## Raised`. A scope whose file has not been created yet is not reconciled, however much comparing has been done. Deciding what a file should contain is not the same as the file containing it.
 
 An unticked box makes finished work invisible to the rebuild, which redoes the scope. A ticked box with nothing behind it is worse: the rebuild trusts it, skips the scope, and the findings are gone. Never tick what you have not written.
 
 - `index.md` — the root scope and the dependency-ordered scope list, each scope carrying an extracted box and a reconciled box.
 - `ledger.md` — every ambiguity in flight: what the code shows, what the docs claim, what is unresolved, and the evidence gathered since it was raised. Resolved entries stay in the file with their decision and where it was written.
-- `<scope path>.md` — one per extracted scope, mirroring the repo tree: the terms it owns and its limits and restrictions from pass one, then what was written to its context and the ledger entries it raised from pass two.
+- `<scope path>.md` — one per scope, mirroring the repo tree: the terms it owns and its limits and restrictions from pass one, then what the checks found, what was written to its context, and the ledger entries it raised from pass two. A review writes the same record at the same path, minus the sections that come from source.
 
 When a later scope bears on an open entry, append that evidence to the entry in `ledger.md` as you read it.
 
 A dependency's scope record exists before anything depending on it is read. Take a term's meaning from that record rather than re-deriving it from the dependency's source.
 
-Rebuild from the run directory before reading anything else, both after compaction and when `.claude/context/` already holds an incomplete run covering the requested scope. For a sweep that means `index.md` for which pass each scope has reached, `ledger.md` for the entries in flight, and the scope records for the terms pass one established; for a review, `findings.md` for which scopes are checked and repaired. Resume at the first scope whose current phase is unticked — never restart a run that has a directory.
+Rebuild from the run directory before reading anything else, both after compaction and when `.claude/context/` already holds an incomplete run covering the requested scope. For a sweep that means `index.md` for which pass each scope has reached, `ledger.md` for the entries in flight, and the scope records for the terms pass one established; for a review, `findings.md` for which scopes are checked and repaired and the scope records for what the checks found. Resume at the first scope whose current phase is unticked — never restart a run that has a directory.
 
 An entry closes from the evidence recorded under it, never from recall.
 
@@ -112,7 +112,7 @@ Run the checks in [review.md](./references/review.md) against each scope as you 
 
 Rewrite the scope's `## Defects` section from what pass one verified: the faults still present, plus any this pass exposed, and nothing that has since been fixed.
 
-Append `## Written` and `## Raised` to the scope's record, then tick its reconciled box in `index.md` — both before moving to the next scope. Pass two produces three artifacts per scope: the edit to the `.context.md`, the record of what that edit was, and the tick. Only the first survives outside the run directory, and it is the one the rebuild cannot see.
+Append `## Checked`, `## Written`, and `## Raised` to the scope's record, then tick its reconciled box in `index.md` — both before moving to the next scope. Pass two produces three artifacts per scope: the edit to the `.context.md`, the record of what that edit was, and the tick. Only the first survives outside the run directory, and it is the one the rebuild cannot see.
 
 ## 4. Close the ledger
 

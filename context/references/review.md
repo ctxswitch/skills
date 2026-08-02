@@ -15,25 +15,33 @@ one holding `index.md` is a sweep, and neither writes the other's records.
 ```
 .claude/context/<session>/
 ├── findings.md
-└── ledger.md
+├── ledger.md
+├── internal/
+│   └── order.md          ← internal/order
+└── pkg/
+    └── billing.md        ← pkg/billing
 ```
 
-`findings.md` is one row per scope, and the two columns are what keep every check finished before any
-repair begins — no `Repaired` box is ticked while a `Checked` box is empty.
+`findings.md` is the index — one row per scope, and the two columns are what keep every check finished
+before any repair begins. No `Repaired` box is ticked while a `Checked` box is empty.
 
 ```md
 # Review: {root scope}
 
-| Scope | Checked | Repaired | Found |
-| ----- | ------- | -------- | ----- |
-| `internal/order` | x | x | over-scoped ×3, redundant relationship |
-| `internal/billing` | x | | undrained parent ×10 |
-| `internal/api` | x | | — |
+| Scope | Checked | Repaired |
+| ----- | ------- | -------- |
+| `internal/order` | x | x |
+| `internal/billing` | x | |
+| `internal/api` | x | |
 ```
 
-`Found` is what the checks turned up, in the words of the check that found it. A scope with an empty
-`Found` and a ticked `Checked` passed, and that is worth recording — it is the evidence the checklist
-actually ran everywhere rather than stopping at the first large finding.
+The findings themselves go in the same per-scope records a sweep writes, at the same paths — `## Checked`
+for what the checks turned up, `## Written` for what the repair changed, `## Raised` for what it ledgered.
+A review reads no source, so the source-derived sections simply do not appear.
+
+Keeping the detail in the record rather than a column is what makes the validation survive: a scope's
+`## Checked` names every check that fired and says `clean:` for the groups that passed, so a later run can
+tell "checked and fine" from "never checked". A table cell cannot carry that.
 
 `ledger.md` follows the sweep's ledger shape. A review reads no source, so its entries stay open.
 

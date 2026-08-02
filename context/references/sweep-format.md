@@ -86,9 +86,17 @@ An entry moves from `## Open` to `## Resolved` when the code closes it or the us
 - an Order cannot leave `DRAFT` without a payment method — `service.go:44`
 - `Fulfil()` requires a confirmed payment; it panics otherwise — `fulfil.go:31`
 
+## Checked
+
+- over-scoped ×2 — `Fulfilment Window`, `Picker Batch` hold only for `internal/order/picking`
+- redundant relationship — "cancellation closes after 30 minutes" restates the **Limits** entry
+- clean: shape, naming, history, decisions
+
 ## Written
 
 - **Order**, **Fulfilment** → `src/ordering/.context.md`
+- moved `Fulfilment Window`, `Picker Batch` down to `internal/order/picking`
+- dropped the restated cancellation relationship
 
 ## Raised
 
@@ -97,7 +105,9 @@ An entry moves from `## Open` to `## Resolved` when the code closes it or the us
 
 Record what the code establishes, with a `file:line` for each. A claim with no citation does not go in.
 
-`## Terms owned`, `## Limits`, and `## Restrictions` come from pass one and cite source only. `## Written` and `## Raised` are appended in pass two, once the scope's recorded context has been compared against them. A record carrying the first three and not the last two is an extracted scope awaiting reconciliation, which is exactly what its `index.md` row should say.
+`## Terms owned`, `## Limits`, and `## Restrictions` come from pass one and cite source only. `## Checked`, `## Written`, and `## Raised` are appended in pass two, once the scope's recorded context has been compared against them. A record carrying the first three and not the last three is an extracted scope awaiting reconciliation, which is exactly what its `index.md` row should say.
+
+`## Checked` is where the validation survives. It names every check from [review.md](./review.md) that fired against this scope, and says `clean:` for the groups that passed. A scope whose record shows no `## Checked` was never validated, however finished the rest of it looks — and a group missing from both lists is one nobody ran.
 
 `## Raised` lists ledger entry headings verbatim so an entry can be traced back to the scope that found it.
 
