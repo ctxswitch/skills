@@ -50,7 +50,12 @@ neither claim in a conflict can be checked against the code.
 - A directory holding only subdirectories carries one only where it records something true of every
   scope beneath it. A parent file that restates a single child is a finding.
 - No `.context.md` sits under a documentation directory. Move its entries to the code they describe.
-- Each file carries `## Language` and `## Relationships`. `## Decisions`, `## Example dialogue`, `## Flagged ambiguities`, and `## Defects` appear only where they have content.
+- A file for a directory holding source carries `## Language` — that is what it exists to record. A file
+  for a directory of subdirectories may carry only `## Relationships`, where what spans its children is a
+  fact rather than a term. Coining a term to fill the heading is padding; drop the file instead if
+  nothing spans.
+- `## Decisions`, `## Example dialogue`, `## Flagged ambiguities`, and `## Defects` appear only where they
+  have content.
 
 ## Placement
 
@@ -104,10 +109,22 @@ neither claim in a conflict can be checked against the code.
 ## Repairing
 
 The repair rule is the sweep's: a defect that does not change meaning is fixed in place; one that would
-alter or remove recorded language goes to the ledger and then to the user. Creating a file for a scope
-that has source and none, and moving an entry to the scope it describes, remove nothing and are done
-rather than raised. Splitting an over-scoped file is the fix, never a question for the user — neither
-whether to split it nor how much of it to split.
+alter or remove recorded language goes to the ledger and then to the user.
+
+**Every Placement finding resolves from the scope rule, so none of them is a question.** Where an entry
+belongs, whether a file is created, and whether one is deleted all follow from where a fact holds and
+how far — including the second half of the rule, *and no shallower*, which is what stops an over-scoped
+entry being "fixed" by lifting it too high. Ask only when two claims contradict and the file cannot say
+which is true.
+
+These remove nothing and are done rather than raised:
+
+- creating a file for a scope that has source and none
+- moving an entry to the scope it describes
+- splitting an over-scoped file — neither whether to split it nor how much of it to split
+- deleting a shadowed copy, because the scope that owns it still holds it
+- deleting a file whose entries have all moved or been shadowed away, since nothing it held is lost with
+  it — a directory of subdirectories keeps a file only while something is true of every scope beneath it
 
 Placement repairs are per-scope judgment work, not a bulk move. Take one receiving scope at a time and
 read what it already records before anything lands in it:
