@@ -110,7 +110,7 @@ Use the format in [context-format.md](./references/context-format.md).
 Don't couple `CONTEXT.md` to implementation details.
 Only include terms that are meaningful to domain experts.
 
-An entry is a definition, not a transcript. Length is earned by content a reader cannot derive — the discussion that produced the term, the alternatives weighed, and who said what are not part of it.
+An entry is a definition, not a transcript. The discussion that produced the term, the alternatives weighed, and who said what are not part of it.
 
 ### Offer ADRs sparingly
 

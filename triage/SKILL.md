@@ -92,7 +92,7 @@ If the maintainer says "move #42 to ready-for-agent", trust them and apply the r
 
 Capture everything resolved during grilling under "established so far" so the work isn't lost. Questions must be specific and actionable, not "please provide more info".
 
-Everything posted to the tracker is read by a reporter or a maintainer, not by you. Length is earned by content they cannot derive: no restating the issue back to them, no narrating the triage process, no defending the category. A heading with nothing behind it is deleted.
+Everything posted to the tracker is read by a reporter or a maintainer, not by you. No restating the issue back to them, no narrating the triage process, no defending the category. A heading with nothing behind it is deleted.
 
 ### Resuming a previous session
 

@@ -60,7 +60,7 @@ Present a numbered list. For each candidate:
 - **Solution** — plain English description of what would change
 - **Benefits** — in terms of locality and leverage, and how tests would improve
 
-Each of those is a sentence or two. Length is earned by content the reader cannot derive: do not restate the problem inside the solution, do not narrate the exploration that surfaced the candidate, and do not defend a candidate nobody has objected to yet. A field with nothing behind it means the candidate is thin — drop the candidate, do not fill the field.
+Each of those is a sentence or two. Do not restate the problem inside the solution, do not narrate the exploration that surfaced the candidate, and do not defend a candidate nobody has objected to yet. A field with nothing behind it means the candidate is thin — drop the candidate, do not fill the field.
 
 **Use `CONTEXT.md` vocabulary for the domain and the glossary above for the architecture.** If `CONTEXT.md` defines "Order," talk about "the Order intake module" — not "the FooBarHandler," and not "the Order service."
 

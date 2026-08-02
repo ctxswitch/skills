@@ -128,7 +128,7 @@ Load incrementally; prefer the most specific file for the changed code.
 
 ## Report
 
-Length is earned by content the reader cannot derive. Cut any sentence that restates the request, previews what you are about to do, recaps what you just delivered, or defends a decision nobody contested. A heading with nothing under it is deleted, not filled.
+Cut any sentence that restates the request, previews what you are about to do, recaps what you just delivered, or defends a decision nobody contested. A heading with nothing under it is deleted, not filled.
 
 - Files modified and what changed.
 - Assumptions worth review.

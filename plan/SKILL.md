@@ -64,4 +64,4 @@ Write the plan to `docs/plans/<slug>.md` and present the phase list, the out-of-
 
 Once approved, `issues` breaks the plan into tickets and `engineer` executes a phase.
 
-Length is earned by content the executor cannot derive. A plan long enough to need a summary is two plans.
+A plan long enough to need a summary is two plans.

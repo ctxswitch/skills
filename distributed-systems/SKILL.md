@@ -72,7 +72,7 @@ Always include your own suspected answer with each question — a question witho
 
 ## Output Patterns
 
-These list what to cover when it exists. They are not blanks to complete — a heading with nothing behind it is deleted, and a design that fills every heading is more likely padded than thorough. Length is earned by content the reader cannot derive: no restating the requirement back, no narrating how the design was reached, no defending a choice nobody contested.
+These list what to cover when it exists. They are not blanks to complete — a heading with nothing behind it is deleted, and a design that fills every heading is more likely padded than thorough. No restating the requirement back, no narrating how the design was reached, no defending a choice nobody contested.
 
 For planning (`Failure Modes` is ranked by likelihood × impact and lists only the ones the design actually handles; everything rare-and-recoverable goes under `Accepted / Deferred Risks` with a one-line reason, not into the architecture):
 

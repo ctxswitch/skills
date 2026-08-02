@@ -57,7 +57,7 @@ For each approved slice, publish a new issue. Apply the `needs-triage` role so i
 
 Publish in dependency order (blockers first) so you can reference real issue identifiers in "Blocked by".
 
-An issue body is read by someone deciding whether to pick it up. Length is earned by content they cannot derive: no restating the title, no narrating how the slice was chosen, no defending the breakdown. A section with nothing behind it is deleted.
+An issue body is read by someone deciding whether to pick it up. No restating the title, no narrating how the slice was chosen, no defending the breakdown. A section with nothing behind it is deleted.
 
 <issue-template>
 ## Parent
