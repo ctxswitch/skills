@@ -111,7 +111,7 @@ An entry marked `_Pending_:` is intent, not a description, and is never drift. C
 
 Run the checks in [review.md](./references/review.md) against each scope as you reconcile it, applying the repair rule stated there. Two further checks belong here, because both need what only this pass holds:
 
-- **Open items** — an entry under `## Flagged ambiguities` carrying no resolution is a ledger entry, not a format defect.
+- **Open items** — an entry under `## Flagged ambiguities` carrying no resolution is an open question, not a format defect. Track it in `ledger.md` for this run, but it stays in the scope's `## Flagged ambiguities` where a later reader will meet it.
 - **Divergence** — two spellings of one concept, or one concept split across two surviving names. Look at every seam where two scopes exchange a domain object; pass one recorded both sides, so the seam is visible without re-reading either.
 
 Rewrite the scope's `## Defects` section from what pass one verified: the faults still present, plus any this pass exposed, and nothing that has since been fixed.

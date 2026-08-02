@@ -41,7 +41,9 @@ Keeping the detail in the record rather than a column is what makes the validati
 tell "checked and fine" from "never checked". A table cell cannot carry that.
 
 `ledger.md` follows the sweep's ledger shape, and its entries stay open — a review reads no source, so
-neither claim in a conflict can be checked against the code.
+neither claim in a conflict can be checked against the code. It is this run's working copy, never the
+only one: every open entry is also recorded under `## Flagged ambiguities` at the scope it concerns,
+because the run directory is deleted and the context file is not.
 
 ## Shape
 
@@ -135,8 +137,9 @@ read what it already records before anything lands in it:
   of the two goes.
 - Two terms whose `_Avoid_` lines name each other need that distinction spelled out once they are
   siblings.
-- An arriving line that contradicts one already there is a conflict, not a duplicate. Neither is written;
-  the pair goes to the ledger.
+- An arriving line that contradicts one already there is a conflict, not a duplicate. Neither claim
+  replaces the other; the disagreement is recorded under `## Flagged ambiguities` at the scope that holds
+  it, and tracked in the ledger for this run.
 
 Moving everything at once sees none of this and leaves duplicates that read as deliberate. Remove an
 entry from its old home only once its new home holds it — the reverse order loses entries outright.
