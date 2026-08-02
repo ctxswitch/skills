@@ -26,6 +26,8 @@ The default failure mode is treating every difference as a conflict and asking t
 
 Track the run under `.claude/drift/<session>/` — the session identifier where the harness exposes one, a scope slug otherwise — written as you go and deleted when the run completes. Create it lazily. Every file follows the templates in [run-format.md](./references/run-format.md).
 
+These files are the run's memory, not a report on it. A sweep over a large repository will not fit in one context: assume compaction at any point, and treat everything not yet written under `.claude/drift/<session>/` as lost. Write a scope's record when that scope is finished, never batched at the end.
+
 - `index.md` — the root scope and the dependency-ordered scope list, each scope pending or swept.
 - `ledger.md` — every ambiguity in flight: what the code shows, what the docs claim, what is unresolved, and the evidence gathered since it was raised. Resolved entries stay in the file with their decision and where it was written.
 - `<scope path>.md` — one per swept scope, mirroring the repo tree: the terms it owns, its limits and restrictions, what was written to its context, and the ledger entries it raised.
@@ -33,6 +35,8 @@ Track the run under `.claude/drift/<session>/` — the session identifier where 
 When a later scope bears on an open entry, append that evidence to the entry in `ledger.md` as you read it.
 
 A dependency's file exists before anything depending on it is read. Check a term there before re-reading its source.
+
+After compaction, rebuild from the run directory before reading any further source: `index.md` for what is swept and what is still pending, `ledger.md` for the entries in flight, and the records of swept scopes for the terms they established. Resume at the first pending scope.
 
 Scan `.claude/drift/` before starting. Where an incomplete run covers the requested scope, resume from the first pending scope in its `index.md`.
 
