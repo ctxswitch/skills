@@ -55,7 +55,7 @@ _Pending_: not built — expected at `services/fulfillment`
 - **A reason names a mechanism, not a merit.** Where an entry gives a reason, it names the thing in this scope that forces the constraint — a foreign key, a build step, a token binding — so a reader can check it against the code. It does not argue the decision was correct, rank its importance, or replay the reasoning that produced it. "Handle `agents` rows before `tenants` rows, since `agents.tenant_id` is `ON DELETE RESTRICT`" earns its clause; "which is the one ambiguity this scope most has to hold apart" does not.
 - **A reason never imports another scope's facts.** Where a constraint depends on something a different scope owns, name the term and stop. Restating the fact here makes a second copy that nothing keeps current, and it ages independently of the scope that owns it.
 - **Show relationships.** Use bold term names and express cardinality where obvious.
-- **Only include terms specific to this project's context.** General programming concepts (timeouts, error types, utility patterns) don't belong even if the project uses them extensively. Before adding a term, ask: is this a concept unique to this context, or a general programming concept? Only the former belongs.
+- **Record what callers rely on, not the pattern it is built from.** A scope's own contracts belong however mundane — the cap it enforces, the state it refuses, the default it applies. The general pattern behind them does not: a retry helper records its backoff ceiling and what it treats as retryable, not what a retry is.
 - **Group terms under subheadings** when natural clusters emerge. If all terms belong to a single cohesive area, a flat list is fine.
 - **Write an example dialogue.** A conversation between a dev and a domain expert that demonstrates how the terms interact naturally and clarifies boundaries between related concepts.
 - **Record a decision where it constrains.** A decision about one term goes on that term as `_Fixed_:`. `## Decisions` takes only what constrains the scope rather than a term.
@@ -65,13 +65,13 @@ _Pending_: not built — expected at `services/fulfillment`
 
 A decision earns a line only while someone would still reach for the alternative. Name who would propose it and what would make it look right — if you cannot, drop it. The outcome recorded elsewhere is usually enough on its own: `## Relationships` stating that Ordering emits `OrderPlaced` already closes "why not HTTP" unless HTTP is a live temptation.
 
-A line carries the constraint and the rejected alternative, nothing else. Not the discussion, not the date, not who decided, not the change that enacted it. "A reconciler was proposed and rejected — the tenant lifecycle is RPC-driven throughout" stands on its own; the same line citing the issues it was proposed in sends the reader out of the file to learn nothing more.
+A line carries the constraint and the rejected alternative, nothing else — not the discussion, not who decided, not the change that enacted it.
 
 Entries expire. When the alternative stops being plausible, drop the line — `git log` on the file keeps what was removed, and the diff is the record of when it changed and from what.
 
 ## Scope
 
-Context files form a hierarchy. Each directory that owns language carries one, describing only what is true at its own level.
+Context files form a hierarchy, each describing only what is true at its own level.
 
 **A fact belongs at the shallowest directory where it holds for everything beneath it, and no shallower.**
 

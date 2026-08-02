@@ -11,11 +11,9 @@ This skill writes documentation. It does not change source. Code defects it expo
 
 ## Modes
 
-**Sweep** is the default. It reads source and reconciles it against recorded language — steps 1 to 6, in two passes over the scope list. It is the only mode that finds drift between code and context, and the expensive one.
+**Sweep** is the default and runs all seven steps, crossing the scope list twice — extract, then reconcile. It is the only mode that finds drift between code and context, and the expensive one.
 
-**Review** reads the recorded hierarchy alone and tests it against the format — step 7. It opens no source file and finds what a sweep introduces but never looks for: entries at the wrong level, names that outrun their definitions, narration, scopes holding source and no file. Invoke it with `review`.
-
-A sweep ends by reviewing what it wrote. A review also runs alone, over a hierarchy no sweep is touching.
+**Review** runs step 7 alone. It opens no source file, tests the recorded hierarchy against the format, and finds what a sweep introduces but never looks for: entries at the wrong level, names that outrun their definitions, narration, scopes holding source and no file. Invoke it with `review`.
 
 ## Guard against the defaults
 
@@ -34,7 +32,7 @@ The default failure mode is treating every difference as a conflict and asking t
 
 Track the run under `.claude/drift/<session>/` — the session identifier where the harness exposes one, a scope slug otherwise — written as you go and deleted when the run completes. Create it lazily. Every file follows the templates in [run-format.md](./references/run-format.md).
 
-These files are the run's memory, not a report on it. A sweep over a large repository will not fit in one context: assume compaction at any point, and treat everything not yet written under `.claude/drift/<session>/` as lost. Write a scope's record when that scope is finished, never batched at the end.
+These files are the run's memory, not a report on it. A sweep over a large repository will not fit in one context: assume compaction at any point, and treat everything not yet written under `.claude/drift/<session>/` as lost.
 
 A scope is finished in a pass when that pass's work is on disk **and** its box for that pass is ticked in `index.md` — both before the next scope is read, never batched once the pass is over. Pass one ticks `Extracted` when the scope record is written; pass two ticks `Reconciled` when the comparison is written or ledgered. An unticked box makes finished work invisible to the rebuild, which redoes the scope. A ticked box with nothing behind it is worse: the rebuild trusts it, skips the scope, and the findings are gone. Never tick what you have not written.
 
@@ -54,7 +52,7 @@ An entry closes from the evidence recorded under it, never from recall.
 
 ## 1. Scope the run
 
-A **scope** is a directory that owns language its parent does not. That test is the definition. The shapes it takes are only signals: a package, library, or crate; a deployable or runnable unit; a published interface; a configuration domain; a bounded subdomain inside a larger one.
+A **scope** is a directory holding authored source of its own — a package, library, or crate; a deployable or runnable unit; a published interface; a configuration domain; a bounded subdomain inside a larger one. A directory holding only subdirectories is a scope only where something is true of every scope beneath it. Generated output is never a scope.
 
 Do not enumerate by a language's own unit. "Module" names a different thing in Go, Rust, Python, and npm, and a repo's scopes rarely line up with any of them — a whole repo is often one Go module. A scope need not hold a programming language at all: protocol definitions, infrastructure roots, and deployment packaging own language too.
 
@@ -95,21 +93,10 @@ A term two scopes appear to share is settled here, not parked. Pass one recorded
 
 An entry marked `_Pending_:` is intent, not a description, and is never drift. Check one thing: whether the code has arrived. If it has, drop the marker, move the entry to the level that now owns it, and reconcile it like any other. If it has not, leave it and carry it forward as pending. A term carrying no `_Pending_:` and no code behind it is the opposite finding — the code was removed or renamed — and opens a ledger entry.
 
-Validate the recorded context against [context-format.md](./references/context-format.md) as you reconcile each scope:
+Run the checks in [review.md](./references/review.md) against each scope as you reconcile it, applying the repair rule stated there. Two further checks belong here, because both need what only this pass holds:
 
-- **Structure** — `## Language`, `## Relationships`, `## Example dialogue`, `## Flagged ambiguities`, each carrying content.
-- **Entries** — one canonical term per concept, its aliases under `_Avoid_`, and a one-sentence definition saying what the term is rather than what it does.
-- **Relationships** — bold term names, with cardinality wherever the code fixes it.
-- **Scope** — a recorded term naming internal structure rather than something a caller relies on is a defect, unless it carries a responsibility or boundary that constrains change.
-- **Placement** — a fact belongs at the shallowest directory where it holds for everything beneath it. Move an over-scoped entry down, lift a term repeated identically across siblings to the parent, and delete a child that restates its parent. Where a child and parent disagree, the disagreement is the finding rather than the duplication. A context file under a documentation directory is misfiled — move its entries to the code they describe and delete it.
-- **Over-scope** — test a file's entries against its whole subtree, never its length. Entries holding for only part of what sits beneath it mean the file is over-scoped, and the fix is moving each one down to the scope it describes. Split it as you sweep. A file that grew while its subtree gained scopes is the signal to run this check, not a reason to cut words.
 - **Open items** — an entry under `## Flagged ambiguities` carrying no resolution is a ledger entry, not a format defect.
-
-A format defect that does not change meaning is fixed in place. Only altering what a term means, or dropping recorded language altogether, reaches the ledger.
-
-Relocation is neither. Creating a file for a scope that holds source and carries none, and moving an entry down to the scope it describes, preserve every word — both are carried out during this pass. Splitting an over-scoped file is the fix, never a question for the user.
-
-Divergence introduced over time shows up as two spellings of one concept, or one concept split across two names that both survive. Look for it at every seam where two scopes exchange a domain object; pass one recorded both sides, so the seam is visible without re-reading either.
+- **Divergence** — two spellings of one concept, or one concept split across two surviving names. Look at every seam where two scopes exchange a domain object; pass one recorded both sides, so the seam is visible without re-reading either.
 
 Tick the scope's reconciled box in `index.md` before moving to the next.
 
@@ -150,7 +137,5 @@ Report what was written, what the user decided, every entry still pending, and e
 Test the hierarchy against [review.md](./references/review.md), which lists the checks and the order to run them. No source is read here; the subject is the context files.
 
 A sweep reviews only the scopes it wrote — its own output, before the run directory goes. A standalone review covers every scope beneath its root, and starts here.
-
-The repair rule is unchanged: a defect that does not change meaning is fixed in place, one that would alter or remove recorded language goes to the ledger and then to the user.
 
 When the review is clean, delete `.claude/drift/<session>/`.

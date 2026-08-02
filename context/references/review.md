@@ -13,6 +13,7 @@ misplaced entry rewritten in place is wasted work.
 - A directory holding only subdirectories carries one only where it records something true of every
   scope beneath it. A parent file that restates a single child is a finding.
 - No `CONTEXT.md` sits under a documentation directory. Move its entries to the code they describe.
+- Each file carries `## Language` and `## Relationships`. `## Decisions`, `## Example dialogue`, and `## Flagged ambiguities` appear only where they have content.
 
 ## Placement
 
@@ -26,7 +27,10 @@ misplaced entry rewritten in place is wasted work.
 
 ## Entries
 
+- One canonical term per concept. A second name for the same thing belongs under `_Avoid_`, not beside it as a peer.
 - The definition is one sentence and says what the term is, not what it does.
+- A term naming internal structure — a struct, a file, a helper — is a defect unless it carries a responsibility or boundary that constrains change.
+- Relationships use bold term names, and state cardinality wherever the code fixes it.
 - The name matches the reach of its own definition. A definition reaching wider than its name means the
   term is misnamed, however well the name fits its siblings.
 - `_Avoid_` carries the distinction wherever the avoided word names a genuinely different thing.
