@@ -19,15 +19,18 @@ The default failure mode is treating every difference as a conflict and asking t
 - **A term is defined by the module that owns it**, not by a caller that uses it or a doc that mentions it.
 - **Record domain language, not implementation.** A term belongs in `CONTEXT.md` when a domain expert would recognise it. Struct names, handler names, and package layout do not qualify unless they carry a domain invariant or responsibility.
 
-## The run file
+## Tracking the run
 
-Track the run in `.claude/drift/<session>.md` — the session identifier where the harness exposes one, a scope slug otherwise — written as you go and deleted when the run completes. Create the directory lazily.
+Track the run under `.claude/drift/<session>/` — the session identifier where the harness exposes one, a scope slug otherwise — written as you go and deleted when the run completes. Create it lazily.
 
-Scan `.claude/drift/` before starting. Where an incomplete run covers the requested scope, resume from its first pending module instead of starting over.
+- `index.md` — the scope, the dependency-ordered module list with each module marked pending or swept, and the decisions the user settled.
+- `<module>.md` — one per swept module: the terms it owns and what each means, its limits and restrictions, what was written to its context, and any ledger entry raised there.
 
-- **Scope** — the dependency-ordered module list, each marked pending or swept.
-- **Ledger** — one entry per open conflict: the term or rule, the code evidence with `file:line`, the competing claim, and what is unresolved. When a later module bears on an open entry, append that evidence to the entry as you read it.
-- **Decisions** — what the user settled, and where it was written.
+A ledger entry carries the term or rule, the code evidence with `file:line`, the competing claim, and what is unresolved. When a later module bears on an open entry, append that evidence to the entry where it was raised.
+
+A dependency's file exists before anything depending on it is read. Check a term there before re-reading its source.
+
+Scan `.claude/drift/` before starting. Where an incomplete run covers the requested scope, resume from the first pending module in its `index.md`.
 
 An entry closes from the evidence recorded under it, never from recall.
 
@@ -37,7 +40,7 @@ Read `CONTEXT-MAP.md` if it exists, otherwise `CONTEXT.md`, then build the inter
 
 Check the map while reading it: every link resolves, every `CONTEXT.md` in scope is listed, each entry carries its one-line purpose, and the relationships between contexts are recorded.
 
-State the scope and the module count before reading anything else, then record the ordered module list in the run file.
+State the scope and the module count before reading anything else, then record the ordered module list in `index.md`.
 
 ## 2. Sweep dependencies-first
 
@@ -68,7 +71,7 @@ A format defect that does not change meaning is fixed in place. One that would a
 
 Divergence introduced over time shows up as two spellings of one concept, or one concept split across two names that both survive. Look for it at every seam where two modules exchange a domain object.
 
-Mark each module swept in the run file before moving to the next.
+Write the module's file and mark it swept in `index.md` before moving to the next.
 
 ## 3. Close the ledger
 
@@ -94,6 +97,6 @@ Placement follows `CONTEXT-MAP.md`, using the narrowest context that owns the la
 
 Write each entry as its decision lands, not in a batch at the end. Every ambiguity the user settles is recorded under `## Flagged ambiguities` with its resolution. Offer an ADR only when it is hard to reverse, surprising without context, and the result of a real trade-off.
 
-When every decision is written, delete the run file.
+When every decision is written, delete `.claude/drift/<session>/`.
 
 Report what was written, what the user decided, and every code defect the sweep exposed.
