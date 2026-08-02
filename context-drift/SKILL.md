@@ -21,7 +21,9 @@ The default failure mode is treating every difference as a conflict and asking t
 
 ## The run file
 
-Track the run in `.context-drift.md` at the repo root, written as you go and deleted when the run completes. Read it before anything else — where it exists, resume from the first pending module instead of starting over.
+Track the run in `.claude/drift/<session>.md` — the session identifier where the harness exposes one, a scope slug otherwise — written as you go and deleted when the run completes. Create the directory lazily.
+
+Scan `.claude/drift/` before starting. Where an incomplete run covers the requested scope, resume from its first pending module instead of starting over.
 
 - **Scope** — the dependency-ordered module list, each marked pending or swept.
 - **Ledger** — one entry per open conflict: the term or rule, the code evidence with `file:line`, the competing claim, and what is unresolved. When a later module bears on an open entry, append that evidence to the entry as you read it.
