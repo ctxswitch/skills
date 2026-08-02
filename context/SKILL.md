@@ -17,6 +17,7 @@ The default failure mode is treating every difference as a conflict and asking t
 - **Different words for different things is not a conflict.** A conflict is one term carrying two meanings, one rule implemented two ways, or recorded language the code no longer supports. Scopes that never interact can name things freely.
 - **Docs are claims, not evidence.** A README, design doc, or CONTEXT.md states what someone intended. Only code states what happens. Where they differ, both go to the user — the doc is not the tiebreaker. A `_Pending_:` entry is the exception: it claims nothing about code that exists.
 - **A term is defined by the scope that owns it**, not by a caller that uses it or a doc that mentions it.
+- **Placement is not a preference.** Where an entry belongs follows from the rule, not from taste or the size of the resulting diff. Never offer a choice between splitting an over-scoped file and leaving it — split it and report what moved.
 - **Folding a scope into its parent is the mirror failure.** Writing a scope's language into the nearest file that already exists feels conservative and is not — it buries the boundary the language belongs to. The hierarchy's shape is an output of the sweep, never an input to it.
 - **Record domain language, not implementation.** A term belongs in `CONTEXT.md` when a domain expert would recognise it. Struct names, handler names, and package layout do not qualify unless they carry a domain invariant or responsibility.
 
@@ -74,10 +75,12 @@ Validate the recorded context against [context-format.md](./references/context-f
 - **Relationships** — bold term names, with cardinality wherever the code fixes it.
 - **Scope** — general programming concepts are not domain terms. A recorded term a domain expert would not recognise is a defect.
 - **Placement** — a fact belongs at the shallowest directory where it holds for everything beneath it. Move an over-scoped entry down, lift a term repeated identically across siblings to the parent, and delete a child that restates its parent. Where a child and parent disagree, the disagreement is the finding rather than the duplication. A context file under a documentation directory is misfiled — move its entries to the code they describe and delete it.
-- **Over-scope** — test a file's entries against its whole subtree, never its length. Entries holding for only part of what sits beneath it mean the file is over-scoped, and the fix is moving each one down to the scope it describes. A file that grew while its subtree gained scopes is the signal to run this check, not a reason to cut words.
+- **Over-scope** — test a file's entries against its whole subtree, never its length. Entries holding for only part of what sits beneath it mean the file is over-scoped, and the fix is moving each one down to the scope it describes. Split it as you sweep. A file that grew while its subtree gained scopes is the signal to run this check, not a reason to cut words.
 - **Open items** — an entry under `## Flagged ambiguities` carrying no resolution is a ledger entry, not a format defect.
 
-A format defect that does not change meaning is fixed in place. One that would alter or remove recorded language goes to the ledger. Creating a file for a scope that owns unrecorded language removes nothing — write it rather than raising it.
+A format defect that does not change meaning is fixed in place. Only altering what a term means, or dropping recorded language altogether, reaches the ledger.
+
+Relocation is neither. Creating a file for a scope that owns unrecorded language, and moving an entry down to the scope it describes, preserve every word — both are carried out during the sweep. Splitting an over-scoped file is the fix, never a question for the user.
 
 Divergence introduced over time shows up as two spellings of one concept, or one concept split across two names that both survive. Look for it at every seam where two scopes exchange a domain object.
 
