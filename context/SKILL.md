@@ -97,6 +97,8 @@ Work the same dependency order. For each scope, compare its record against its `
 
 Creating a scope's file and draining its parent are one operation. As the file is created, every entry an ancestor holds that is true only of this scope moves into it and out of the ancestor, in the same step. Populating a new file from the sources while leaving the parent's copy in place creates the duplication the hierarchy exists to prevent, and a parent still carrying a child's language after that child has a file is the over-scope defect surviving the split rather than progress against it.
 
+Drain one scope at a time, and read what that scope already records before anything lands in it. An arriving term naming a concept the scope already has under another word is one term to settle, not two to keep. An arriving relationship the scope already states in different words is redundant on arrival, and the weaker of the two goes. Two arriving terms whose `_Avoid_` lines name each other need that distinction spelled out, because they are now siblings. Moving every entry in one sweep sees none of this and leaves a target holding duplicates that read as deliberate.
+
 A term two scopes appear to share is settled here, not parked. Pass one recorded both sides, so the owner is decidable from the records without re-reading source.
 
 An entry marked `_Pending_:` is intent, not a description, and is never drift. Check one thing: whether the code has arrived. If it has, drop the marker, move the entry to the level that now owns it, and reconcile it like any other. If it has not, leave it and carry it forward as pending. A term carrying no `_Pending_:` and no code behind it is the opposite finding — the code was removed or renamed — and opens a ledger entry.
