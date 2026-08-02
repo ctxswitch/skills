@@ -19,6 +19,9 @@ misplaced entry rewritten in place is wasted work.
 
 - **Over-scoped** — entries that do not hold across the whole subtree. Move each down to the scope it
   describes. Test against the subtree, never against the file's length.
+- **Undrained parent** — an entry true of exactly one child, where that child already carries its own
+  file. The split happened and the entry did not move. Count a parent's terms that exist nowhere below
+  it: a file whose children were created from source rather than from it will show almost all of them.
 - **Under-scoped** — sibling files carrying the same term with the same meaning. Lift it to the parent.
 - **Shadowed** — a child restating an entry its parent already carries. Delete the child copy. Where
   the two meanings differ, the disagreement is the finding, not the duplication.

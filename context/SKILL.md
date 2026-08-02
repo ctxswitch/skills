@@ -95,6 +95,8 @@ Work the same dependency order. For each scope, compare its record against its `
 
 - **Agreement** — nothing to do.
 - **Gap** — the sources define a term context does not record, or the scope records nothing at all. Write it. Where the scope carries no `CONTEXT.md`, creating one is how the gap is written, not a separate decision to defer.
+
+Creating a scope's file and draining its parent are one operation. As the file is created, every entry an ancestor holds that is true only of this scope moves into it and out of the ancestor, in the same step. Populating a new file from the sources while leaving the parent's copy in place creates the duplication the hierarchy exists to prevent, and a parent still carrying a child's language after that child has a file is the over-scope defect surviving the split rather than progress against it.
 - **Conflict** — open an entry in `ledger.md`. Do not ask, do not write.
 
 A term two scopes appear to share is settled here, not parked. Pass one recorded both sides, so the owner is decidable from the records without re-reading source.
