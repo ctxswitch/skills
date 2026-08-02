@@ -46,6 +46,7 @@ _Pending_: not built — expected at `services/fulfillment`
 
 - **Be opinionated.** When multiple words exist for the same concept, pick the best one and list the others as aliases to avoid.
 - **An alias line can carry its distinction.** Where the avoided word names a genuinely different thing rather than a synonym, say which is which. That is what stops the two collapsing back together.
+- **Name a term for its referent, not its neighbours.** A prefix shared across sibling terms is a pattern, not a convention to satisfy — a term whose definition reaches wider than its name is misnamed however well the name fits the family. Where one word carries two senses, separate them by naming each for what it is, rather than qualifying both with the same modifier. Test every entry by reading its name against the reach of its own definition.
 - **Omit a heading with nothing behind it.** A section is deleted, not filled. Levels that carry no ambiguities or no dialogue simply have neither.
 - **Flag conflicts explicitly.** If a term is used ambiguously, call it out in "Flagged ambiguities" with a clear resolution.
 - **Keep definitions tight.** One sentence max. Define what it IS, not what it does.
