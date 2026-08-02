@@ -1,6 +1,6 @@
 ---
 name: context
-description: "Build and maintain a repository's .context.md hierarchy from current source, working dependencies-first, and surface where code, docs, and recorded language disagree. Use to create context for a repo that has none, or to repair it once it has drifted. Invoke with `review` to test an existing hierarchy against the format without reading source — placement, naming, narration, and missing or padded scopes — or with `self-check` to test the skill's own rules against each other. Owns the context format the other skills write to. For settling a new design's vocabulary in conversation use grill-me."
+description: "Build and maintain a repository's .context.md hierarchy from current source, working dependencies-first, and surface where code, docs, and recorded language disagree. Use to create context for a repo that has none, or to repair it once it has drifted. Invoke with `review` to test an existing hierarchy against the format without reading source — placement, naming, narration, and missing or padded scopes. Owns the context format the other skills write to. For settling a new design's vocabulary in conversation use grill-me."
 ---
 
 # Context
@@ -14,8 +14,6 @@ This skill writes documentation. It does not change source. Code defects it expo
 **Sweep** is the default and runs all seven steps, crossing the scope list twice — extract, then reconcile. It is the only mode that finds drift between code and context, and the expensive one.
 
 **Review** runs step 7 alone. It opens no source file, tests the recorded hierarchy against the format, and finds what a sweep introduces but never looks for: entries at the wrong level, names that outrun their definitions, narration, scopes holding source and no file. Invoke it with `review`.
-
-**Self-check** tests these instruction files against each other rather than a repository — where two rules answer the same question differently, where a rule cannot be reached by the mode it governs, where an exemption list has outgrown the category it should state. Run it after editing any of them, and with `self-check`. It follows [self-check.md](./references/self-check.md).
 
 ## Guard against the defaults
 
