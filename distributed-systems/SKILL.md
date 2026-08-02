@@ -1,6 +1,6 @@
 ---
 name: distributed-systems
-description: "Plan, review, diagnose, or interactively drill a distributed-system design. Use when the question is about behaviour under partition, retry, duplication, replication, coordination, failover, or recovery — not for ordinary service code that happens to make network calls."
+description: "Plan, review, or interactively drill a distributed-system design, and reason about failures that span nodes. Use when the question is about behaviour under partition, retry, duplication, replication, coordination, failover, or recovery — not for ordinary service code that happens to make network calls, and not for a single reproducible failure whose cause is unknown (diagnose)."
 ---
 
 # Distributed Systems
@@ -71,6 +71,8 @@ Always include your own suspected answer with each question — a question witho
 - Before recording a term, invariant, or ADR, read `references/capture-rules.md`.
 
 ## Output Patterns
+
+These list what to cover when it exists. They are not blanks to complete — a heading with nothing behind it is deleted, and a design that fills every heading is more likely padded than thorough. Length is earned by content the reader cannot derive: no restating the requirement back, no narrating how the design was reached, no defending a choice nobody contested.
 
 For planning (`Failure Modes` is ranked by likelihood × impact and lists only the ones the design actually handles; everything rare-and-recoverable goes under `Accepted / Deferred Risks` with a one-line reason, not into the architecture):
 

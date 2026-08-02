@@ -37,6 +37,8 @@ Use this skill to produce practical marketing copy grounded in buyer research, p
 
 ## Output Patterns
 
+These list what to cover when it exists, not blanks to complete. A heading with nothing behind it is deleted. The commentary around a draft is not the deliverable — no restating the brief, no narrating how the copy was arrived at, no defending a line nobody questioned.
+
 For drafts:
 
 ```markdown

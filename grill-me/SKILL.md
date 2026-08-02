@@ -3,7 +3,9 @@ name: grill-me
 description: "Interrogate a plan against the project's own domain language and recorded decisions, sharpening terminology and updating CONTEXT.md or ADRs inline as answers land. Use when the plan's vocabulary or its fit with documented decisions is what needs testing. For correctness under failure, use distributed-systems."
 ---
 
-Press on unresolved decisions and consequences until we reach a shared understanding.
+# Grill Me
+
+Press on unresolved decisions and their consequences until the design is settled.
 Walk down the branches of the design tree that can change the plan, implementation, domain language, or documentation.
 For each question, provide your recommended answer.
 Ask the questions one at a time, waiting for feedback on each question before continuing.
@@ -107,6 +109,8 @@ Use cross-cutting context only for language shared across bounded contexts. Use 
 Use the format in [context-format.md](./references/context-format.md).
 Don't couple `CONTEXT.md` to implementation details.
 Only include terms that are meaningful to domain experts.
+
+An entry is a definition, not a transcript. Length is earned by content a reader cannot derive — the discussion that produced the term, the alternatives weighed, and who said what are not part of it.
 
 ### Offer ADRs sparingly
 

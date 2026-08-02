@@ -13,7 +13,7 @@ When exploring the codebase, read `AGENTS.md` and `docs/agents/domain.md` if the
 
 **This is the skill.** Everything else is mechanical. If you have a fast, deterministic, agent-runnable pass/fail signal for the bug, you will find the cause — bisection, hypothesis-testing, and instrumentation all just consume that signal. If you don't have one, no amount of staring at code will save you.
 
-Spend disproportionate effort here. **Be aggressive. Be creative. Refuse to give up.**
+Spend disproportionate effort here. Exhaust the list below before concluding no loop exists.
 
 ### Ways to construct one — try them in roughly this order
 
@@ -28,8 +28,6 @@ Spend disproportionate effort here. **Be aggressive. Be creative. Refuse to give
 9. **Differential loop.** Run the same input through old-version vs new-version (or two configs) and diff outputs.
 10. **HITL bash script.** Last resort. If a human must click, drive _them_ with `scripts/hitl-loop.template.sh` so the loop is still structured. Captured output feeds back to you.
 
-Build the right feedback loop, and the bug is 90% fixed.
-
 ### Iterate on the loop itself
 
 Treat the loop as a product. Once you have _a_ loop, ask:
@@ -38,7 +36,7 @@ Treat the loop as a product. Once you have _a_ loop, ask:
 - Can I make the signal sharper? (Assert on the specific symptom, not "didn't crash".)
 - Can I make it more deterministic? (Pin time, seed RNG, isolate filesystem, freeze network.)
 
-A 30-second flaky loop is barely better than no loop. A 2-second deterministic loop is a debugging superpower.
+Target a deterministic loop of a few seconds. A 30-second flaky one is barely better than none.
 
 ### Non-deterministic bugs
 
@@ -72,7 +70,7 @@ Each hypothesis must be **falsifiable**: state the prediction it makes.
 
 If you cannot state the prediction, the hypothesis is a vibe — discard or sharpen it.
 
-**Show the ranked list to the user before testing.** They often have domain knowledge that re-ranks instantly ("we just deployed a change to #3"), or know hypotheses they've already ruled out. Cheap checkpoint, big time saver. Don't block on it — proceed with your ranking if the user is AFK.
+**Show the ranked list to the user before testing.** They often have domain knowledge that re-ranks instantly ("we just deployed a change to #3"), or know hypotheses they've already ruled out. Don't block on it — proceed with your ranking if the user is AFK.
 
 ## Phase 4 — Instrument
 
@@ -113,5 +111,7 @@ Required before declaring done:
 - [ ] All `[DEBUG-...]` instrumentation removed (`grep` the prefix)
 - [ ] Throwaway prototypes deleted (or moved to a clearly-marked debug location)
 - [ ] The hypothesis that turned out correct is stated in the commit / PR message — so the next debugger learns
+
+Report the cause, the fix, and what remains unverified. Length is earned by content the reader cannot derive — the hypotheses you discarded, the instrumentation you added and removed, and the order you tried things in are not findings.
 
 **Then ask: what would have prevented this bug?** If the answer involves architectural change (no good test seam, tangled callers, hidden coupling) hand off to the `architecture` skill with the specifics. Make the recommendation **after** the fix is in, not before — you have more information now than when you started.
