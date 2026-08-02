@@ -95,11 +95,15 @@ When the sweep completes, re-test every entry under `## Open` in `ledger.md` aga
 
 Ask interactively, one decision at a time, each with your recommended answer.
 
-A question carries three things and nothing else:
+A question must be answerable without opening the repo. It carries these and nothing else:
 
+- the recorded entry quoted verbatim with its `file:line` — the definition, never the term's name alone
+- any entry the wording deliberately pairs with or contrasts against, quoted the same way; a name that looks wrong in isolation is often fixed by the term it disambiguates against
 - what the code does, with `file:line`
-- what the docs or context claim
+- where the recorded entry came from, whenever the question is about existing language — `git log -S` the entry and say whether it arrived with a code change, with a prior sweep, or before the file's history
 - the decision needed
+
+A term a prior sweep introduced with nothing in the sources behind it is not a naming question. Ask whether it should exist at all, and say that is what you are asking.
 
 Rank by blast radius — a term crossing contexts before one local to a scope.
 
