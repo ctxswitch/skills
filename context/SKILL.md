@@ -30,9 +30,11 @@ The default failure mode is treating every difference as a conflict and asking t
 
 ## Tracking the run
 
-Track a sweep under `.claude/sweep/<session>/` — the session identifier where the harness exposes one, a scope slug otherwise — written as you go and deleted when the sweep completes. Create it lazily. Every file follows the templates in [sweep-format.md](./references/sweep-format.md). A review tracks itself separately, under `.claude/review/<session>/`, in the shape [review.md](./references/review.md) describes.
+Track every run under `.claude/context/<session>/` — the session identifier where the harness exposes one, a scope slug otherwise — written as you go and deleted when the run completes. Create it lazily.
 
-These files are the run's memory, not a report on it. A sweep over a large repository will not fit in one context: assume compaction at any point, and treat everything not yet written under `.claude/sweep/<session>/` as lost.
+A sweep writes the files in [sweep-format.md](./references/sweep-format.md); a review writes the ones in [review.md](./references/review.md). The two never mix, so a directory holding `index.md` is a sweep to resume and one holding `findings.md` is a review.
+
+These files are the run's memory, not a report on it. A sweep over a large repository will not fit in one context: assume compaction at any point, and treat everything not yet written under `.claude/context/<session>/` as lost.
 
 A scope is finished in a pass when that pass's work is on disk **and** its box for that pass is ticked in `index.md` — both before the next scope is read, never batched once the pass is over.
 
@@ -50,7 +52,7 @@ When a later scope bears on an open entry, append that evidence to the entry in 
 
 A dependency's scope record exists before anything depending on it is read. Take a term's meaning from that record rather than re-deriving it from the dependency's source.
 
-Rebuild from the run directory before reading anything else, both after compaction and when `.claude/sweep/` already holds an incomplete run covering the requested scope: `index.md` for which pass each scope has reached, `ledger.md` for the entries in flight, and the scope records for the terms pass one established. Resume at the first scope whose current pass is unticked — never restart a run that has a directory.
+Rebuild from the run directory before reading anything else, both after compaction and when `.claude/context/` already holds an incomplete run covering the requested scope. For a sweep that means `index.md` for which pass each scope has reached, `ledger.md` for the entries in flight, and the scope records for the terms pass one established; for a review, `findings.md` for which scopes are checked and repaired. Resume at the first scope whose current phase is unticked — never restart a run that has a directory.
 
 An entry closes from the evidence recorded under it, never from recall.
 
@@ -158,4 +160,4 @@ When repair finishes, re-run the checks that failed. A repair that has not been 
 
 A review reads no source, so a conflict it finds cannot be closed here — neither claim can be checked against the code. Those entries go to `ledger.md` and stay open until a sweep settles them. Say so when reporting, rather than leaving a reader expecting resolution.
 
-When the review is clean, delete `.claude/sweep/<session>/`.
+When the review is clean, delete `.claude/context/<session>/`.

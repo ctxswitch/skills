@@ -1,9 +1,9 @@
 # Sweep Run Format
 
-Two index files and one record per scope, under `.claude/sweep/<session>/`. Scope records mirror the repo tree, so a record's path is its scope's path plus `.md`.
+Two index files and one record per scope, under `.claude/context/<session>/`. Scope records mirror the repo tree, so a record's path is its scope's path plus `.md`.
 
 ```
-.claude/sweep/<session>/
+.claude/context/<session>/
 ├── index.md
 ├── ledger.md
 ├── internal/

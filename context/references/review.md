@@ -8,11 +8,12 @@ misplaced entry rewritten in place is wasted work.
 
 ## Tracking
 
-A review tracks itself under `.claude/review/<session>/`, created lazily and deleted when the review is
-clean. It is not a sweep and does not use a sweep's directory or records.
+A review tracks itself under `.claude/context/<session>/`, created lazily and deleted when the review is
+clean. It shares that directory with a sweep but not its files: a run holding `findings.md` is a review,
+one holding `index.md` is a sweep, and neither writes the other's records.
 
 ```
-.claude/review/<session>/
+.claude/context/<session>/
 ├── findings.md
 └── ledger.md
 ```
