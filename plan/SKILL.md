@@ -7,6 +7,8 @@ description: "Research a change against the codebase, write it up as phased work
 
 Produce a plan someone can execute with no memory of the conversation that produced it. Then try to break it.
 
+**Enter the harness's plan mode before reading anything.** In Claude Code call `EnterPlanMode` first; if it is not in the tool list, load it with `ToolSearch`, then call it. Where no plan mode exists, the rules below are the only gate.
+
 The only file this skill writes is the plan document. No source file changes — not a rename, not a formatting pass, not a one-line fix noticed in passing. Something that must change earns a line in the plan, not an edit. If the request turns out to be smaller than the plan describing it, say so and stop.
 
 ## Guard against the defaults
@@ -25,7 +27,7 @@ Read the project's domain glossary and the ADRs covering the area first — `CON
 
 Then read the code the change touches, plus its callers and its tests. Explore independent subsystems in parallel where the harness supports it.
 
-Finish exploring before drafting.
+Finish exploring before drafting. Resolve ambiguity that would change the plan's shape while still here, using `AskUserQuestion` where the harness has it. Do not ask what the code answers.
 
 ## 2. Draft phases
 
@@ -60,7 +62,11 @@ When the plan fixes a bug, the `diagnose` rule applies: a plan that fixes a caus
 
 ## 4. Present
 
-Write the plan to `docs/plans/<slug>.md` and present the phase list, the out-of-scope list, and the findings that changed the plan. Passes that found nothing, phases that were cut, and the order things were read in are not part of it. Stop and wait for approval.
+Write the plan to `docs/plans/<slug>.md`. When plan mode designates its own plan file, write the same content there so the approval request surfaces it.
+
+Present the phase list, the out-of-scope list, and the findings that changed the plan. Passes that found nothing, phases that were cut, and the order things were read in are not part of it.
+
+Request approval with `ExitPlanMode`. Do not ask whether the plan is acceptable in prose or with `AskUserQuestion` — that is what the tool does.
 
 Once approved, `issues` breaks the plan into tickets and `engineer` executes a phase.
 
