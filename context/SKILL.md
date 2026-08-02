@@ -28,6 +28,8 @@ Track the run under `.claude/drift/<session>/` — the session identifier where 
 
 These files are the run's memory, not a report on it. A sweep over a large repository will not fit in one context: assume compaction at any point, and treat everything not yet written under `.claude/drift/<session>/` as lost. Write a scope's record when that scope is finished, never batched at the end.
 
+A scope is finished when its record is written **and** its box is ticked in `index.md`. Both, before the next scope is read. A record whose box is unticked is invisible to the rebuild, which will sweep that scope again from source.
+
 - `index.md` — the root scope and the dependency-ordered scope list, each scope pending or swept.
 - `ledger.md` — every ambiguity in flight: what the code shows, what the docs claim, what is unresolved, and the evidence gathered since it was raised. Resolved entries stay in the file with their decision and where it was written.
 - `<scope path>.md` — one per swept scope, mirroring the repo tree: the terms it owns, its limits and restrictions, what was written to its context, and the ledger entries it raised.
