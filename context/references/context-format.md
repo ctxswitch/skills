@@ -40,6 +40,11 @@ _Pending_: not built — expected at `services/fulfillment`
 ## Flagged ambiguities
 
 - "account" was used to mean both **Customer** and **User** — resolved: these are distinct concepts.
+
+## Defects
+
+- **dead-code** `dispatch.go:212` — `retryAll` defined, never called
+- **stale-reference** `fulfil.go:24` — cites `NewPicker`; the constructor is `SetupPicker`
 ```
 
 ## Rules
@@ -68,6 +73,21 @@ A decision earns a line only while someone would still reach for the alternative
 A line carries the constraint and the rejected alternative, nothing else — not the discussion, not who decided, not the change that enacted it.
 
 Entries expire. When the alternative stops being plausible, drop the line — `git log` on the file keeps what was removed, and the diff is the record of when it changed and from what.
+
+## Defects
+
+Code faults this scope carries that no recorded language depends on: dead functions, comments citing something that no longer exists, a name that disagrees with what it names. They are recorded so the next sweep recognises them instead of rediscovering them, and so an issues pass can file them without re-reading the source.
+
+A line is a kind, a `file:line`, and what is wrong. Nothing else — no proposed fix, no severity, no reasoning.
+
+```md
+- **dead-code** `queues.go:96,189` — `ServiceableTags` both forms, no production caller since #96
+- **stale-reference** `tenant_source.go:23` — cites "agent ADR-0002"; no ADR files exist
+```
+
+A fault that changes what a recorded term means is not a defect entry. It is current behaviour and belongs in `## Relationships` — that nothing registers a metric family says what the family *is*, and a reader of the term needs it.
+
+Entries are verified against source on each sweep and dropped once the fault is gone. Recording one is not fixing it; this skill does not change source.
 
 ## Scope
 

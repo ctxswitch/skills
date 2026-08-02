@@ -13,7 +13,7 @@ misplaced entry rewritten in place is wasted work.
 - A directory holding only subdirectories carries one only where it records something true of every
   scope beneath it. A parent file that restates a single child is a finding.
 - No `CONTEXT.md` sits under a documentation directory. Move its entries to the code they describe.
-- Each file carries `## Language` and `## Relationships`. `## Decisions`, `## Example dialogue`, and `## Flagged ambiguities` appear only where they have content.
+- Each file carries `## Language` and `## Relationships`. `## Decisions`, `## Example dialogue`, `## Flagged ambiguities`, and `## Defects` appear only where they have content.
 
 ## Placement
 
@@ -44,6 +44,14 @@ misplaced entry rewritten in place is wasted work.
 - `_Pending_:` marks any term with no code behind it. A term with neither the marker nor code is the
   opposite finding — the code was removed or renamed.
 - No heading stands empty. A level carrying no ambiguities or no dialogue has neither section.
+
+## Defects
+
+- Each line is a kind, a `file:line`, and what is wrong — no proposed fix, no severity, no reasoning.
+- Nothing here changes what a recorded term means. A fault that does belongs in `## Relationships` as
+  current behaviour, where a reader of the term will meet it.
+- A review reads no source, so it cannot confirm a fault still exists. Leave the entries alone; the next
+  sweep verifies them.
 
 ## Decisions
 

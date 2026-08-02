@@ -73,7 +73,9 @@ From the sources of each scope, establish:
 - **Restrictions** — preconditions, invariants, illegal states, orderings that must hold, authorization points.
 - **Terms owned** — the domain concepts this scope defines, and what each means here.
 
-**Recorded context is not opened in this pass.** Reading it here anchors the extraction to what someone already wrote, and forces ownership questions before the scopes that would settle them have been read. Nothing is compared, nothing is written to a `CONTEXT.md`, and no ledger entry is raised for a disagreement — there is nothing yet to disagree with.
+**Recorded context is not opened in this pass**, with one exception: its `## Defects` section, read to check each entry against the source in front of you. Note which faults survive and which are gone — the ones still present are not rediscovered, and the fixed ones are dropped when the section is rewritten in pass two. Nothing else in the file is read, nothing is compared, nothing is written to a `CONTEXT.md`, and no ledger entry is raised for a disagreement — there is nothing yet to disagree with.
+
+Reading further anchors the extraction to what someone already wrote, and forces ownership questions before the scopes that would settle them have been read.
 
 Write the scope's record and tick its extracted box before reading the next scope.
 
@@ -97,6 +99,8 @@ Run the checks in [review.md](./references/review.md) against each scope as you 
 
 - **Open items** — an entry under `## Flagged ambiguities` carrying no resolution is a ledger entry, not a format defect.
 - **Divergence** — two spellings of one concept, or one concept split across two surviving names. Look at every seam where two scopes exchange a domain object; pass one recorded both sides, so the seam is visible without re-reading either.
+
+Rewrite the scope's `## Defects` section from what pass one verified: the faults still present, plus any this pass exposed, and nothing that has since been fixed. A fault that changes what a recorded term means is not a defect entry — it is current behaviour and belongs in `## Relationships`.
 
 Append `## Written` and `## Raised` to the scope's record, then tick its reconciled box in `index.md` — both before moving to the next scope. Pass two produces three artifacts per scope: the edit to the `CONTEXT.md`, the record of what that edit was, and the tick. Only the first survives outside the run directory, and it is the one the rebuild cannot see.
 
@@ -130,7 +134,7 @@ Write each fact at the shallowest directory where it holds for everything beneat
 
 Write each entry as its decision lands, not in a batch at the end. Every ambiguity the user settles is recorded under `## Flagged ambiguities` with its resolution. Record a decision only while someone would still reach for the alternative — `_Fixed_:` on the term it governs, or the scope's `## Decisions` section. Drop a recorded decision whose alternative nobody would now propose.
 
-Report what was written, what the user decided, every entry still pending, and every code defect the sweep exposed.
+Report what was written, what the user decided, every entry still pending, and every code defect the sweep exposed — naming the scope whose `## Defects` section now carries each one, so the report is a pointer to durable entries rather than the only record of them.
 
 ## 7. Review
 
