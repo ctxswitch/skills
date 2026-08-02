@@ -34,7 +34,13 @@ Track the run under `.claude/drift/<session>/` — the session identifier where 
 
 These files are the run's memory, not a report on it. A sweep over a large repository will not fit in one context: assume compaction at any point, and treat everything not yet written under `.claude/drift/<session>/` as lost.
 
-A scope is finished in a pass when that pass's work is on disk **and** its box for that pass is ticked in `index.md` — both before the next scope is read, never batched once the pass is over. Pass one ticks `Extracted` when the scope record is written; pass two ticks `Reconciled` when the comparison is written or ledgered. An unticked box makes finished work invisible to the rebuild, which redoes the scope. A ticked box with nothing behind it is worse: the rebuild trusts it, skips the scope, and the findings are gone. Never tick what you have not written.
+A scope is finished in a pass when that pass's work is on disk **and** its box for that pass is ticked in `index.md` — both before the next scope is read, never batched once the pass is over.
+
+Pass one ticks `Extracted` once the scope record is written.
+
+Pass two ticks `Reconciled` only once all three of these are true: the scope's `CONTEXT.md` exists, its comparison outcome is recorded — in that file or in the ledger — and the scope record carries `## Written` and `## Raised`. A scope whose file has not been created yet is not reconciled, however much comparing has been done. Deciding what a file should contain is not the same as the file containing it.
+
+An unticked box makes finished work invisible to the rebuild, which redoes the scope. A ticked box with nothing behind it is worse: the rebuild trusts it, skips the scope, and the findings are gone. Never tick what you have not written.
 
 - `index.md` — the root scope and the dependency-ordered scope list, each scope carrying an extracted box and a reconciled box.
 - `ledger.md` — every ambiguity in flight: what the code shows, what the docs claim, what is unresolved, and the evidence gathered since it was raised. Resolved entries stay in the file with their decision and where it was written.
