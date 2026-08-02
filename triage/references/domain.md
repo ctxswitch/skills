@@ -5,9 +5,8 @@ How the engineering skills should consume this repo's domain documentation when 
 ## Before exploring, read these
 
 - **`CONTEXT.md`** from the repo root down to the area you're working in — every level assumes its ancestors.
-- **`CONTEXT-MAP.md`** at the repo root if it exists — cross-cutting relationships between sibling areas.
 
-If any of these files don't exist, **proceed silently**. Don't flag their absence; don't suggest creating them upfront.
+If these files don't exist, **proceed silently**. Don't flag their absence; don't suggest creating them upfront.
 `context` builds and repairs them; `grill-me` adds to them as terms get resolved.
 
 ## File structure
@@ -17,7 +16,6 @@ Context files form a hierarchy — one per directory that owns language, each de
 ```
 /
 ├── CONTEXT.md                the product
-├── CONTEXT-MAP.md            cross-cutting relationships only
 └── src/
     ├── CONTEXT.md            what the areas are
     └── ordering/

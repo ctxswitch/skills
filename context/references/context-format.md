@@ -95,18 +95,4 @@ A directory holding documents rather than code owns no scope. `docs/` and its su
 
 A file that has grown large is over-scoped before it is verbose. Check what it holds against its subtree before cutting words.
 
-## CONTEXT-MAP.md
-
-The tree routes; the map does not. `CONTEXT-MAP.md` at the root records only what the hierarchy cannot express — how sibling contexts interact.
-
-```md
-# Context Map
-
-## Relationships
-
-- **Ordering → Fulfillment**: Ordering emits `OrderPlaced`; Fulfillment consumes it to start picking
-- **Fulfillment → Billing**: Fulfillment emits `ShipmentDispatched`; Billing generates the invoice
-- **Ordering ↔ Billing**: shared `CustomerId` and `Money` types
-```
-
-Create it lazily, once a cross-cutting relationship is worth recording.
+A relationship that crosses scopes is recorded in the scope that would have to change if it changed — Ordering emitting `OrderPlaced` is Ordering's entry, not Fulfillment's and not a shared file's. A root-level map of how the scopes interact is a second copy of facts each scope already owns: nothing forces a code change to update it, so it drifts.

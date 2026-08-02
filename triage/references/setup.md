@@ -14,7 +14,7 @@ Read what exists; don't assume:
 
 - `git remote -v` and `.git/config` — which forge, which repo?
 - `AGENTS.md` at the repo root — does an `## Agent skills` section already exist?
-- `CONTEXT.md` and `CONTEXT-MAP.md` at the repo root
+- `CONTEXT.md` at the repo root
 - `docs/agents/` — does prior output already exist?
 - `.scratch/` — sign that a local-markdown convention is already in use
 
@@ -46,7 +46,7 @@ Default: each role's string equals its name. Ask whether any need overriding. If
 > Some skills read `CONTEXT.md` for the project's domain language and the decisions recorded alongside it. Context files form a hierarchy, so they need to know how deep it goes.
 
 - **Root only** — one `CONTEXT.md` at the repo root.
-- **Nested** — a `CONTEXT.md` at each directory that owns language, plus `CONTEXT-MAP.md` at the root for cross-cutting relationships. Typical of monorepos.
+- **Nested** — a `CONTEXT.md` at each directory that owns language. Typical of monorepos.
 
 ## 3. Confirm and edit
 

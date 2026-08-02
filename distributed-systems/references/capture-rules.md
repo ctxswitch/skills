@@ -21,7 +21,6 @@ Do not capture generic distributed-systems concepts like "quorum," "cache," "lea
 Look first for:
 
 - root `CONTEXT.md`, then each nested `CONTEXT.md` down to the area
-- `CONTEXT-MAP.md` for cross-cutting relationships
 - nearby design docs
 
 If a context file exists and the drill resolves a domain term or invariant, update it immediately.
