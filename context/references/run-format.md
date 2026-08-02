@@ -1,6 +1,6 @@
 # Run File Format
 
-Two index files and one record per module, under `.claude/drift/<session>/`. Module records mirror the repo tree, so a record's path is its module's path plus `.md`.
+Two index files and one record per scope, under `.claude/drift/<session>/`. Scope records mirror the repo tree, so a record's path is its scope's path plus `.md`.
 
 ```
 .claude/drift/<session>/
@@ -19,9 +19,9 @@ Use these templates exactly — a resumed run reads them without the session tha
 ## index.md
 
 ```md
-# Drift run: {scope}
+# Drift run: {root scope}
 
-## Modules
+## Scopes
 
 Dependencies first. Check each off when its file is written.
 
@@ -62,7 +62,7 @@ An entry moves from `## Open` to `## Resolved` when the code closes it or the us
 
 **Evidence** accumulates as the sweep proceeds. Each line carries a `file:line` and what it adds — not that it was read.
 
-## {module path}.md
+## {scope path}.md
 
 ```md
 # internal/order
@@ -93,4 +93,4 @@ An entry moves from `## Open` to `## Resolved` when the code closes it or the us
 
 Record what the code establishes, with a `file:line` for each. A claim with no citation does not go in.
 
-`## Raised` lists ledger entry headings verbatim so an entry can be traced back to the module that found it.
+`## Raised` lists ledger entry headings verbatim so an entry can be traced back to the scope that found it.
