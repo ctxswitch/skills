@@ -19,7 +19,7 @@ Once a PRD is approved, the `issues` skill breaks it into vertical slices.
 
 ## 1. Explore
 
-Explore the repo to understand current state, if you haven't already. Use the project's domain glossary vocabulary throughout the PRD, and respect ADRs in the area.
+Explore the repo to understand current state, if you haven't already. Use the project's domain glossary vocabulary throughout the PRD, and respect the decisions recorded in the area.
 
 ## 2. Sketch the modules, then confirm
 

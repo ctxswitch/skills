@@ -1,6 +1,6 @@
 # Capture Rules
 
-Use this before writing project context or proposing an ADR.
+Use this before writing project context.
 
 ## What to Capture
 
@@ -33,6 +33,7 @@ Use this shape:
 
 **Term**: One-sentence canonical definition.
 _Avoid_: Ambiguous alias, misleading alias
+_Fixed_: the constraint that holds, and the alternative it rules out
 
 ## Relationships
 
@@ -41,19 +42,19 @@ _Avoid_: Ambiguous alias, misleading alias
 ## Invariants
 
 - **Invariant Name**: Statement of the invariant, its scope, and enforcement mechanism.
+
+## Decisions
+
+- The constraint — the alternative rejected, and why it would still look right
 ```
 
 Write the entry at the shallowest directory where it holds for everything beneath it. If the level is unclear, ask before writing.
 
-## ADR Threshold
+## Decision Threshold
 
-Offer an ADR only when all are true:
+Record a decision only while someone would still reach for the alternative. Name who would propose it and what would make it look right; if you cannot, the outcome recorded elsewhere is enough.
 
-- Hard to reverse: changing later would be meaningfully expensive.
-- Surprising without context: future maintainers would wonder why this choice was made.
-- Real tradeoff: credible alternatives existed and one was chosen for a reason.
-
-Distributed-systems examples that are often ADR-worthy:
+Distributed-systems choices that usually clear that bar:
 
 - choosing availability over a global invariant under partition
 - choosing single-writer ownership instead of multi-primary replication
@@ -62,24 +63,4 @@ Distributed-systems examples that are often ADR-worthy:
 - choosing async eventual completion over synchronous commit
 - changing tenant isolation or authorization propagation
 
-## ADR Skeleton
-
-```markdown
-# ADR: {Decision}
-
-## Status
-
-Proposed|Accepted|Superseded
-
-## Context
-
-What pressure forced the decision?
-
-## Decision
-
-What are we doing?
-
-## Consequences
-
-What improves, what gets worse, and what must be monitored or tested?
-```
+Write it as `_Fixed_:` on the term it governs, or under `## Decisions` when it governs no single term.

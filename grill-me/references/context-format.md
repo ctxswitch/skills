@@ -14,6 +14,7 @@ _Avoid_: Purchase, transaction
 
 **Invoice**: A request for payment sent to a customer after delivery.
 _Avoid_: Bill, payment request
+_Fixed_: an issued Invoice is immutable — corrections are credit notes, not edits
 
 **Customer**: A person or organization that places orders.
 _Avoid_: Client, buyer, account
@@ -22,6 +23,10 @@ _Avoid_: Client, buyer, account
 
 - An **Order** produces one or more **Invoices**
 - An **Invoice** belongs to exactly one **Customer**
+
+## Decisions
+
+- Ordering reaches Fulfillment by domain events, not synchronous HTTP — a synchronous call would couple order acceptance to warehouse availability
 
 ## Example dialogue
 
@@ -42,6 +47,15 @@ _Avoid_: Client, buyer, account
 - **Only include terms specific to this project's context.** General programming concepts (timeouts, error types, utility patterns) don't belong even if the project uses them extensively. Before adding a term, ask: is this a concept unique to this context, or a general programming concept? Only the former belongs.
 - **Group terms under subheadings** when natural clusters emerge. If all terms belong to a single cohesive area, a flat list is fine.
 - **Write an example dialogue.** A conversation between a dev and a domain expert that demonstrates how the terms interact naturally and clarifies boundaries between related concepts.
+- **Record a decision where it constrains.** A decision about one term goes on that term as `_Fixed_:`. `## Decisions` takes only what constrains the scope rather than a term.
+
+## Decisions
+
+A decision earns a line only while someone would still reach for the alternative. Name who would propose it and what would make it look right — if you cannot, drop it. The outcome recorded elsewhere is usually enough on its own: `## Relationships` stating that Ordering emits `OrderPlaced` already closes "why not HTTP" unless HTTP is a live temptation.
+
+A line carries the constraint and the rejected alternative, nothing else. Not the discussion, not the date, not who decided.
+
+Entries expire. When the alternative stops being plausible, drop the line — `git log` on the file keeps what was removed, and the diff is the record of when it changed and from what.
 
 ## Scope
 

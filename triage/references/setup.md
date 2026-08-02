@@ -4,7 +4,7 @@ Scaffold the per-repo configuration the engineering skills assume:
 
 - **Issue tracker** — where issues live (GitHub by default; GitLab and local markdown supported)
 - **Triage labels** — the strings used for the five canonical triage roles
-- **Domain docs** — where `CONTEXT.md` and ADRs live, and the consumer rules for reading them
+- **Domain docs** — where the `CONTEXT.md` files live, and the consumer rules for reading them
 
 This is prompt-driven, not a script. Explore, present what you found, confirm, then write.
 
@@ -15,7 +15,6 @@ Read what exists; don't assume:
 - `git remote -v` and `.git/config` — which forge, which repo?
 - `AGENTS.md` at the repo root — does an `## Agent skills` section already exist?
 - `CONTEXT.md` and `CONTEXT-MAP.md` at the repo root
-- `docs/adr/` and any `src/*/docs/adr/` directories
 - `docs/agents/` — does prior output already exist?
 - `.scratch/` — sign that a local-markdown convention is already in use
 
@@ -44,9 +43,9 @@ Default: each role's string equals its name. Ask whether any need overriding. If
 
 **Section C — Domain docs.**
 
-> Some skills read `CONTEXT.md` for the project's domain language and `docs/adr/` for past architectural decisions. Context files form a hierarchy, so they need to know how deep it goes.
+> Some skills read `CONTEXT.md` for the project's domain language and the decisions recorded alongside it. Context files form a hierarchy, so they need to know how deep it goes.
 
-- **Root only** — one `CONTEXT.md` + `docs/adr/` at the repo root.
+- **Root only** — one `CONTEXT.md` at the repo root.
 - **Nested** — a `CONTEXT.md` at each directory that owns language, plus `CONTEXT-MAP.md` at the root for cross-cutting relationships. Typical of monorepos.
 
 ## 3. Confirm and edit

@@ -60,7 +60,7 @@ Stop the drill when one of these is true:
 - The user asks to pause.
 - The next step is code or document inspection.
 - A missing decision blocks further useful questioning.
-- The design has enough resolved decisions to produce a plan, findings list, or ADR.
+- The design has enough resolved decisions to produce a plan or findings list.
 
 Close with the smallest useful synthesis:
 

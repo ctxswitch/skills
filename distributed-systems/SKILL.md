@@ -68,7 +68,7 @@ Always include your own suspected answer with each question — a question witho
 - For a drill, read `references/drill-flow.md` and `references/drill-lenses.md`; add `references/question-bank.md` only for a batch or readiness pass.
 - Prefer the most specific domain file over multiple broad files.
 - If a design crosses several domains, read references incrementally and summarize assumptions before continuing.
-- Before recording a term, invariant, or ADR, read `references/capture-rules.md`.
+- Before recording a term, invariant, or decision, read `references/capture-rules.md`.
 
 ## Output Patterns
 
@@ -134,4 +134,4 @@ Drill:
 - `references/drill-flow.md`: the Socratic loop, question shape, escalation, stopping conditions.
 - `references/drill-lenses.md`: which angle to probe next, with the red flags that signal each one.
 - `references/question-bank.md`: focused question prompts by category, for batches and readiness passes.
-- `references/capture-rules.md`: what is worth recording as a domain term, invariant, or ADR.
+- `references/capture-rules.md`: what is worth recording as a domain term, invariant, or decision.

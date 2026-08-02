@@ -19,8 +19,8 @@ The default failure mode of this skill is **proposing abstraction**: adding a la
 
 This skill's output is claims about how code relates to other code, so two more apply:
 
-- **Do not manufacture links.** Before asserting that two modules are coupled, that a candidate contradicts an ADR, or that one change forces another, name the concrete case where it holds. Shared vocabulary is not coupling — two modules can use the same words and never interact. Sharing a filename is not sharing a purpose. If you cannot name the case, it is not a finding.
-- **Verify specifics before asserting them.** Callers, import graphs, who owns which type, what a test actually exercises, what an ADR actually says — read them. A deepening proposal built on a remembered call graph is a proposal to break something.
+- **Do not manufacture links.** Before asserting that two modules are coupled, that a candidate contradicts a recorded decision, or that one change forces another, name the concrete case where it holds. Shared vocabulary is not coupling — two modules can use the same words and never interact. Sharing a filename is not sharing a purpose. If you cannot name the case, it is not a finding.
+- **Verify specifics before asserting them.** Callers, import graphs, who owns which type, what a test actually exercises, what a recorded decision actually says — read them. A deepening proposal built on a remembered call graph is a proposal to break something.
 
 ## Glossary
 
@@ -35,13 +35,13 @@ Use these terms exactly in every suggestion — don't drift into "component," "s
 - **Leverage** — what callers get from depth.
 - **Locality** — what maintainers get from depth: change, bugs, knowledge concentrated in one place.
 
-This skill is _informed_ by the project's domain model. The domain language gives names to good seams; ADRs record decisions the skill should not re-litigate.
+This skill is _informed_ by the project's domain model. The domain language gives names to good seams; the decisions recorded alongside it are ones the skill should not re-litigate.
 
 ## Process
 
 ### 1. Explore
 
-Read the project's domain glossary and any ADRs in the area first.
+Read the context files covering the area first — they carry the domain language and the decisions already settled.
 
 Then walk the codebase. Explore organically rather than following rigid heuristics, and note where you experience friction. Read [recognising-depth.md](./references/recognising-depth.md) before judging — it lists the concrete smells and the test signals that expose them.
 
@@ -64,7 +64,7 @@ Each of those is a sentence or two. Do not restate the problem inside the soluti
 
 **Use `CONTEXT.md` vocabulary for the domain and the glossary above for the architecture.** If `CONTEXT.md` defines "Order," talk about "the Order intake module" — not "the FooBarHandler," and not "the Order service."
 
-**ADR conflicts**: if a candidate contradicts an existing ADR, only surface it when the friction is real enough to warrant revisiting the ADR. Mark it clearly (e.g. _"contradicts ADR-0007 — but worth reopening because…"_). Don't list every theoretical refactor an ADR forbids.
+**Decision conflicts**: if a candidate contradicts a decision recorded in context, only surface it when the friction is real enough to warrant reopening the decision. Mark it clearly (e.g. _"contradicts the recorded decision that Ordering reaches Fulfillment by events — but worth reopening because…"_). Don't list every theoretical refactor a recorded decision forbids.
 
 Do NOT propose interfaces yet. Ask the user which they'd like to explore.
 
@@ -76,7 +76,7 @@ Side effects happen inline as decisions crystallize:
 
 - **Naming a deepened module after a concept not in `CONTEXT.md`?** Add the term to `CONTEXT.md` right there, using the same discipline and format as the `grill-me` skill. Create the file lazily if it doesn't exist.
 - **Sharpening a fuzzy term during the conversation?** Update `CONTEXT.md` right there.
-- **User rejects the candidate with a load-bearing reason?** Offer an ADR, framed as: _"Want me to record this as an ADR so future architecture reviews don't re-suggest it?"_ Only offer when the reason would actually be needed by a future explorer to avoid re-suggesting the same thing — skip ephemeral reasons ("not worth it right now") and self-evident ones. Use the ADR format from the `grill-me` skill.
+- **User rejects the candidate with a load-bearing reason?** Offer to record it, framed as: _"Want me to record this so future architecture reviews don't re-suggest it?"_ Only offer when the reason would actually be needed by a future explorer to avoid re-suggesting the same thing — skip ephemeral reasons ("not worth it right now") and self-evident ones. Write it as `_Fixed_:` on the term it governs, or the scope's `## Decisions` section; see the `grill-me` skill.
 - **Want to explore alternative interfaces?** See [interface-design.md](./references/interface-design.md).
 
 ## Reference map

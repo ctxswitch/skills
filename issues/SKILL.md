@@ -19,7 +19,7 @@ Work from whatever is already in the conversation. If the user passes an issue r
 
 ## 2. Explore the codebase
 
-If you have not already, explore to understand the current state. Issue titles and descriptions should use the project's domain glossary vocabulary and respect ADRs in the area.
+If you have not already, explore to understand the current state. Issue titles and descriptions should use the project's domain glossary vocabulary and respect the decisions recorded in the area.
 
 ## 3. Draft vertical slices
 

@@ -15,7 +15,7 @@ The default failure mode is treating every difference as a conflict and asking t
 
 - **Do not ask what the codebase answers.** An ambiguity raised in one module is usually settled by a module not yet read. Nothing becomes a question until the sweep is finished and the entry has been re-tested against everything read since.
 - **Different words for different things is not a conflict.** A conflict is one term carrying two meanings, one rule implemented two ways, or recorded language the code no longer supports. Modules that never interact can name things freely.
-- **Docs are claims, not evidence.** A README, ADR, or CONTEXT.md states what someone intended. Only code states what happens. Where they differ, both go to the user — the doc is not the tiebreaker.
+- **Docs are claims, not evidence.** A README, design doc, or CONTEXT.md states what someone intended. Only code states what happens. Where they differ, both go to the user — the doc is not the tiebreaker.
 - **A term is defined by the module that owns it**, not by a caller that uses it or a doc that mentions it.
 - **Record domain language, not implementation.** A term belongs in `CONTEXT.md` when a domain expert would recognise it. Struct names, handler names, and package layout do not qualify unless they carry a domain invariant or responsibility.
 
@@ -77,7 +77,7 @@ Write the module's file and mark it swept in `index.md` before moving to the nex
 
 ## 3. Close the ledger
 
-When the sweep completes, re-test every entry under `## Open` in `ledger.md` against the evidence collected beneath it, re-reading the source the entry names. An entry closes when a later module names the owner, an ADR states the decision, or a second call site disambiguates. Only entries surviving the re-test reach the user.
+When the sweep completes, re-test every entry under `## Open` in `ledger.md` against the evidence collected beneath it, re-reading the source the entry names. An entry closes when a later module names the owner, a recorded decision settles it, or a second call site disambiguates. Only entries surviving the re-test reach the user.
 
 ## 4. Ask what is left
 
@@ -95,9 +95,9 @@ The user's answer is the decision. When it contradicts the code, record the deci
 
 ## 5. Write
 
-Write each fact at the shallowest directory where it holds for everything beneath it, creating the file where a directory owns language and carries none. Use the formats in the `grill-me` skill: [context-format.md](../grill-me/references/context-format.md) and [adr-format.md](../grill-me/references/adr-format.md).
+Write each fact at the shallowest directory where it holds for everything beneath it, creating the file where a directory owns language and carries none. Use the format in the `grill-me` skill: [context-format.md](../grill-me/references/context-format.md).
 
-Write each entry as its decision lands, not in a batch at the end. Every ambiguity the user settles is recorded under `## Flagged ambiguities` with its resolution. Offer an ADR only when it is hard to reverse, surprising without context, and the result of a real trade-off.
+Write each entry as its decision lands, not in a batch at the end. Every ambiguity the user settles is recorded under `## Flagged ambiguities` with its resolution. Record a decision only while someone would still reach for the alternative — `_Fixed_:` on the term it governs, or the scope's `## Decisions` section. Drop a recorded decision whose alternative nobody would now propose.
 
 When every decision is written, delete `.claude/drift/<session>/`.
 

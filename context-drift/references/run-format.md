@@ -47,7 +47,7 @@ Nothing derivable goes here — no counts, no percentages, no summary of the led
 - **Unresolved**: whether cancelling a shipped order is intentional
 - **Evidence**:
   - `internal/billing/refund.go:88` — refunds a shipped order, so the path is reachable
-  - `docs/adr/0004-order-lifecycle.md` — silent on states after `SHIPPED`
+  - `services/ordering/CONTEXT.md` — records no decision covering states after `SHIPPED`
 
 ## Resolved
 

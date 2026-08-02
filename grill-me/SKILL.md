@@ -1,6 +1,6 @@
 ---
 name: grill-me
-description: "Interrogate a plan against the project's own domain language and recorded decisions, sharpening terminology and updating CONTEXT.md or ADRs inline as answers land. Use when the plan's vocabulary or its fit with documented decisions is what needs testing. For correctness under failure, use distributed-systems."
+description: "Interrogate a plan against the project's own domain language and recorded decisions, sharpening terminology and updating CONTEXT.md inline as answers land. Use when the plan's vocabulary or its fit with documented decisions is what needs testing. For correctness under failure, use distributed-systems."
 ---
 
 # Grill Me
@@ -19,13 +19,12 @@ During codebase exploration, also look for existing documentation:
 
 ### File structure
 
-Context files form a hierarchy — one per directory that owns language, each describing only its own level. `docs/adr/` holds decisions. See [context-format.md](./references/context-format.md).
+Context files form a hierarchy — one per directory that owns language, each describing only its own level. Decisions are recorded in the same files. See [context-format.md](./references/context-format.md).
 
 ```
 /
 ├── CONTEXT.md                    the product
 ├── CONTEXT-MAP.md                cross-cutting relationships only
-├── docs/adr/
 └── services/
     ├── CONTEXT.md                the services and what each is for
     └── billing/
@@ -35,11 +34,10 @@ Context files form a hierarchy — one per directory that owns language, each de
 
 Create files lazily — only when you have something to write.
 If no `CONTEXT.md` exists, create one when the first term is resolved.
-If no `docs/adr/` exists, create it when the first ADR is needed.
 
 ### Context placement
 
-Before writing or updating any `CONTEXT.md` or ADR, decide which level owns the language. **A fact belongs at the shallowest directory where it holds for everything beneath it, and no shallower.**
+Before writing or updating any `CONTEXT.md`, decide which level owns the language. **A fact belongs at the shallowest directory where it holds for everything beneath it, and no shallower.**
 
 - Language every area shares goes at the root.
 - Language true across one area goes at that area's directory.
@@ -89,13 +87,8 @@ Only include terms that are meaningful to domain experts.
 
 An entry is a definition, not a transcript. The discussion that produced the term, the alternatives weighed, and who said what are not part of it.
 
-### Offer ADRs sparingly
+### Record decisions sparingly
 
-Only offer to create an ADR when all three are true:
+When a decision settles, record it where it constrains — `_Fixed_:` on the term it governs, or the scope's `## Decisions` section when it governs no single term.
 
-1. **Hard to reverse** — the cost of changing your mind later is meaningful
-2. **Surprising without context** — a future reader will wonder "why did they do it this way?"
-3. **The result of a real trade-off** — there were genuine alternatives and you picked one for specific reasons
-
-If any of the three is missing, skip the ADR.
-Use the format in [adr-format.md](./references/adr-format.md).
+Record it only while someone would still reach for the alternative. Name who would propose it and what would make it look right; if you cannot, the outcome already recorded is enough. See [context-format.md](./references/context-format.md).

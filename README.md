@@ -54,7 +54,7 @@ Engineering:
 Planning and project work:
 
 - `plan` — research a change, write it up as phased work packets, then attack the draft
-- `grill-me` — interrogate a plan against the project's domain language and ADRs
+- `grill-me` — interrogate a plan against the project's domain language and recorded decisions
 - `context-drift` — rebuild context files from current source and resolve what disagrees
 - `prd` — synthesize a feature's intent into a PRD and publish it
 - `issues` — break an approved plan into vertical slices and publish them

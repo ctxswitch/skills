@@ -16,14 +16,14 @@ The only file this skill writes is the plan document. No source file changes —
 The default failure mode is a plan written from what the code is assumed to do, organised the way the code already is, and padded until it looks thorough.
 
 - **Verify specifics before planning around them.** Signatures, callers, config keys, error types, current behaviour, existing tests, pinned versions. A plan built on a remembered call graph is a plan to break something. Read it, or mark the step as unverified so the executor knows to check.
-- **Do not manufacture links.** Before writing that one phase blocks another, that two modules are coupled, or that a change contradicts an ADR, name the concrete case where it holds. Shared vocabulary is not a dependency. If you cannot name the case, drop the claim.
+- **Do not manufacture links.** Before writing that one phase blocks another, that two modules are coupled, or that a change contradicts a recorded decision, name the concrete case where it holds. Shared vocabulary is not a dependency. If you cannot name the case, drop the claim.
 - **Plan the change, not the codebase.** Adjacent cleanups, opportunistic refactors, tests for untouched code, and rename passes belong under out of scope, not in a phase.
 - **Do not plan a spike.** "Investigate X" as a phase means the exploration is not finished. Go and do it now, then plan with the answer in hand.
 - **A phase with nothing behind it is deleted, not filled.** Coverage of the change is the bar, not phase count.
 
 ## 1. Explore
 
-Read the project's domain glossary and the ADRs covering the area first — the `CONTEXT.md` files from the repo root down to the area being changed. The `grill-me` skill describes the layout.
+Read the `CONTEXT.md` files from the repo root down to the area being changed — they carry the domain language and the decisions already settled. The `grill-me` skill describes the layout.
 
 Then read the code the change touches, plus its callers and its tests. Explore independent subsystems in parallel where the harness supports it.
 
@@ -54,7 +54,7 @@ A pass either produces findings with evidence — file, line, the concrete failu
 - **Scope** (`engineer`, over-engineering) — For every abstraction, layer, configuration knob, and resilience mechanism the plan introduces: name the failure it covers and the path the code takes to reach it. Cut the ones serving a second caller who does not exist yet, and the recovery paths for states no caller can produce.
 - **Depth** (`architecture`) — Apply the deletion test to every module the plan adds: if it vanished, does complexity disappear or reappear across callers? Where the net effect is more files, more indirection, and more names to learn, say what the leverage is. Any seam with exactly one implementation is a hypothetical.
 - **Evidence** (`engineer`, verify specifics) — Open the file behind every claim the plan makes about code that already exists. Anything that does not hold is corrected or cut; anything that cannot be checked is marked unverified rather than asserted.
-- **Vocabulary** (`grill-me`) — Does every domain term resolve to `CONTEXT.md`, meaning the same thing it means there? Does any phase contradict an ADR without saying so? A plan that renames a domain concept in passing is changing the domain model without deciding to.
+- **Vocabulary** (`grill-me`) — Does every domain term resolve to `CONTEXT.md`, meaning the same thing it means there? Does any phase contradict a recorded decision without saying so? A plan that renames a domain concept in passing is changing the domain model without deciding to.
 - **Phases** — Can each phase be committed green on its own? Can any of them pass its exit criterion while its goal is unmet? Does any phase depend on one that comes later?
 - **Failure** (`distributed-systems`) — Only when the change spans processes or nodes: partition, retry, duplicate delivery, partial failure, and what state survives each.
 
