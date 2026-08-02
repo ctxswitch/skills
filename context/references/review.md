@@ -64,7 +64,7 @@ misplaced entry rewritten in place is wasted work.
   removed" is false while the families exist; the entry states what must happen, and the description of
   current behaviour elsewhere in the file stays true until the code changes.
 
-## Reporting
+## Repairing
 
 The repair rule is the sweep's: a defect that does not change meaning is fixed in place; one that would
 alter or remove recorded language goes to the ledger and then to the user. Creating a file for a scope
@@ -72,4 +72,24 @@ that has source and none, and moving an entry to the scope it describes, remove 
 rather than raised. Splitting an over-scoped file is the fix, never a question for the user — neither
 whether to split it nor how much of it to split.
 
-Report what was fixed, what reached the ledger, and every scope whose file was created or deleted.
+Placement repairs are per-scope judgment work, not a bulk move. Take one receiving scope at a time and
+read what it already records before anything lands in it:
+
+- An arriving term naming a concept the scope already has under another word is one term to settle, not
+  two to keep.
+- An arriving relationship the scope already states in other words is redundant on arrival; the weaker
+  of the two goes.
+- Two terms whose `_Avoid_` lines name each other need that distinction spelled out once they are
+  siblings.
+- An arriving line that contradicts one already there is a conflict, not a duplicate. Neither is written;
+  the pair goes to the ledger.
+
+Moving everything at once sees none of this and leaves duplicates that read as deliberate. Remove an
+entry from its old home only once its new home holds it — the reverse order loses entries outright.
+
+The same checks apply to lines this repair writes, not only to lines it moves.
+
+## Reporting
+
+Report what every check found, including the ones that passed, then what was fixed, what reached the
+ledger, and every scope whose file was created or deleted.

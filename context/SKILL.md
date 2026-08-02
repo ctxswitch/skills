@@ -146,8 +146,16 @@ Report what was written, what the user decided, every entry still pending, and e
 
 ## 7. Review
 
-Test the hierarchy against [review.md](./references/review.md), which lists the checks and the order to run them. No source is read here; the subject is the context files.
+Test the hierarchy against [review.md](./references/review.md), which lists the checks, the order to run them, and how each is repaired. No source is read here; the subject is the context files.
 
 A sweep reviews only the scopes it wrote — its own output, before the run directory goes. A standalone review covers every scope beneath its root, and starts here.
+
+**Run every check before repairing anything.** Diagnosis is cheap and finite; repair is neither. Interleaving them means the first large finding ends the review with the rest of the checklist unrun. Report what every check found — including the ones that passed — then repair.
+
+State the size of the repair before starting it. A single placement finding can mean rewriting every file in the scope, and that is worth naming rather than discovering an hour in.
+
+When repair finishes, re-run the checks that failed. A repair that has not been re-tested is a claim, not a result.
+
+A review reads no source, so a conflict it finds cannot be closed here — neither claim can be checked against the code. Those entries go to `ledger.md` and stay open until a sweep settles them. Say so when reporting, rather than leaving a reader expecting resolution.
 
 When the review is clean, delete `.claude/drift/<session>/`.
