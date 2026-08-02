@@ -12,7 +12,7 @@ Use this skill to produce concrete plans, design reviews, failure/correctness an
 The default failure mode of this skill is over-engineering: adding machinery for rare, low-impact, or purely theoretical failures at the cost of real complexity. Guard against the bias:
 
 - **Establish scale and blast radius before proposing any mechanism.** Node/region count, request volume, data criticality, how bad a failure actually is, and the team's operational maturity. A three-node internal tool and a multi-region payments ledger earn different rigor. If these are unknown, ask or state an explicit assumption — never silently default to the heavyweight design.
-- **The simplest design that meets the *named* guarantees wins.** Do not introduce guarantees the user did not ask for.
+- **The simplest design that meets the *named* guarantees wins.** Do not build to a guarantee the user did not ask for. When a missing one would break correctness, completeness, or scale, name it and ask for direction.
 - **Every mechanism must earn its place.** Justify each one by either (a) a stated requirement or (b) a failure that is realistic at *this* system's scale and criticality. If it is neither, it does not go in the design.
 - **New machinery is itself a new failure domain.** A lock service, consensus group, extra hop, or coordination protocol can fail too. Weigh that cost against the risk it removes.
 - **Default to the boring option** unless scale or criticality demands more: a database constraint over a distributed lock, a retry over a saga, one writer over consensus, idempotent redo over exactly-once, a documented runbook over automated failover.
