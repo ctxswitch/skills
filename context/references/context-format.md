@@ -45,6 +45,8 @@ _Pending_: not built — expected at `services/fulfillment`
 ## Rules
 
 - **Be opinionated.** When multiple words exist for the same concept, pick the best one and list the others as aliases to avoid.
+- **An alias line can carry its distinction.** Where the avoided word names a genuinely different thing rather than a synonym, say which is which. That is what stops the two collapsing back together.
+- **Omit a heading with nothing behind it.** A section is deleted, not filled. Levels that carry no ambiguities or no dialogue simply have neither.
 - **Flag conflicts explicitly.** If a term is used ambiguously, call it out in "Flagged ambiguities" with a clear resolution.
 - **Keep definitions tight.** One sentence max. Define what it IS, not what it does.
 - **Show relationships.** Use bold term names and express cardinality where obvious.

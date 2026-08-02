@@ -47,10 +47,22 @@ If the diff is much larger than the change described, the excess is what needs j
 
 ## Workflow
 
-1. Identify the touched languages and contract boundaries.
-2. Check repository boundaries before editing: generated files, vendored files, lock files, ignored paths, package/crate/module ownership, public exports, feature flags.
-3. Validate incrementally with the repo's existing tooling for each affected language/package.
-4. Stop and ask when correctness depends on an ambiguous product, API, data-model, semver, unsafe-invariant, accessibility, feature-flag, or compatibility decision. Proceed under a stated assumption when the ambiguity would not change the work.
+1. Read the `CONTEXT.md` files from the repo root down to the area being changed. Use their vocabulary in names, comments, and the PR body.
+2. Identify the touched languages and contract boundaries.
+3. Check repository boundaries before editing: generated files, vendored files, lock files, ignored paths, package/crate/module ownership, public exports, feature flags.
+4. Validate incrementally with the repo's existing tooling for each affected language/package.
+5. Stop and ask when correctness depends on an ambiguous product, API, data-model, semver, unsafe-invariant, accessibility, feature-flag, or compatibility decision. Proceed under a stated assumption when the ambiguity would not change the work.
+
+## Domain language
+
+The `context` skill owns these files and their format; this skill keeps them true as the code moves. Update only what the change touches — sweeping the repo is not this skill's job.
+
+- **The change introduces a domain concept the context does not name.** Add the term at the shallowest directory where it holds for everything beneath it.
+- **The change implements a term marked `_Pending_:`.** Drop the marker, and move the entry down if its intended directory now exists.
+- **The change alters what an existing term means.** Update the definition. Where it contradicts a `_Fixed_:` line, stop and surface it — that line records a decision, and the code moving is not authority to rewrite it.
+- **The change removes the last code behind a term.** Remove the term.
+
+A refactor, bug fix, or performance change that moves no vocabulary updates nothing. Use the format the `context` skill defines.
 
 ## Comments, commits, and PR bodies
 
@@ -77,6 +89,8 @@ The cases below are illustrations, not a blocklist. A phrasing that appears on n
 Same references, different stance. Be independent, direct, and evidence-based. Do not praise the code. Do not make implementation changes. If there are no findings, say so and name any validation that was not run.
 
 **Read every comment in the diff, plus the commit message and PR body, against *Comments, commits, and PR bodies* above.** Judge each added or changed comment on its own: does it say something a competent reader of the surrounding code could not derive? A comment that narrates the change, cites a conversation or decision that is not in the repo, or restates the line below it is a finding, and so is a newly commented function in a file that carries none.
+
+A diff that introduces, renames, or retires a domain concept without touching the context files is a finding. So is one that contradicts a `_Fixed_:` line without saying so, or that leaves a `_Pending_:` marker on a term the diff just implemented.
 
 Over-engineering inverts here into padding a thin report. A suggestion that makes the code bigger has to name what breaks without it, on a path the code can reach. Do not propose an abstraction, a layer, a configuration knob, or a named design pattern as an improvement in its own right, and do not escalate a readability nit into a restructure.
 
@@ -131,6 +145,7 @@ Load incrementally; prefer the most specific file for the changed code.
 Cut any sentence that restates the request, previews what you are about to do, recaps what you just delivered, or defends a decision nobody contested. A heading with nothing under it is deleted, not filled.
 
 - Files modified and what changed.
+- Context entries added, changed, or removed.
 - Assumptions worth review.
 - Unrelated issues noticed.
 - Test, type-check, lint, format, build, vet, clippy, doc-test, or package validation status — including anything relevant you did not run.
