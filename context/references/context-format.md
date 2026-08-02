@@ -19,6 +19,10 @@ _Fixed_: an issued Invoice is immutable — corrections are credit notes, not ed
 **Customer**: A person or organization that places orders.
 _Avoid_: Client, buyer, account
 
+**Fulfillment**: The warehouse action that satisfies one Order.
+_Avoid_: Shipment, dispatch
+_Pending_: not built — expected at `services/fulfillment`
+
 ## Relationships
 
 - An **Order** produces one or more **Invoices**
@@ -48,6 +52,7 @@ _Avoid_: Client, buyer, account
 - **Group terms under subheadings** when natural clusters emerge. If all terms belong to a single cohesive area, a flat list is fine.
 - **Write an example dialogue.** A conversation between a dev and a domain expert that demonstrates how the terms interact naturally and clarifies boundaries between related concepts.
 - **Record a decision where it constrains.** A decision about one term goes on that term as `_Fixed_:`. `## Decisions` takes only what constrains the scope rather than a term.
+- **Mark language that has no code yet.** `_Pending_:` names that the term is unbuilt and where the code is expected. Until it arrives the entry is intent, not a description of anything.
 
 ## Decisions
 
@@ -73,6 +78,8 @@ services/billing/ledger/CONTEXT.md  the ledger's own terms
 A reader loads the root file down to the directory being worked in, and every level assumes its ancestors. Nothing is repeated from a parent.
 
 A directory owning nothing at its own level carries no file and inherits from its parent. `internal/util` stays empty rather than padded.
+
+An entry whose directory does not exist yet lives at the nearest existing ancestor and moves down once the directory arrives. `_Pending_:` names the intended home.
 
 A directory holding documents rather than code owns no scope. `docs/` and its subtrees never carry a `CONTEXT.md` — a document is context already, and the language it uses belongs with the code it describes.
 

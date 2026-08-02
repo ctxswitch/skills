@@ -55,6 +55,8 @@ Don't batch these up — capture them as they happen.
 
 Before writing, read the context files from the root down to the target directory, then place the entry by the rules in [context-format.md](../context/references/context-format.md). Create that file lazily if it does not exist.
 
+When the resolved language describes something not yet built, mark it `_Pending_:` with where the code is expected.
+
 Don't couple `CONTEXT.md` to implementation details.
 Only include terms that are meaningful to domain experts.
 

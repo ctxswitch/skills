@@ -15,7 +15,7 @@ The default failure mode is treating every difference as a conflict and asking t
 
 - **Do not ask what the codebase answers.** An ambiguity raised in one module is usually settled by a module not yet read. Nothing becomes a question until the sweep is finished and the entry has been re-tested against everything read since.
 - **Different words for different things is not a conflict.** A conflict is one term carrying two meanings, one rule implemented two ways, or recorded language the code no longer supports. Modules that never interact can name things freely.
-- **Docs are claims, not evidence.** A README, design doc, or CONTEXT.md states what someone intended. Only code states what happens. Where they differ, both go to the user — the doc is not the tiebreaker.
+- **Docs are claims, not evidence.** A README, design doc, or CONTEXT.md states what someone intended. Only code states what happens. Where they differ, both go to the user — the doc is not the tiebreaker. A `_Pending_:` entry is the exception: it claims nothing about code that exists.
 - **A term is defined by the module that owns it**, not by a caller that uses it or a doc that mentions it.
 - **Record domain language, not implementation.** A term belongs in `CONTEXT.md` when a domain expert would recognise it. Struct names, handler names, and package layout do not qualify unless they carry a domain invariant or responsibility.
 
@@ -60,6 +60,8 @@ Then compare against the module's recorded context and any docs covering it. Thr
 - **Gap** — the code clearly defines a domain term that context does not record, or records nothing at all. Write it.
 - **Conflict** — open an entry in `ledger.md`. Do not ask, do not write.
 
+An entry marked `_Pending_:` is intent, not a description, and is never drift. Check one thing: whether the code has arrived. If it has, drop the marker, move the entry to the level that now owns it, and reconcile it like any other. If it has not, leave it and carry it forward as pending. A term carrying no `_Pending_:` and no code behind it is the opposite finding — the code was removed or renamed — and opens a ledger entry.
+
 Validate the recorded context against [context-format.md](./references/context-format.md) in the same pass:
 
 - **Structure** — `## Language`, `## Relationships`, `## Example dialogue`, `## Flagged ambiguities`, each carrying content.
@@ -101,4 +103,4 @@ Write each entry as its decision lands, not in a batch at the end. Every ambigui
 
 When every decision is written, delete `.claude/drift/<session>/`.
 
-Report what was written, what the user decided, and every code defect the sweep exposed.
+Report what was written, what the user decided, every entry still pending, and every code defect the sweep exposed.
