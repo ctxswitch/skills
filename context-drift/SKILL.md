@@ -23,6 +23,8 @@ The default failure mode is treating every difference as a conflict and asking t
 
 Read `CONTEXT-MAP.md` if it exists, otherwise `CONTEXT.md`, then build the internal dependency graph for the scope and order it dependencies-first.
 
+Check the map while reading it: every link resolves, every `CONTEXT.md` in scope is listed, each entry carries its one-line purpose, and the relationships between contexts are recorded.
+
 State the scope and the module count before reading anything else. If the graph does not fit in one pass, narrow it with the user first.
 
 ## 2. Sweep dependencies-first
@@ -41,6 +43,16 @@ Then compare against the module's recorded context and any docs covering it. Thr
 - **Agreement** — nothing to do.
 - **Gap** — the code clearly defines a domain term that context does not record, or records nothing at all. Write it.
 - **Conflict** — log it to the ledger. Do not ask, do not write.
+
+Validate the recorded context against [context-format.md](../grill-me/references/context-format.md) in the same pass:
+
+- **Structure** — `## Language`, `## Relationships`, `## Example dialogue`, `## Flagged ambiguities`, each carrying content.
+- **Entries** — one canonical term per concept, its aliases under `_Avoid_`, and a one-sentence definition saying what the term is rather than what it does.
+- **Relationships** — bold term names, with cardinality wherever the code fixes it.
+- **Scope** — general programming concepts are not domain terms. A recorded term a domain expert would not recognise is a defect.
+- **Open items** — an entry under `## Flagged ambiguities` carrying no resolution is a ledger entry, not a format defect.
+
+A format defect that does not change meaning is fixed in place. One that would alter or remove recorded language goes to the ledger.
 
 Divergence introduced over time shows up as two spellings of one concept, or one concept split across two names that both survive. Look for it at every seam where two modules exchange a domain object.
 
@@ -68,6 +80,6 @@ The user's answer is the decision. When it contradicts the code, record the deci
 
 Placement follows `CONTEXT-MAP.md`, using the narrowest context that owns the language. Use the formats in the `grill-me` skill: [context-format.md](../grill-me/references/context-format.md) and [adr-format.md](../grill-me/references/adr-format.md).
 
-Write each entry as its decision lands, not in a batch at the end. Offer an ADR only when it is hard to reverse, surprising without context, and the result of a real trade-off.
+Write each entry as its decision lands, not in a batch at the end. Every ambiguity the user settles is recorded under `## Flagged ambiguities` with its resolution. Offer an ADR only when it is hard to reverse, surprising without context, and the result of a real trade-off.
 
 Report what was written, what the user decided, and every code defect the sweep exposed.
