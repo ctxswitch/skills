@@ -8,11 +8,11 @@ misplaced entry rewritten in place is wasted work.
 
 ## Shape
 
-- Every directory holding authored source of its own carries a `CONTEXT.md`. A missing one is a finding.
+- Every directory holding authored source of its own carries a `.context.md`. A missing one is a finding.
 - Generated output carries none. Its language belongs to the scope owning the generator input.
 - A directory holding only subdirectories carries one only where it records something true of every
   scope beneath it. A parent file that restates a single child is a finding.
-- No `CONTEXT.md` sits under a documentation directory. Move its entries to the code they describe.
+- No `.context.md` sits under a documentation directory. Move its entries to the code they describe.
 - Each file carries `## Language` and `## Relationships`. `## Decisions`, `## Example dialogue`, `## Flagged ambiguities`, and `## Defects` appear only where they have content.
 
 ## Placement

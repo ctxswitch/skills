@@ -23,7 +23,7 @@ The default failure mode is a plan written from what the code is assumed to do, 
 
 ## 1. Explore
 
-Read the `CONTEXT.md` files from the repo root down to the area being changed — they carry the domain language and the decisions already settled. The `context` skill defines the layout.
+Read the `.context.md` files from the repo root down to the area being changed — they carry the domain language and the decisions already settled. The `context` skill defines the layout.
 
 Then read the code the change touches, plus its callers and its tests. Explore independent subsystems in parallel where the harness supports it.
 
@@ -54,7 +54,7 @@ A pass either produces findings with evidence — file, line, the concrete failu
 - **Scope** (`engineer`, over-engineering) — For every abstraction, layer, configuration knob, and resilience mechanism the plan introduces: name the failure it covers and the path the code takes to reach it. Cut the ones serving a second caller who does not exist yet, and the recovery paths for states no caller can produce.
 - **Depth** (`architecture`) — Apply the deletion test to every module the plan adds: if it vanished, does complexity disappear or reappear across callers? Where the net effect is more files, more indirection, and more names to learn, say what the leverage is. Any seam with exactly one implementation is a hypothetical.
 - **Evidence** (`engineer`, verify specifics) — Open the file behind every claim the plan makes about code that already exists. Anything that does not hold is corrected or cut; anything that cannot be checked is marked unverified rather than asserted.
-- **Vocabulary** (`grill-me`) — Does every domain term resolve to `CONTEXT.md`, meaning the same thing it means there? Does any phase contradict a recorded decision without saying so? A plan that renames a domain concept in passing is changing the domain model without deciding to.
+- **Vocabulary** (`grill-me`) — Does every domain term resolve to `.context.md`, meaning the same thing it means there? Does any phase contradict a recorded decision without saying so? A plan that renames a domain concept in passing is changing the domain model without deciding to.
 - **Phases** — Can each phase be committed green on its own? Can any of them pass its exit criterion while its goal is unmet? Does any phase depend on one that comes later?
 - **Failure** (`distributed-systems`) — Only when the change spans processes or nodes: partition, retry, duplicate delivery, partial failure, and what state survives each.
 

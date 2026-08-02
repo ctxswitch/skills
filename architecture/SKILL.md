@@ -62,7 +62,7 @@ Present a numbered list. For each candidate:
 
 Each of those is a sentence or two. Do not restate the problem inside the solution, do not narrate the exploration that surfaced the candidate, and do not defend a candidate nobody has objected to yet. A field with nothing behind it means the candidate is thin — drop the candidate, do not fill the field.
 
-**Use `CONTEXT.md` vocabulary for the domain and the glossary above for the architecture.** If `CONTEXT.md` defines "Order," talk about "the Order intake module" — not "the FooBarHandler," and not "the Order service."
+**Use `.context.md` vocabulary for the domain and the glossary above for the architecture.** If `.context.md` defines "Order," talk about "the Order intake module" — not "the FooBarHandler," and not "the Order service."
 
 **Decision conflicts**: if a candidate contradicts a decision recorded in context, only surface it when the friction is real enough to warrant reopening the decision. Mark it clearly (e.g. _"contradicts the recorded decision that Ordering reaches Fulfillment by events — but worth reopening because…"_). Don't list every theoretical refactor a recorded decision forbids.
 
@@ -74,8 +74,8 @@ Once the user picks a candidate, drop into a grilling conversation. Walk the des
 
 Side effects happen inline as decisions crystallize:
 
-- **Naming a deepened module after a concept not in `CONTEXT.md`?** Add the term to `CONTEXT.md` right there, using the format the `context` skill defines. Create the file lazily if it doesn't exist.
-- **Sharpening a fuzzy term during the conversation?** Update `CONTEXT.md` right there.
+- **Naming a deepened module after a concept not in `.context.md`?** Add the term to `.context.md` right there, using the format the `context` skill defines. Create the file lazily if it doesn't exist.
+- **Sharpening a fuzzy term during the conversation?** Update `.context.md` right there.
 - **User rejects the candidate with a load-bearing reason?** Offer to record it, framed as: _"Want me to record this so future architecture reviews don't re-suggest it?"_ Only offer when the reason would actually be needed by a future explorer to avoid re-suggesting the same thing — skip ephemeral reasons ("not worth it right now") and self-evident ones. Write it as `_Fixed_:` on the term it governs, or the scope's `## Decisions` section; see the `context` skill.
 - **Want to explore alternative interfaces?** See [interface-design.md](./references/interface-design.md).
 

@@ -29,7 +29,7 @@ The constraints:
 - **Common-caller** — make the default case trivial.
 - **Ports & adapters** — if the module has cross-seam dependencies.
 
-Use both [language.md](./language.md) vocabulary and `CONTEXT.md` vocabulary so every design names things consistently with the architecture language and the project's domain language.
+Use both [language.md](./language.md) vocabulary and `.context.md` vocabulary so every design names things consistently with the architecture language and the project's domain language.
 
 Each design states:
 

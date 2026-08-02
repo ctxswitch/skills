@@ -1,6 +1,6 @@
 ---
 name: context
-description: "Build and maintain a repository's CONTEXT.md hierarchy from current source, working dependencies-first, and surface where code, docs, and recorded language disagree. Use to create context for a repo that has none, or to repair it once it has drifted. Invoke with `review` to test an existing hierarchy against the format without reading source — placement, naming, narration, and missing or padded scopes. Owns the context format the other skills write to. For settling a new design's vocabulary in conversation use grill-me."
+description: "Build and maintain a repository's .context.md hierarchy from current source, working dependencies-first, and surface where code, docs, and recorded language disagree. Use to create context for a repo that has none, or to repair it once it has drifted. Invoke with `review` to test an existing hierarchy against the format without reading source — placement, naming, narration, and missing or padded scopes. Owns the context format the other skills write to. For settling a new design's vocabulary in conversation use grill-me."
 ---
 
 # Context
@@ -21,7 +21,7 @@ The default failure mode is treating every difference as a conflict and asking t
 
 - **Do not ask what the codebase answers.** An ambiguity raised in one scope is usually settled by a scope not yet read — which is why extraction finishes before reconciliation begins. Nothing becomes a question until pass two is finished and the entry has been re-tested against everything read since.
 - **Different words for different things is not a conflict.** A conflict is one term carrying two meanings, one rule implemented two ways, or recorded language the code no longer supports. Scopes that never interact can name things freely.
-- **Docs are claims, not evidence.** A README, design doc, or CONTEXT.md states what someone intended. Only code states what happens. Where they differ, both go to the user — the doc is not the tiebreaker. A `_Pending_:` entry is the exception: it claims nothing about code that exists.
+- **Docs are claims, not evidence.** A README, design doc, or .context.md states what someone intended. Only code states what happens. Where they differ, both go to the user — the doc is not the tiebreaker. A `_Pending_:` entry is the exception: it claims nothing about code that exists.
 - **A term is defined by the scope that owns it**, not by a caller that uses it or a doc that mentions it.
 - **Placement is not a preference, and neither is its scale.** Where an entry belongs follows from the rule — not from taste, not from the size of the resulting diff, not from how many scopes it touches. Never offer a choice between splitting an over-scoped file and leaving it, nor between splitting it now and splitting some of it later. Every entry moves where the rule puts it; report what moved.
 - **Folding a scope into its parent is the mirror failure.** Writing a scope's language into the nearest file that already exists feels conservative and is not — it buries the boundary the language belongs to. The hierarchy's shape is an output of the sweep, never an input to it.
@@ -38,7 +38,7 @@ A scope is finished in a pass when that pass's work is on disk **and** its box f
 
 Pass one ticks `Extracted` once the scope record is written.
 
-Pass two ticks `Reconciled` only once all three of these are true: the scope's `CONTEXT.md` exists, its comparison outcome is recorded — in that file or in the ledger — and the scope record carries `## Written` and `## Raised`. A scope whose file has not been created yet is not reconciled, however much comparing has been done. Deciding what a file should contain is not the same as the file containing it.
+Pass two ticks `Reconciled` only once all three of these are true: the scope's `.context.md` exists, its comparison outcome is recorded — in that file or in the ledger — and the scope record carries `## Written` and `## Raised`. A scope whose file has not been created yet is not reconciled, however much comparing has been done. Deciding what a file should contain is not the same as the file containing it.
 
 An unticked box makes finished work invisible to the rebuild, which redoes the scope. A ticked box with nothing behind it is worse: the rebuild trusts it, skips the scope, and the findings are gone. Never tick what you have not written.
 
@@ -62,7 +62,7 @@ A **scope** is a directory holding authored source of its own — a package, lib
 
 Do not enumerate by a language's own unit. "Module" names a different thing in Go, Rust, Python, and npm, and a repo's scopes rarely line up with any of them — a whole repo is often one Go module. A scope need not hold a programming language at all: protocol definitions, infrastructure roots, and deployment packaging own language too.
 
-Walk the tree, enumerate candidate scopes from the sources, build the dependency graph over them, and order it dependencies-first. Existing `CONTEXT.md` files are not read here; pass two opens them.
+Walk the tree, enumerate candidate scopes from the sources, build the dependency graph over them, and order it dependencies-first. Existing `.context.md` files are not read here; pass two opens them.
 
 Existing files never bound the list. A scope holding source and carrying no file is a finding to write, not a scope to fold into its parent.
 
@@ -79,7 +79,7 @@ From the sources of each scope, establish:
 - **Restrictions** — preconditions, invariants, illegal states, orderings that must hold, authorization points.
 - **Terms owned** — the domain concepts this scope defines, and what each means here.
 
-**Recorded context is not opened in this pass**, with one exception: its `## Defects` section, read to check each entry against the source in front of you. Note which faults survive and which are gone — the ones still present are not rediscovered, and the fixed ones are dropped when the section is rewritten in pass two. Nothing else in the file is read, nothing is compared, nothing is written to a `CONTEXT.md`, and no ledger entry is raised for a disagreement — there is nothing yet to disagree with.
+**Recorded context is not opened in this pass**, with one exception: its `## Defects` section, read to check each entry against the source in front of you. Note which faults survive and which are gone — the ones still present are not rediscovered, and the fixed ones are dropped when the section is rewritten in pass two. Nothing else in the file is read, nothing is compared, nothing is written to a `.context.md`, and no ledger entry is raised for a disagreement — there is nothing yet to disagree with.
 
 Reading further anchors the extraction to what someone already wrote, and forces ownership questions before the scopes that would settle them have been read.
 
@@ -91,10 +91,10 @@ Pass one ends with every scope's terms, limits, and restrictions on disk, derive
 
 Only now open the recorded context. Every scope's terms are established, so ownership is decidable from the records rather than deferred.
 
-Work the same dependency order. For each scope, compare its record against its `CONTEXT.md` and any docs covering it. Three outcomes:
+Work the same dependency order. For each scope, compare its record against its `.context.md` and any docs covering it. Three outcomes:
 
 - **Agreement** — nothing to do.
-- **Gap** — the sources define a term context does not record, or the scope records nothing at all. Write it. Where the scope carries no `CONTEXT.md`, creating one is how the gap is written, not a separate decision to defer.
+- **Gap** — the sources define a term context does not record, or the scope records nothing at all. Write it. Where the scope carries no `.context.md`, creating one is how the gap is written, not a separate decision to defer.
 
 Creating a scope's file and draining its parent are one operation. As the file is created, every entry an ancestor holds that is true only of this scope moves into it and out of the ancestor, in the same step. Populating a new file from the sources while leaving the parent's copy in place creates the duplication the hierarchy exists to prevent, and a parent still carrying a child's language after that child has a file is the over-scope defect surviving the split rather than progress against it.
 - **Conflict** — open an entry in `ledger.md`. Do not ask, do not write.
@@ -110,7 +110,7 @@ Run the checks in [review.md](./references/review.md) against each scope as you 
 
 Rewrite the scope's `## Defects` section from what pass one verified: the faults still present, plus any this pass exposed, and nothing that has since been fixed.
 
-Append `## Written` and `## Raised` to the scope's record, then tick its reconciled box in `index.md` — both before moving to the next scope. Pass two produces three artifacts per scope: the edit to the `CONTEXT.md`, the record of what that edit was, and the tick. Only the first survives outside the run directory, and it is the one the rebuild cannot see.
+Append `## Written` and `## Raised` to the scope's record, then tick its reconciled box in `index.md` — both before moving to the next scope. Pass two produces three artifacts per scope: the edit to the `.context.md`, the record of what that edit was, and the tick. Only the first survives outside the run directory, and it is the one the rebuild cannot see.
 
 ## 4. Close the ledger
 

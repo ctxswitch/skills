@@ -47,11 +47,11 @@ A row is never ticked ahead of the work it stands for. `Extracted` means the sco
 
 - **Raised**: `internal/order`
 - **Code**: `Cancel()` sets `CANCELLED` from any state — `internal/order/service.go:142`
-- **Claim**: cancellable only while `PENDING` — `CONTEXT.md`
+- **Claim**: cancellable only while `PENDING` — `.context.md`
 - **Unresolved**: whether cancelling a shipped order is intentional
 - **Evidence**:
   - `internal/billing/refund.go:88` — refunds a shipped order, so the path is reachable
-  - `services/ordering/CONTEXT.md` — records no decision covering states after `SHIPPED`
+  - `services/ordering/.context.md` — records no decision covering states after `SHIPPED`
 
 ## Resolved
 
@@ -59,7 +59,7 @@ A row is never ticked ahead of the work it stands for. `Extracted` means the sco
 
 - **Decision**: `Customer` is the paying entity, `User` is the login identity
 - **Closed by**: `internal/auth/session.go:31` — `User` carries no billing reference
-- **Written to**: `src/billing/CONTEXT.md`
+- **Written to**: `src/billing/.context.md`
 ```
 
 An entry moves from `## Open` to `## Resolved` when the code closes it or the user decides. It is never deleted.
@@ -88,7 +88,7 @@ An entry moves from `## Open` to `## Resolved` when the code closes it or the us
 
 ## Written
 
-- **Order**, **Fulfilment** → `src/ordering/CONTEXT.md`
+- **Order**, **Fulfilment** → `src/ordering/.context.md`
 
 ## Raised
 

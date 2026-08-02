@@ -1,4 +1,4 @@
-# CONTEXT.md Format
+# .context.md Format
 
 ## Structure
 
@@ -96,15 +96,15 @@ Context files form a hierarchy, each describing only what is true at its own lev
 **A fact belongs at the shallowest directory where it holds for everything beneath it, and no shallower.**
 
 ```
-CONTEXT.md                          the product — what it is, who uses it
-services/CONTEXT.md                 the services and what each is for
-services/billing/CONTEXT.md         the billing domain
-services/billing/ledger/CONTEXT.md  the ledger's own terms
+.context.md                          the product — what it is, who uses it
+services/.context.md                 the services and what each is for
+services/billing/.context.md         the billing domain
+services/billing/ledger/.context.md  the ledger's own terms
 ```
 
 A reader loads the root file down to the directory being worked in, and every level assumes its ancestors. Nothing is repeated from a parent.
 
-Every directory holding authored source of its own carries a `CONTEXT.md`, including packages whose language is narrow or mechanical — a utility package records what its callers may rely on. Whether an entry is "obvious" is not the test. Obviousness varies by reader, so a file one run creates and the next deletes churns the hierarchy for no gain.
+Every directory holding authored source of its own carries a `.context.md`, including packages whose language is narrow or mechanical — a utility package records what its callers may rely on. Whether an entry is "obvious" is not the test. Obviousness varies by reader, so a file one run creates and the next deletes churns the hierarchy for no gain.
 
 A directory holding only subdirectories carries a file only where it records something true of every scope beneath it. With nothing spanning, it carries none.
 
@@ -112,7 +112,7 @@ Generated output carries none. Its language belongs to the scope owning the gene
 
 An entry whose directory does not exist yet lives at the nearest existing ancestor and moves down once the directory arrives. `_Pending_:` names the intended home.
 
-A directory holding documents rather than code owns no scope. `docs/` and its subtrees never carry a `CONTEXT.md` — a document is context already, and the language it uses belongs with the code it describes.
+A directory holding documents rather than code owns no scope. `docs/` and its subtrees never carry a `.context.md` — a document is context already, and the language it uses belongs with the code it describes.
 
 ### Misplacement
 

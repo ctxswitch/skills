@@ -4,7 +4,7 @@ How the engineering skills should consume this repo's domain documentation when 
 
 ## Before exploring, read these
 
-- **`CONTEXT.md`** from the repo root down to the area you're working in — every level assumes its ancestors.
+- **`.context.md`** from the repo root down to the area you're working in — every level assumes its ancestors.
 
 If these files don't exist, **proceed silently**. Don't flag their absence; don't suggest creating them upfront.
 `context` builds and repairs them; `grill-me` adds to them as terms get resolved.
@@ -15,16 +15,16 @@ Context files form a hierarchy — one per directory that owns language, each de
 
 ```
 /
-├── CONTEXT.md                the product
+├── .context.md                the product
 └── src/
-    ├── CONTEXT.md            what the areas are
+    ├── .context.md            what the areas are
     └── ordering/
-        └── CONTEXT.md        the ordering domain
+        └── .context.md        the ordering domain
 ```
 
 ## Use the glossary's vocabulary
 
-When your output names a domain concept (in an issue title, a refactor proposal, a hypothesis, a test name), use the term as defined in `CONTEXT.md`.
+When your output names a domain concept (in an issue title, a refactor proposal, a hypothesis, a test name), use the term as defined in `.context.md`.
 Don't drift to synonyms the glossary explicitly avoids.
 
 If the concept you need isn't in the glossary yet, that's a signal — either you're inventing language the project doesn't use (reconsider) or there's a real gap (note it for `grill-me`).

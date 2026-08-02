@@ -1,6 +1,6 @@
 ---
 name: grill-me
-description: "Interrogate a plan against the project's own domain language and recorded decisions, sharpening terminology and updating CONTEXT.md inline as answers land. Use when the plan's vocabulary or its fit with documented decisions is what needs testing. For correctness under failure, use distributed-systems."
+description: "Interrogate a plan against the project's own domain language and recorded decisions, sharpening terminology and updating .context.md inline as answers land. Use when the plan's vocabulary or its fit with documented decisions is what needs testing. For correctness under failure, use distributed-systems."
 ---
 
 # Grill Me
@@ -25,7 +25,7 @@ Create files lazily — only when you have something to write.
 
 ### Challenge against the glossary
 
-When the user uses a term that conflicts with the existing language in `CONTEXT.md`, call it out immediately.
+When the user uses a term that conflicts with the existing language in `.context.md`, call it out immediately.
 
 "Your glossary defines 'cancellation' as X, but you seem to mean Y — which is it?"
 
@@ -48,16 +48,16 @@ If you find a contradiction, surface it:
 
 "Your code cancels entire Orders, but you just said partial cancellation is possible — which is right?"
 
-### Update CONTEXT.md inline
+### Update .context.md inline
 
-When a term, relationship, invariant, or responsibility is resolved, update the appropriate `CONTEXT.md` right there.
+When a term, relationship, invariant, or responsibility is resolved, update the appropriate `.context.md` right there.
 Don't batch these up — capture them as they happen.
 
 Before writing, read the context files from the root down to the target directory, then place the entry by the rules in [context-format.md](../context/references/context-format.md). Create that file lazily if it does not exist.
 
 When the resolved language describes something not yet built, mark it `_Pending_:` with where the code is expected.
 
-Don't couple `CONTEXT.md` to implementation details.
+Don't couple `.context.md` to implementation details.
 Only include terms that are meaningful to domain experts.
 
 An entry is a definition, not a transcript. The discussion that produced the term, the alternatives weighed, and who said what are not part of it.

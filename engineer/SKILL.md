@@ -47,7 +47,7 @@ If the diff is much larger than the change described, the excess is what needs j
 
 ## Workflow
 
-1. Read the `CONTEXT.md` files from the repo root down to the area being changed. Use their vocabulary in names, comments, and the PR body.
+1. Read the `.context.md` files from the repo root down to the area being changed. Use their vocabulary in names, comments, and the PR body.
 2. Identify the touched languages and contract boundaries.
 3. Check repository boundaries before editing: generated files, vendored files, lock files, ignored paths, package/crate/module ownership, public exports, feature flags.
 4. Validate incrementally with the repo's existing tooling for each affected language/package.
