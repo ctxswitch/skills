@@ -8,7 +8,7 @@ How the engineering skills should consume this repo's domain documentation when 
 - **`CONTEXT-MAP.md`** at the repo root if it exists — cross-cutting relationships between sibling areas.
 
 If any of these files don't exist, **proceed silently**. Don't flag their absence; don't suggest creating them upfront.
-The producer skill (`grill-me`) creates them lazily when terms or decisions actually get resolved.
+`context` builds and repairs them; `grill-me` adds to them as terms get resolved.
 
 ## File structure
 

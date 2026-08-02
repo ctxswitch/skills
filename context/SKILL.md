@@ -1,11 +1,11 @@
 ---
-name: context-drift
-description: "Rebuild a repository's CONTEXT.md files from current source, working dependencies-first, and surface where code, docs, and recorded language disagree. Use when context has drifted from the code, or a repo has none. For settling a new design's vocabulary in conversation use grill-me."
+name: context
+description: "Build and maintain a repository's CONTEXT.md hierarchy from current source, working dependencies-first, and surface where code, docs, and recorded language disagree. Use to create context for a repo that has none, or to repair it once it has drifted. Owns the context format the other skills write to. For settling a new design's vocabulary in conversation use grill-me."
 ---
 
-# Context Drift
+# Context
 
-Rebuild recorded domain language from what the code does now. Code is evidence; docs and existing context are claims about it.
+Build and maintain recorded domain language from what the code does now. Code is evidence; docs and existing context are claims about it.
 
 This skill writes documentation. It does not change source. Code defects it exposes are reported and routed to `engineer` or `diagnose`.
 
@@ -60,7 +60,7 @@ Then compare against the module's recorded context and any docs covering it. Thr
 - **Gap** — the code clearly defines a domain term that context does not record, or records nothing at all. Write it.
 - **Conflict** — open an entry in `ledger.md`. Do not ask, do not write.
 
-Validate the recorded context against [context-format.md](../grill-me/references/context-format.md) in the same pass:
+Validate the recorded context against [context-format.md](./references/context-format.md) in the same pass:
 
 - **Structure** — `## Language`, `## Relationships`, `## Example dialogue`, `## Flagged ambiguities`, each carrying content.
 - **Entries** — one canonical term per concept, its aliases under `_Avoid_`, and a one-sentence definition saying what the term is rather than what it does.
@@ -95,7 +95,7 @@ The user's answer is the decision. When it contradicts the code, record the deci
 
 ## 5. Write
 
-Write each fact at the shallowest directory where it holds for everything beneath it, creating the file where a directory owns language and carries none. Use the format in the `grill-me` skill: [context-format.md](../grill-me/references/context-format.md).
+Write each fact at the shallowest directory where it holds for everything beneath it, creating the file where a directory owns language and carries none. Use the format in [context-format.md](./references/context-format.md).
 
 Write each entry as its decision lands, not in a batch at the end. Every ambiguity the user settles is recorded under `## Flagged ambiguities` with its resolution. Record a decision only while someone would still reach for the alternative — `_Fixed_:` on the term it governs, or the scope's `## Decisions` section. Drop a recorded decision whose alternative nobody would now propose.
 

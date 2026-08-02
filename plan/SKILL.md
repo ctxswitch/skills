@@ -23,7 +23,7 @@ The default failure mode is a plan written from what the code is assumed to do, 
 
 ## 1. Explore
 
-Read the `CONTEXT.md` files from the repo root down to the area being changed — they carry the domain language and the decisions already settled. The `grill-me` skill describes the layout.
+Read the `CONTEXT.md` files from the repo root down to the area being changed — they carry the domain language and the decisions already settled. The `context` skill defines the layout.
 
 Then read the code the change touches, plus its callers and its tests. Explore independent subsystems in parallel where the harness supports it.
 

@@ -74,9 +74,9 @@ Once the user picks a candidate, drop into a grilling conversation. Walk the des
 
 Side effects happen inline as decisions crystallize:
 
-- **Naming a deepened module after a concept not in `CONTEXT.md`?** Add the term to `CONTEXT.md` right there, using the same discipline and format as the `grill-me` skill. Create the file lazily if it doesn't exist.
+- **Naming a deepened module after a concept not in `CONTEXT.md`?** Add the term to `CONTEXT.md` right there, using the format the `context` skill defines. Create the file lazily if it doesn't exist.
 - **Sharpening a fuzzy term during the conversation?** Update `CONTEXT.md` right there.
-- **User rejects the candidate with a load-bearing reason?** Offer to record it, framed as: _"Want me to record this so future architecture reviews don't re-suggest it?"_ Only offer when the reason would actually be needed by a future explorer to avoid re-suggesting the same thing — skip ephemeral reasons ("not worth it right now") and self-evident ones. Write it as `_Fixed_:` on the term it governs, or the scope's `## Decisions` section; see the `grill-me` skill.
+- **User rejects the candidate with a load-bearing reason?** Offer to record it, framed as: _"Want me to record this so future architecture reviews don't re-suggest it?"_ Only offer when the reason would actually be needed by a future explorer to avoid re-suggesting the same thing — skip ephemeral reasons ("not worth it right now") and self-evident ones. Write it as `_Fixed_:` on the term it governs, or the scope's `## Decisions` section; see the `context` skill.
 - **Want to explore alternative interfaces?** See [interface-design.md](./references/interface-design.md).
 
 ## Reference map

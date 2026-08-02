@@ -15,37 +15,11 @@ Continue while the next question exposes a real unresolved decision, contradicti
 
 ## Domain awareness
 
-During codebase exploration, also look for existing documentation:
+Read the context files from the repo root down to the area under discussion before asking anything. They carry the domain language and the decisions already settled.
 
-### File structure
-
-Context files form a hierarchy — one per directory that owns language, each describing only its own level. Decisions are recorded in the same files. See [context-format.md](./references/context-format.md).
-
-```
-/
-├── CONTEXT.md                    the product
-├── CONTEXT-MAP.md                cross-cutting relationships only
-└── services/
-    ├── CONTEXT.md                the services and what each is for
-    └── billing/
-        ├── CONTEXT.md            the billing domain
-        └── ledger/CONTEXT.md     the ledger's own terms
-```
+The `context` skill owns these files — [context-format.md](../context/references/context-format.md) defines the hierarchy, the placement rule, and the entry shape. This skill reads them and writes what a grilling session resolves. A repo whose context is absent or badly drifted is a job for `context` first.
 
 Create files lazily — only when you have something to write.
-If no `CONTEXT.md` exists, create one when the first term is resolved.
-
-### Context placement
-
-Before writing or updating any `CONTEXT.md`, decide which level owns the language. **A fact belongs at the shallowest directory where it holds for everything beneath it, and no shallower.**
-
-- Language every area shares goes at the root.
-- Language true across one area goes at that area's directory.
-- Language local to one package goes at that package.
-- A decision spanning areas is written once at their common ancestor, with area-specific responsibilities recorded in each.
-- Do not put implementation details in `CONTEXT.md` unless they express a domain-facing invariant or responsibility.
-
-Do not append to an existing file because it exists. Existing context is vocabulary to respect, not necessarily the right level for new language.
 
 ## During the session
 
@@ -79,9 +53,8 @@ If you find a contradiction, surface it:
 When a term, relationship, invariant, or responsibility is resolved, update the appropriate `CONTEXT.md` right there.
 Don't batch these up — capture them as they happen.
 
-Before writing, read the context files from the root down to the target directory, then place the entry by the rule in *Context placement* above. Create that file lazily if it does not exist.
+Before writing, read the context files from the root down to the target directory, then place the entry by the rules in [context-format.md](../context/references/context-format.md). Create that file lazily if it does not exist.
 
-Use the format in [context-format.md](./references/context-format.md).
 Don't couple `CONTEXT.md` to implementation details.
 Only include terms that are meaningful to domain experts.
 
@@ -91,4 +64,4 @@ An entry is a definition, not a transcript. The discussion that produced the ter
 
 When a decision settles, record it where it constrains — `_Fixed_:` on the term it governs, or the scope's `## Decisions` section when it governs no single term.
 
-Record it only while someone would still reach for the alternative. Name who would propose it and what would make it look right; if you cannot, the outcome already recorded is enough. See [context-format.md](./references/context-format.md).
+Record it only while someone would still reach for the alternative. Name who would propose it and what would make it look right; if you cannot, the outcome already recorded is enough. See [context-format.md](../context/references/context-format.md).
