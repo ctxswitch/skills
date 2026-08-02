@@ -1,6 +1,6 @@
 ---
 name: context
-description: "Build and maintain a repository's .context.md hierarchy from current source, working dependencies-first, and surface where code, docs, and recorded language disagree. Use to create context for a repo that has none, or to repair it once it has drifted. Invoke with `review` to test an existing hierarchy against the format without reading source — placement, naming, narration, and missing or padded scopes. Owns the context format the other skills write to. For settling a new design's vocabulary in conversation use grill-me."
+description: "Build and maintain a repository's .context.md hierarchy from current source, working dependencies-first, and surface where code, docs, and recorded language disagree. Use to create context for a repo that has none, or to repair it once it has drifted. Invoke with `review` to test an existing hierarchy against the format without reading source — placement, naming, narration, and missing or padded scopes — or with `self-check` to test the skill's own rules against each other. Owns the context format the other skills write to. For settling a new design's vocabulary in conversation use grill-me."
 ---
 
 # Context
@@ -14,6 +14,8 @@ This skill writes documentation. It does not change source. Code defects it expo
 **Sweep** is the default and runs all seven steps, crossing the scope list twice — extract, then reconcile. It is the only mode that finds drift between code and context, and the expensive one.
 
 **Review** runs step 7 alone. It opens no source file, tests the recorded hierarchy against the format, and finds what a sweep introduces but never looks for: entries at the wrong level, names that outrun their definitions, narration, scopes holding source and no file. Invoke it with `review`.
+
+**Self-check** tests these instruction files against each other rather than a repository — where two rules answer the same question differently, where a rule cannot be reached by the mode it governs, where an exemption list has outgrown the category it should state. Run it after editing any of them, and with `self-check`. It follows [self-check.md](./references/self-check.md).
 
 ## Guard against the defaults
 
@@ -36,7 +38,9 @@ A sweep writes the files in [sweep-format.md](./references/sweep-format.md); a r
 
 These files are the run's memory, not a report on it. A sweep over a large repository will not fit in one context: assume compaction at any point, and treat everything not yet written under `.claude/context/<session>/` as lost.
 
-A scope is finished in a pass when that pass's work is on disk **and** its box for that pass is ticked in `index.md` — both before the next scope is read, never batched once the pass is over.
+**Closing a scope is the gate on opening the next one, not a chore at the end of the current one.** Before any source or context file of the next scope is read, the previous scope's record and its box must already be on disk. A run that reaches scope four with scope three unclosed has lost scope three — stop and close it rather than carrying the debt forward.
+
+Written as a trailing step this is the first thing dropped under pressure, and it is dropped in batches: the work lands, the account of it arrives much later, and everything between is unrecoverable. Batching them is the failure, not forgetting them.
 
 Pass one ticks `Extracted` once the scope record is written.
 
