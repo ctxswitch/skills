@@ -66,7 +66,7 @@ Validate the recorded context against [context-format.md](../grill-me/references
 - **Entries** — one canonical term per concept, its aliases under `_Avoid_`, and a one-sentence definition saying what the term is rather than what it does.
 - **Relationships** — bold term names, with cardinality wherever the code fixes it.
 - **Scope** — general programming concepts are not domain terms. A recorded term a domain expert would not recognise is a defect.
-- **Placement** — a fact belongs at the shallowest directory where it holds for everything beneath it. Move an over-scoped entry down, lift a term repeated identically across siblings to the parent, delete a child that restates its parent, and create a file where a directory owns language recorded nowhere. Where a child and parent disagree, the disagreement is the finding rather than the duplication.
+- **Placement** — a fact belongs at the shallowest directory where it holds for everything beneath it. Move an over-scoped entry down, lift a term repeated identically across siblings to the parent, delete a child that restates its parent, and create a file where a directory owns language recorded nowhere. Where a child and parent disagree, the disagreement is the finding rather than the duplication. A context file under a documentation directory is misfiled — move its entries to the code they describe and delete it.
 - **Open items** — an entry under `## Flagged ambiguities` carrying no resolution is a ledger entry, not a format defect.
 
 A format defect that does not change meaning is fixed in place. One that would alter or remove recorded language goes to the ledger.

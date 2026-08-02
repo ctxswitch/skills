@@ -60,12 +60,15 @@ A reader loads the root file down to the directory being worked in, and every le
 
 A directory owning nothing at its own level carries no file and inherits from its parent. `internal/util` stays empty rather than padded.
 
+A directory holding documents rather than code owns no scope. `docs/` and its subtrees never carry a `CONTEXT.md` — a document is context already, and the language it uses belongs with the code it describes.
+
 ### Misplacement
 
 - **Over-scoped** — the file states something untrue of part of its subtree. Move it down to where it holds.
 - **Under-scoped** — sibling files carry the same term with the same meaning. Lift it to the parent.
 - **Shadowed** — a child restates an entry its parent already carries. Delete the child copy. Where the two meanings differ, the disagreement is the finding, not the duplication.
 - **Missing** — a directory owns language true across its subtree and records it nowhere. Create the file.
+- **Misfiled** — a documentation directory carries a context file. Move each entry to the code it describes and delete it.
 
 A file that has grown large is over-scoped before it is verbose. Check what it holds against its subtree before cutting words.
 
