@@ -49,6 +49,8 @@ _Pending_: not built — expected at `services/fulfillment`
 - **Omit a heading with nothing behind it.** A section is deleted, not filled. Levels that carry no ambiguities or no dialogue simply have neither.
 - **Flag conflicts explicitly.** If a term is used ambiguously, call it out in "Flagged ambiguities" with a clear resolution.
 - **Keep definitions tight.** One sentence max. Define what it IS, not what it does.
+- **Record what is, not how it got here.** An entry describes current behaviour. Migration numbers, issue numbers, dates, release names, and "previously X, now Y" framing are history — `git log`, the migrations, and the tracker already hold them, and repeating them here is a second changelog to maintain. Where a legacy path still runs, that is current behaviour and belongs; that it arrived in some particular change does not.
+- **Every entry reads on its own.** A line needing an issue, a migration, a prior run, or a conversation to make sense belongs somewhere else. State the constraint so it stands without the reference.
 - **Show relationships.** Use bold term names and express cardinality where obvious.
 - **Only include terms specific to this project's context.** General programming concepts (timeouts, error types, utility patterns) don't belong even if the project uses them extensively. Before adding a term, ask: is this a concept unique to this context, or a general programming concept? Only the former belongs.
 - **Group terms under subheadings** when natural clusters emerge. If all terms belong to a single cohesive area, a flat list is fine.
@@ -60,7 +62,7 @@ _Pending_: not built — expected at `services/fulfillment`
 
 A decision earns a line only while someone would still reach for the alternative. Name who would propose it and what would make it look right — if you cannot, drop it. The outcome recorded elsewhere is usually enough on its own: `## Relationships` stating that Ordering emits `OrderPlaced` already closes "why not HTTP" unless HTTP is a live temptation.
 
-A line carries the constraint and the rejected alternative, nothing else. Not the discussion, not the date, not who decided.
+A line carries the constraint and the rejected alternative, nothing else. Not the discussion, not the date, not who decided, not the change that enacted it. "A reconciler was proposed and rejected — the tenant lifecycle is RPC-driven throughout" stands on its own; the same line citing the issues it was proposed in sends the reader out of the file to learn nothing more.
 
 Entries expire. When the alternative stops being plausible, drop the line — `git log` on the file keeps what was removed, and the diff is the record of when it changed and from what.
 

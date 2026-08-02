@@ -19,6 +19,7 @@ The default failure mode is treating every difference as a conflict and asking t
 - **A term is defined by the scope that owns it**, not by a caller that uses it or a doc that mentions it.
 - **Placement is not a preference.** Where an entry belongs follows from the rule, not from taste or the size of the resulting diff. Never offer a choice between splitting an over-scoped file and leaving it — split it and report what moved.
 - **Folding a scope into its parent is the mirror failure.** Writing a scope's language into the nearest file that already exists feels conservative and is not — it buries the boundary the language belongs to. The hierarchy's shape is an output of the sweep, never an input to it.
+- **Record current behaviour, not the history behind it.** The sweep reads code to learn what happens now. What a migration changed, which issue proposed it, and what the previous shape was are recoverable from `git log`, the migrations, and the tracker — carrying them into a context file makes it a changelog that drifts twice. A legacy path still executing is current behaviour and is recorded as such, without the story of how it became legacy.
 - **Record domain language, not implementation.** A term belongs in `CONTEXT.md` when a domain expert would recognise it. Struct names, handler names, and package layout do not qualify unless they carry a domain invariant or responsibility.
 
 ## Tracking the run
