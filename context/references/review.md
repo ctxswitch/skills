@@ -36,9 +36,8 @@ before any repair begins. No `Repaired` box is ticked while a `Checked` box is e
 The findings themselves go in the per-scope records — `## Checked` for what the checks turned up,
 `## Written` for what the repair changed, `## Raised` for what it ledgered.
 
-Keeping the detail in the record rather than a column is what makes the validation survive: a scope's
-`## Checked` names every check that fired and says `clean:` for the groups that passed, so a later run can
-tell "checked and fine" from "never checked". A table cell cannot carry that.
+A scope's `## Checked` names every check that fired and says `clean:` for the groups that passed, so a
+later run can tell "checked and fine" from "never checked".
 
 `ledger.md` follows the sweep's ledger shape, and its entries stay open — a review reads no source, so
 neither claim in a conflict can be checked against the code. It is this run's working copy, never the
@@ -52,10 +51,9 @@ because the run directory is deleted and the context file is not.
 - A directory holding only subdirectories carries one only where it records something true of every
   scope beneath it. A parent file that restates a single child is a finding.
 - No `.context.md` sits under a documentation directory. Move its entries to the code they describe.
-- A file for a directory holding source carries `## Language` — that is what it exists to record. A file
-  for a directory of subdirectories may carry only `## Relationships`, where what spans its children is a
-  fact rather than a term. Coining a term to fill the heading is padding; drop the file instead if
-  nothing spans.
+- A file for a directory holding source carries `## Language`. One for a directory of subdirectories may
+  carry only `## Relationships`, where what spans its children is a fact rather than a term — coining a
+  term to fill the heading is padding.
 - `## Decisions`, `## Example dialogue`, `## Flagged ambiguities`, and `## Defects` appear only where they
   have content.
 
@@ -63,18 +61,15 @@ because the run directory is deleted and the context file is not.
 
 - **Over-scoped** — entries that do not hold across the whole subtree. Move each down to the scope it
   describes. Test against the subtree, never against the file's length.
-- **Undrained parent** — an entry true of exactly one child, where that child already carries its own
-  file. The split happened and the entry did not move. Count a parent's terms that exist nowhere below
-  it: a file whose children were created from source rather than from it will show almost all of them.
+- **Undrained parent** — an entry true of exactly one child that already carries its own file. Count a
+  parent's terms existing nowhere below it; a file whose children were built from source rather than from
+  it shows almost all of them.
 - **Under-scoped** — sibling files carrying the same term with the same meaning. Lift it to the parent.
 - **Shadowed** — a child and an ancestor both carrying the same entry. A fact belongs at exactly one
-  scope, so this cannot arise from correct writing: it is evidence that an earlier write recorded a fact
-  without draining where it came from, and the hierarchy has been inconsistent with itself since. Do not
-  resolve it by position. Establish which entry is right and which scope owns the fact, then keep that
-  one — an ancestor holding it is not what makes it canonical, and a child's wording is often the better
-  of the two because it was written closer to the code. Where the two differ in meaning rather than
-  wording, neither is deleted; the disagreement is recorded under `## Flagged ambiguities` at the scope
-  that owns the fact.
+  scope, so this is evidence an earlier write recorded a fact without draining where it came from. Do not
+  resolve it by position: establish which entry is right and which scope owns the fact, keeping that one.
+  A child's wording is often better, written closer to the code. Where the two differ in meaning rather
+  than wording, neither is deleted — record the disagreement under `## Flagged ambiguities`.
 - **Split meaning** — one term defined differently in two scopes. Neither file can settle it; open a
   ledger entry.
 
@@ -120,10 +115,9 @@ The repair rule is the sweep's: a defect that does not change meaning is fixed i
 alter or remove recorded language goes to the ledger and then to the user.
 
 **Every Placement finding resolves from the scope rule, so none of them is a question.** Where an entry
-belongs, whether a file is created, and whether one is deleted all follow from where a fact holds and
-how far — including the second half of the rule, *and no shallower*, which is what stops an over-scoped
-entry being "fixed" by lifting it too high. Ask only when two claims contradict and the file cannot say
-which is true.
+belongs, and whether a file is created or deleted, follow from where a fact holds and how far — including
+*and no shallower*, which stops an over-scoped entry being "fixed" by lifting it too high. Ask only when
+two claims contradict and the file cannot say which is true.
 
 These remove nothing and are done rather than raised:
 
@@ -131,8 +125,7 @@ These remove nothing and are done rather than raised:
 - moving an entry to the scope it describes
 - splitting an over-scoped file — neither whether to split it nor how much of it to split
 - deleting a shadowed copy, because the scope that owns it still holds it
-- deleting a file whose entries have all moved or been shadowed away, since nothing it held is lost with
-  it — a directory of subdirectories keeps a file only while something is true of every scope beneath it
+- deleting a file whose entries have all moved or been shadowed away, since nothing it held is lost
 
 Placement repairs are per-scope judgment work, not a bulk move. Take one receiving scope at a time and
 read what it already records before anything lands in it:
@@ -147,10 +140,8 @@ read what it already records before anything lands in it:
   replaces the other; the disagreement is recorded under `## Flagged ambiguities` at the scope that holds
   it, and tracked in the ledger for this run.
 
-Moving everything at once sees none of this and leaves duplicates that read as deliberate. Remove an
-entry from its old home only once its new home holds it — the reverse order loses entries outright.
-
-The same checks apply to lines this repair writes, not only to lines it moves.
+Remove an entry from its old home only once its new home holds it; the reverse order loses entries.
+These checks apply to lines this repair writes, not only to lines it moves.
 
 ## Reporting
 

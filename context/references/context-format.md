@@ -51,13 +51,13 @@ _Pending_: not built — expected at `services/fulfillment`
 
 - **Be opinionated.** When multiple words exist for the same concept, pick the best one and list the others as aliases to avoid.
 - **An alias line can carry its distinction.** Where the avoided word names a genuinely different thing rather than a synonym, say which is which. That is what stops the two collapsing back together.
-- **Name a term for its referent, not its neighbours.** A prefix shared across sibling terms is a pattern, not a convention to satisfy — a term whose definition reaches wider than its name is misnamed however well the name fits the family. Where one word carries two senses, separate them by naming each for what it is, rather than qualifying both with the same modifier. Test every entry by reading its name against the reach of its own definition.
+- **Name a term for its referent, not its neighbours.** A term whose definition reaches wider than its name is misnamed, however well the name fits its siblings. Test each entry by reading its name against the reach of its own definition.
 - **Omit a heading with nothing behind it.** A section is deleted, not filled. Levels that carry no ambiguities or no dialogue simply have neither.
 - **Flag conflicts explicitly.** If a term is used ambiguously, call it out in "Flagged ambiguities" with its resolution. An entry with no resolution yet belongs there too, saying what disagrees and what would settle it — an unresolved conflict recorded only in a run's ledger is lost the moment that run ends.
 - **Keep definitions tight.** One sentence max. Define what it IS, not what it does.
-- **Record what is, not how it got here.** An entry describes current behaviour. Migration numbers, issue numbers, dates, release names, and "previously X, now Y" framing are history — `git log`, the migrations, and the tracker already hold them, and repeating them here is a second changelog to maintain. Where a legacy path still runs, that is current behaviour and belongs; that it arrived in some particular change does not.
+- **Record what is, not how it got here.** Migration numbers, issue numbers, dates, and "previously X, now Y" framing are history that `git log` already holds. A legacy path still running is current behaviour and belongs; how it arrived does not.
 - **Every entry reads on its own.** A line needing an issue, a migration, a prior run, or a conversation to make sense belongs somewhere else. State the constraint so it stands without the reference.
-- **A reason names a mechanism, not a merit.** Where an entry gives a reason, it names the thing in this scope that forces the constraint — a foreign key, a build step, a token binding — so a reader can check it against the code. It does not argue the decision was correct, rank its importance, or replay the reasoning that produced it. "Handle `agents` rows before `tenants` rows, since `agents.tenant_id` is `ON DELETE RESTRICT`" earns its clause; "which is the one ambiguity this scope most has to hold apart" does not.
+- **A reason names a mechanism, not a merit.** It names the thing forcing the constraint — a foreign key, a build step, a token binding — so a reader can check it. "Since `agents.tenant_id` is `ON DELETE RESTRICT`" earns its clause; "which is the one ambiguity this scope most has to hold apart" does not.
 - **A reason never imports another scope's facts.** Where a constraint depends on something a different scope owns, name the term and stop. Restating the fact here makes a second copy that nothing keeps current, and it ages independently of the scope that owns it.
 - **Show relationships.** Use bold term names and express cardinality where obvious.
 - **Record what callers rely on, not the pattern it is built from.** A scope's own contracts belong however mundane — the cap it enforces, the state it refuses, the default it applies. The general pattern behind them does not: a retry helper records its backoff ceiling and what it treats as retryable, not what a retry is.
@@ -76,7 +76,7 @@ Entries expire. When the alternative stops being plausible, drop the line — `g
 
 ## Defects
 
-Code faults this scope carries that no recorded language depends on: dead functions, comments citing something that no longer exists, a name that disagrees with what it names. They are recorded so the next sweep recognises them instead of rediscovering them, and so an issues pass can file them without re-reading the source.
+Code faults this scope carries that no recorded language depends on: dead functions, comments citing something gone, a name disagreeing with what it names. Recorded so the next sweep recognises rather than rediscovers them.
 
 A line is a kind, a `file:line`, and what is wrong. Nothing else — no proposed fix, no severity, no reasoning.
 
@@ -104,7 +104,7 @@ services/billing/ledger/.context.md  the ledger's own terms
 
 A reader loads the root file down to the directory being worked in, and every level assumes its ancestors. Nothing is repeated from a parent.
 
-Every directory holding authored source of its own carries a `.context.md`, including packages whose language is narrow or mechanical — a utility package records what its callers may rely on. Whether an entry is "obvious" is not the test. Obviousness varies by reader, so a file one run creates and the next deletes churns the hierarchy for no gain.
+Every directory holding authored source of its own carries a `.context.md`, including packages whose language is narrow or mechanical. Whether an entry is "obvious" is not the test — obviousness varies by reader, and a file one run creates and the next deletes churns the hierarchy.
 
 A directory holding only subdirectories carries a file only where it records something true of every scope beneath it. With nothing spanning, it carries none.
 
