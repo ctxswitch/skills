@@ -32,11 +32,13 @@ The default failure mode is treating every difference as a conflict and asking t
 
 ## Tracking the run
 
-Track every run under `.claude/context/<session>/` — the session identifier where the harness exposes one, otherwise a name no directory there already holds — written as you go and deleted when the run completes. Create it lazily.
+Track every run under `.claude/context/<session>/` — the session identifier where the harness exposes one, otherwise a name no directory there already holds — written as you go and deleted when the run completes. Create it before the first directory is examined.
 
 A sweep writes the files in [sweep-format.md](./references/sweep-format.md); a review writes the ones in [review.md](./references/review.md). The two never mix, so a directory holding `index.md` is a sweep to resume and one holding `findings.md` is a review.
 
 These files are the run's memory, not a report on it. A sweep over a large repository will not fit in one context: assume compaction at any point, and treat everything not yet written under `.claude/context/<session>/` as lost.
+
+**Everything found is stored as it is found, negative results included** — a directory ruled out and why, a scope examined and clean, a term considered and rejected. Pass two reconciles against what pass one stored, so an unstored finding is not a missing note but a comparison that cannot happen. A rebuild seeing only survivors re-derives them and reaches the same rejections again.
 
 **Closing a scope is the gate on opening the next one, not a chore at the end of the current one.** Before any file of the next scope is read, the previous scope's record and its box must already be on disk. Written as a trailing step it is dropped in batches, and everything between the work and the account of it is unrecoverable.
 
@@ -66,11 +68,11 @@ A **scope** is a directory holding authored source of its own — a package, lib
 
 Do not enumerate by a language's own unit — "module" means something different in each, and a whole repo is often one Go module. A scope need not hold a programming language at all: protocol definitions, infrastructure roots, and deployment packaging own language too.
 
-Walk the tree, enumerate candidate scopes from the sources, build the dependency graph over them, and order it dependencies-first. Existing `.context.md` files are not read here; pass two opens them.
+Walk the tree, writing each candidate to `index.md` as it is decided — kept, or excluded with the reason. Build the dependency graph over what is kept and order it dependencies-first. Existing `.context.md` files are not read here; pass two opens them.
 
 Existing files never bound the list. A scope holding source and carrying no file is a finding to write, not a scope to fold into its parent.
 
-State the root scope and the scope count before reading anything else, then record the ordered scope list in `index.md`.
+State the root scope and the scope count before reading anything else. `index.md` already holds every candidate by then; the dependency order is written into it as the graph resolves.
 
 ## 2. Extract from source — pass one
 

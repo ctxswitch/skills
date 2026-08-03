@@ -30,7 +30,13 @@ Dependencies first. Extracted in pass one, reconciled in pass two.
 | `internal/order` | x | x |
 | `internal/billing` | x | |
 | `internal/api` | | |
+
+## Excluded
+
+- `{path}` — {why it is not a scope}
 ```
+
+Both lists grow during the walk, a row at a time, before any scope is read. A directory in neither list was never examined, which is where a resumed walk picks up. `## Excluded` is omitted where the walk ruled nothing out.
 
 Nothing derivable goes here — no counts, no percentages, no summary of the ledger.
 
