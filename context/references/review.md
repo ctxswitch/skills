@@ -72,8 +72,7 @@ because the run directory is deleted and the context file is not.
   than wording, neither is deleted — record the disagreement under `## Flagged ambiguities`.
 - **Divided ownership** — one term defined in two scopes that are neither siblings nor lineal, which the
   two checks above cannot see between them. Where the definitions agree, one scope owns the term and the
-  other references it; where they differ, it is Split meaning. [graph.py](../scripts/graph.py) lists these
-  with the relation between the owning scopes.
+  other references it; where they differ, it is Split meaning.
 - **Split meaning** — one term defined differently in two scopes. Neither file can settle it; open a
   ledger entry.
 
