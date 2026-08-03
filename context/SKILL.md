@@ -32,7 +32,7 @@ The default failure mode is treating every difference as a conflict and asking t
 
 ## Tracking the run
 
-Track every run under `.claude/context/<session>/` — the session identifier where the harness exposes one, a scope slug otherwise — written as you go and deleted when the run completes. Create it lazily.
+Track every run under `.claude/context/<session>/` — the session identifier where the harness exposes one, otherwise a name no directory there already holds — written as you go and deleted when the run completes. Create it lazily.
 
 A sweep writes the files in [sweep-format.md](./references/sweep-format.md); a review writes the ones in [review.md](./references/review.md). The two never mix, so a directory holding `index.md` is a sweep to resume and one holding `findings.md` is a review.
 
@@ -54,7 +54,9 @@ When a later scope bears on an open entry, append that evidence to the entry in 
 
 A dependency's scope record exists before anything depending on it is read. Take a term's meaning from that record rather than re-deriving it from the dependency's source.
 
-Rebuild from the run directory before reading anything else, both after compaction and when `.claude/context/` already holds an incomplete run covering the requested scope. For a sweep that means `index.md` for which pass each scope has reached, `ledger.md` for the entries in flight, and the scope records for the terms pass one established; for a review, `findings.md` for which scopes are checked and repaired and the scope records for what the checks found. Resume at the first scope whose current phase is unticked — never restart a run that has a directory.
+**A run rebuilds only from its own session's directory, and a new session starts clean.** Rebuilding recovers work this run lost to compaction; another session's directory is that run's memory, and adopting it resumes someone else's work in place of what was asked for. Never read, write, or delete one — it may be in flight. Nothing is lost by leaving it, since every open entry is also under `## Flagged ambiguities` at the scope it concerns.
+
+Rebuild before reading anything else. For a sweep that means `index.md` for which pass each scope has reached, `ledger.md` for the entries in flight, and the scope records for the terms pass one established; for a review, `findings.md` for which scopes are checked and repaired and the scope records for what the checks found. Resume at the first scope whose current phase is unticked — never restart a run this session has already begun.
 
 An entry closes from the evidence recorded under it, never from recall.
 
