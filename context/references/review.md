@@ -79,6 +79,10 @@ because the run directory is deleted and the context file is not.
 
 ## Entries
 
+- The definition line is `**Term**:` with nothing between the name and the colon. A qualifier or literal
+  interposed there makes the line read as a mention, so the scope reports as owning no term at all and its
+  vocabulary shows as unowned wherever other scopes cite it — a whole scope disappearing rather than one
+  entry being malformed. Fold the interposed text into the definition.
 - One canonical term per concept. A second name for the same thing belongs under `_Avoid_`, not beside it as a peer.
 - The definition is one sentence and says what the term is, not what it does.
 - A term naming internal structure — a struct, a file, a helper — is a defect unless it carries a responsibility or boundary that constrains change.
