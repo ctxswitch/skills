@@ -1,0 +1,4 @@
+interface:
+  display_name: "Test Review"
+  short_description: "Review test value and critical coverage gaps"
+  default_prompt: "Use $test-review to review this suite, reduce its footprint without losing coverage, and suggest tests for critical measured gaps."

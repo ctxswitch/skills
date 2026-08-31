@@ -47,6 +47,7 @@ Every skill's name and description sit in context in every session, whether or n
 Engineering:
 
 - `engineer` — write or review code; per-language references load on demand
+- `test-review` — review test value, reduce footprint, and surface critical coverage gaps
 - `architecture` — survey for shallow modules and design the replacement interface
 - `diagnose` — disciplined loop for hard bugs and performance regressions
 - `distributed-systems` — plan, review, or drill a distributed design
