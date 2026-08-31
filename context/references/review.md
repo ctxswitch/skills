@@ -11,7 +11,7 @@ misplaced entry rewritten in place is wasted work.
 A review writes two files of its own plus the shared per-scope records.
 
 ```
-.claude/context/<session>/
+.cache/context/<session>/
 ├── findings.md
 ├── ledger.md
 ├── internal/

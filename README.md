@@ -34,7 +34,7 @@ make install-claude CLAUDE_SKILLS_DIR=/path/to/claude/skills
 make install-opencode OPENCODE_SKILLS_DIR=/path/to/opencode/skills
 ```
 
-Each install wipes its destination directory first, so renames and deletions never leave anything behind. The destinations are assumed to be owned by this repo. `make uninstall` removes them.
+Each skill owned by this repo carries a `.ctx-skills` marker. Installs replace current marked skills and remove marked skills no longer present in the repo while preserving system and unrelated user skills. `make uninstall` likewise removes only marked skill directories.
 
 Claude Code can invoke installed skills directly with `/skill-name`, and can also infer them when their descriptions match the task.
 

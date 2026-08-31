@@ -27,7 +27,7 @@ Old regression tests are not exempt and small tests are not suspect by default. 
 
 ## Track the run
 
-Before reading the tests in detail, create `.claude/test-review/<session>/` and follow [run-format.md](./references/run-format.md). The run directory is working memory: record findings as they are made, resume only the current session from it, and delete it only after every closing check passes.
+Before reading the tests in detail, create `.cache/test-review/<session>/` and follow [run-format.md](./references/run-format.md). The run directory is working memory: record findings as they are made, resume only the current session from it, and delete it only after every closing check passes.
 
 The review pass finishes before the first edit. It covers both existing tests and critical uncovered production paths. Redundancy is a relationship across the suite; pruning while still discovering tests lets the order of discovery decide which test survives.
 
@@ -124,4 +124,4 @@ Completion requires all of the following:
 
 Report the before/after footprint, exact coverage comparison, tests consolidated and pruned by category, critical gaps and their focused test suggestions, commands run, and anything unsettled. Keep suggested additions separate from completed cleanup. Report coverage dimensions the tooling could not measure as limitations rather than silently treating them as preserved.
 
-Once the report can be rebuilt from the completed run records, delete only this session's `.claude/test-review/<session>/` directory. Leave it in place when the run is interrupted or any closing check fails.
+Once the report can be rebuilt from the completed run records, delete only this session's `.cache/test-review/<session>/` directory. Leave it in place when the run is interrupted or any closing check fails.

@@ -111,7 +111,7 @@ What settles each move:
 
 ## Tracking
 
-Track under `.claude/context/<session>/` like the other modes. An optimize run writes `moves.md`, appending
+Track under `.cache/context/<session>/` like the other modes. An optimize run writes `moves.md`, appending
 each move as it is raised and each scope to `## Read` as it is read — the reading is the expensive part,
 and a move raised but unwritten is lost with the context that held it.
 

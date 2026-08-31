@@ -1,9 +1,9 @@
 # Sweep Run Format
 
-Two index files and one record per scope, under `.claude/context/<session>/`. Scope records mirror the repo tree, so a record's path is its scope's path plus `.md`.
+Two index files and one record per scope, under `.cache/context/<session>/`. Scope records mirror the repo tree, so a record's path is its scope's path plus `.md`.
 
 ```
-.claude/context/<session>/
+.cache/context/<session>/
 ├── index.md
 ├── ledger.md
 ├── internal/
@@ -116,4 +116,3 @@ Record what the code establishes, with a `file:line` for each. A claim with no c
 `## Checked` is where the validation survives. It names every check from [review.md](./review.md) that fired against this scope, and says `clean:` for the groups that passed. A scope whose record shows no `## Checked` was never validated, however finished the rest of it looks — and a group missing from both lists is one nobody ran.
 
 `## Raised` lists ledger entry headings verbatim so an entry can be traced back to the scope that found it.
-

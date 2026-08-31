@@ -1,43 +1,67 @@
 CODEX_SKILLS_DIR ?= $(HOME)/.codex/skills
 CLAUDE_SKILLS_DIR ?= $(HOME)/.claude/skills
 OPENCODE_SKILLS_DIR ?= $(HOME)/.config/opencode/skills
-SKILLS := $(shell find . -mindepth 2 -maxdepth 2 -name SKILL.md -exec dirname {} \; | sed 's|^\./||' | sort)
+SKILLS := $(shell find . -mindepth 2 -maxdepth 2 -type f -name .ctx-skills -exec dirname {} \; | sed 's|^\./||' | sort)
 
-# Each install wipes its destination first, so renames and deletions never
-# leave anything behind. The destination is assumed to be owned by this repo.
 .PHONY: install install-codex install-claude install-opencode uninstall list
 
 install: install-codex install-claude install-opencode
 
-install-codex:
-	@rm -rf "$(CODEX_SKILLS_DIR)"
-	@mkdir -p "$(CODEX_SKILLS_DIR)"
-	@for skill in $(SKILLS); do \
-		echo "Installing $$skill -> $(CODEX_SKILLS_DIR)/$$skill"; \
-		cp -R "$$skill" "$(CODEX_SKILLS_DIR)/"; \
+define install_skills
+	@dest="$(1)"; \
+	case "$$dest" in \
+		""|"/"|"$(HOME)") echo "Refusing unsafe skills destination: $$dest" >&2; exit 1 ;; \
+		/*) ;; \
+		*) echo "Skills destination must be absolute: $$dest" >&2; exit 1 ;; \
+	esac; \
+	mkdir -p "$$dest"; \
+	for marker in "$$dest"/*/.ctx-skills; do \
+		[ -f "$$marker" ] || continue; \
+		skill_dir=$${marker%/.ctx-skills}; \
+		skill=$${skill_dir##*/}; \
+		case " $(SKILLS) " in \
+			*" $$skill "*) ;; \
+			*) echo "Removing $$skill from $$dest"; rm -rf "$$skill_dir" ;; \
+		esac; \
+	done; \
+	for skill in $(SKILLS); do \
+		rm -rf "$$dest/$$skill"; \
+		echo "Installing $$skill -> $$dest/$$skill"; \
+		cp -R "$$skill" "$$dest/"; \
+		if [ "$(2)" = "without-agents" ]; then rm -rf "$$dest/$$skill/agents"; fi; \
 	done
+endef
+
+define uninstall_skills
+	@dest="$(1)"; \
+	case "$$dest" in \
+		""|"/"|"$(HOME)") echo "Refusing unsafe skills destination: $$dest" >&2; exit 1 ;; \
+		/*) ;; \
+		*) echo "Skills destination must be absolute: $$dest" >&2; exit 1 ;; \
+	esac; \
+	if [ -d "$$dest" ]; then \
+		for marker in "$$dest"/*/.ctx-skills; do \
+			[ -f "$$marker" ] || continue; \
+			skill_dir=$${marker%/.ctx-skills}; \
+			echo "Removing $${skill_dir##*/} from $$dest"; \
+			rm -rf "$$skill_dir"; \
+		done; \
+	fi
+endef
+
+install-codex:
+	$(call install_skills,$(CODEX_SKILLS_DIR),with-agents)
 
 install-claude:
-	@rm -rf "$(CLAUDE_SKILLS_DIR)"
-	@mkdir -p "$(CLAUDE_SKILLS_DIR)"
-	@for skill in $(SKILLS); do \
-		echo "Installing $$skill -> $(CLAUDE_SKILLS_DIR)/$$skill"; \
-		cp -R "$$skill" "$(CLAUDE_SKILLS_DIR)/"; \
-		rm -rf "$(CLAUDE_SKILLS_DIR)/$$skill/agents"; \
-	done
+	$(call install_skills,$(CLAUDE_SKILLS_DIR),without-agents)
 
 install-opencode:
-	@rm -rf "$(OPENCODE_SKILLS_DIR)"
-	@mkdir -p "$(OPENCODE_SKILLS_DIR)"
-	@for skill in $(SKILLS); do \
-		echo "Installing $$skill -> $(OPENCODE_SKILLS_DIR)/$$skill"; \
-		cp -R "$$skill" "$(OPENCODE_SKILLS_DIR)/"; \
-		rm -rf "$(OPENCODE_SKILLS_DIR)/$$skill/agents"; \
-	done
+	$(call install_skills,$(OPENCODE_SKILLS_DIR),without-agents)
 
 uninstall:
-	@rm -rf "$(CODEX_SKILLS_DIR)" "$(CLAUDE_SKILLS_DIR)" "$(OPENCODE_SKILLS_DIR)"
-	@echo "Removed $(CODEX_SKILLS_DIR), $(CLAUDE_SKILLS_DIR), $(OPENCODE_SKILLS_DIR)"
+	$(call uninstall_skills,$(CODEX_SKILLS_DIR))
+	$(call uninstall_skills,$(CLAUDE_SKILLS_DIR))
+	$(call uninstall_skills,$(OPENCODE_SKILLS_DIR))
 
 list:
 	@printf '%s\n' $(SKILLS)

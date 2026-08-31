@@ -34,11 +34,11 @@ The default failure mode is treating every difference as a conflict and asking t
 
 ## Tracking the run
 
-Track every run under `.claude/context/<session>/` — the session identifier where the harness exposes one, otherwise a name no directory there already holds — written as you go and deleted when the run completes. Create it before the first directory is examined.
+Track every run under `.cache/context/<session>/` — the session identifier where the harness exposes one, otherwise a name no directory there already holds — written as you go and deleted when the run completes. Create it before the first directory is examined.
 
 A sweep writes the files in [sweep-format.md](./references/sweep-format.md); a review writes the ones in [review.md](./references/review.md). The two never mix, so a directory holding `index.md` is a sweep to resume and one holding `findings.md` is a review.
 
-These files are the run's memory, not a report on it. A sweep over a large repository will not fit in one context: assume compaction at any point, and treat everything not yet written under `.claude/context/<session>/` as lost.
+These files are the run's memory, not a report on it. A sweep over a large repository will not fit in one context: assume compaction at any point, and treat everything not yet written under `.cache/context/<session>/` as lost.
 
 **Everything found is stored as it is found, negative results included** — a directory ruled out and why, a scope examined and clean, a term considered and rejected. Pass two reconciles against what pass one stored, so an unstored finding is not a missing note but a comparison that cannot happen. A rebuild seeing only survivors re-derives them and reaches the same rejections again.
 
@@ -164,4 +164,4 @@ When repair finishes, re-run the checks that failed. A repair that has not been 
 
 A review reads no source, so a conflict it finds stays open in `ledger.md` until a sweep settles it. Say so when reporting.
 
-When the review is clean, delete `.claude/context/<session>/`.
+When the review is clean, delete `.cache/context/<session>/`.

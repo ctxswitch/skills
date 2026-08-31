@@ -1,6 +1,6 @@
 # Test Review Run Format
 
-Use this format for `.claude/test-review/<session>/`. Take the session identifier from the harness when one exists; otherwise choose a name no directory there already uses.
+Use this format for `.cache/test-review/<session>/`. Take the session identifier from the harness when one exists; otherwise choose a name no directory there already uses.
 
 The directory belongs to one run. Never read, resume, overwrite, or delete another session's directory. Write each result when it is found: unstored review work is lost after compaction and can make a later deletion look justified when its surviving claim was never established.
 
