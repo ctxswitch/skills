@@ -50,12 +50,11 @@ Engineering:
 - `test-review` — review test value, reduce footprint, and surface critical coverage gaps
 - `architecture` — survey for shallow modules and design the replacement interface
 - `diagnose` — disciplined loop for hard bugs and performance regressions
-- `distributed-systems` — plan, review, or drill a distributed design
+- `distributed-systems` — plan or review a distributed design, and reason about cross-node failure
 
 Planning and project work:
 
 - `plan` — research a change, write it up as phased work packets, then attack the draft
-- `grill-me` — interrogate a plan against the project's domain language and recorded decisions
 - `prd` — synthesize a feature's intent into a PRD and publish it
 - `issues` — break an approved plan into vertical slices and publish them
 - `triage` — move tracker issues through the triage state machine; also repo setup
@@ -69,6 +68,6 @@ Each skill states its own default failure mode and the rules that counter it. Gu
 
 ## Credits
 
-Some of these skills are adapted from Matt Pocock's [Skills For Real Engineers](https://github.com/mattpocock/skills) — `diagnose` and `grill-me` directly, `architecture` (formerly `improve-codebase-architecture`), and the tracker skills `triage`, `issues` (formerly `to-issues`), and `prd` (formerly `to-prd`), which also absorbed `setup-project`.
+Some of these skills are adapted from Matt Pocock's [Skills For Real Engineers](https://github.com/mattpocock/skills) — `diagnose` directly, `architecture` (formerly `improve-codebase-architecture`), and the tracker skills `triage`, `issues` (formerly `to-issues`), and `prd` (formerly `to-prd`), which also absorbed `setup-project`.
 
 Matt's skills repo is MIT licensed. See [THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md) for the upstream notice.

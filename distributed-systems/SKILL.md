@@ -1,11 +1,11 @@
 ---
 name: distributed-systems
-description: "Plan, review, or interactively drill a distributed-system design, and reason about failures that span nodes. Use when the question is about behaviour under partition, retry, duplication, replication, coordination, failover, or recovery — not for ordinary service code that happens to make network calls, and not for a single reproducible failure whose cause is unknown (diagnose)."
+description: "Plan or review a distributed-system design, and reason about failures that span nodes. Use when the question is about behaviour under partition, retry, duplication, replication, coordination, failover, or recovery — not for ordinary service code that happens to make network calls, and not for a single reproducible failure whose cause is unknown (diagnose)."
 ---
 
 # Distributed Systems
 
-Use this skill to produce concrete plans, design reviews, failure/correctness analyses, and interactive design drills. Keep the main response grounded in the user's system and load reference files only for the details needed.
+Use this skill to produce concrete plans, design reviews, and failure/correctness analyses. Keep the main response grounded in the user's system and load reference files only for the details needed.
 
 ## Right-size first (read before proposing anything)
 
@@ -40,17 +40,6 @@ The default failure mode of this skill is over-engineering: adding machinery for
    - Correctness checklist with invariants, guarantees, and verification strategy.
    - Diagnostic hypothesis list with evidence to collect and next tests.
 
-## Drill mode
-
-When the user asks to be drilled, challenged, interrogated, or pressure-tested — rather than handed a plan — switch to the Socratic loop in [drill-flow.md](./references/drill-flow.md). Ask one question at a time and wait, unless they explicitly ask for a batch.
-
-Two rules govern whether a question is worth asking:
-
-- **Do not ask what is already answered.** If the answer is stated, implied by a prior answer, or discoverable from local code and docs, inspect instead of asking. Ask only to resolve a contradiction or a genuinely missing decision.
-- **Stop when questions stop paying.** Continue while the next question exposes a real unresolved decision, contradiction, risk, or implementation consequence. When it would only restate known tradeoffs or ask for a preference with no consequence, summarize what is resolved and name the next concrete action.
-
-Always include your own suspected answer with each question — a question without a proposed answer moves the work onto the user. Use [drill-lenses.md](./references/drill-lenses.md) to choose the next angle and [question-bank.md](./references/question-bank.md) when they want a batch or a broad readiness pass.
-
 ## Required Stance
 
 - Prefer named guarantees over vague labels. Say `linearizable`, `sequential`, `causal`, `read-your-writes`, `at-least-once`, `at-most-once`, `durable after quorum ack`, etc.
@@ -65,7 +54,6 @@ Always include your own suspected answer with each question — a question witho
 
 - For broad requests, read `references/concepts.md` plus the task reference.
 - For concrete planning/review/diagnosis, skip `concepts.md` unless terminology is unclear.
-- For a drill, read `references/drill-flow.md` and `references/drill-lenses.md`; add `references/question-bank.md` only for a batch or readiness pass.
 - Prefer the most specific domain file over multiple broad files.
 - If a design crosses several domains, read references incrementally and summarize assumptions before continuing.
 
@@ -127,9 +115,3 @@ Task:
 - `references/planning.md`: planning procedure and architecture decision prompts.
 - `references/review.md`: design/code review checklist and severity rubric.
 - `references/failure-analysis.md`: issue diagnosis by failure class.
-
-Drill:
-
-- `references/drill-flow.md`: the Socratic loop, question shape, escalation, stopping conditions.
-- `references/drill-lenses.md`: which angle to probe next, with the red flags that signal each one.
-- `references/question-bank.md`: focused question prompts by category, for batches and readiness passes.
