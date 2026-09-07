@@ -4,7 +4,6 @@ Scaffold the per-repo configuration the engineering skills assume:
 
 - **Issue tracker** — where issues live (GitHub by default; GitLab and local markdown supported)
 - **Triage labels** — the strings used for the five canonical triage roles
-- **Domain docs** — where the `.context.md` files live, and the consumer rules for reading them
 
 This is prompt-driven, not a script. Explore, present what you found, confirm, then write.
 
@@ -14,13 +13,12 @@ Read what exists; don't assume:
 
 - `git remote -v` and `.git/config` — which forge, which repo?
 - `AGENTS.md` at the repo root — does an `## Agent skills` section already exist?
-- `.context.md` at the repo root
 - `docs/agents/` — does prior output already exist?
 - `.scratch/` — sign that a local-markdown convention is already in use
 
 ## 2. Present findings and ask
 
-Summarise what's present and what's missing, then walk through the three decisions **one at a time** — present a section, get an answer, move on. Don't dump all three at once.
+Summarise what's present and what's missing, then walk through both decisions **one at a time** — present a section, get an answer, move on. Don't dump them at once.
 
 Assume the user does not know what these terms mean. Each section starts with a short explainer (what it is, why the skills need it, what changes if they pick differently), then the choices and the default.
 
@@ -41,16 +39,9 @@ Default posture: propose whatever the `git remote` points at — GitHub, or GitL
 
 Default: each role's string equals its name. Ask whether any need overriding. If the tracker has no existing labels, the defaults are fine.
 
-**Section C — Domain docs.**
-
-> Some skills read `.context.md` for the project's domain language and the decisions recorded alongside it. Context files form a hierarchy, so they need to know how deep it goes.
-
-- **Root only** — one `.context.md` at the repo root.
-- **Nested** — a `.context.md` at each directory that owns language. Typical of monorepos.
-
 ## 3. Confirm and edit
 
-Show a draft of the `## Agent skills` block and the three `docs/agents/*.md` files. Let the user edit before writing.
+Show a draft of the `## Agent skills` block and both `docs/agents/*.md` files. Let the user edit before writing.
 
 ## 4. Write
 
@@ -66,17 +57,12 @@ Edit `AGENTS.md` at the repo root, creating it if absent. If an `## Agent skills
 ### Triage labels
 
 [one-line summary of the label vocabulary]. See `docs/agents/triage-labels.md`.
-
-### Domain docs
-
-[one-line summary of layout — "root only" or "nested"]. See `docs/agents/domain.md`.
 ```
 
-Then write the three docs files from the seed templates:
+Then write both docs files from the seed templates:
 
 - [tracker-github.md](./tracker-github.md), [tracker-gitlab.md](./tracker-gitlab.md), [tracker-local.md](./tracker-local.md) → `docs/agents/issue-tracker.md`
 - [triage-labels.md](./triage-labels.md) → `docs/agents/triage-labels.md`
-- [domain.md](./domain.md) → `docs/agents/domain.md`
 
 For "other" trackers, write `docs/agents/issue-tracker.md` from scratch using the user's description.
 

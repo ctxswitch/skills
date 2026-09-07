@@ -56,7 +56,6 @@ Planning and project work:
 
 - `plan` — research a change, write it up as phased work packets, then attack the draft
 - `grill-me` — interrogate a plan against the project's domain language and recorded decisions
-- `context` — build and maintain the context hierarchy from source; owns the context format
 - `prd` — synthesize a feature's intent into a PRD and publish it
 - `issues` — break an approved plan into vertical slices and publish them
 - `triage` — move tracker issues through the triage state machine; also repo setup

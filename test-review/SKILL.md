@@ -9,7 +9,7 @@ Review the selected suite as a set of claims the repository owns, then make it s
 
 This skill edits tests, test helpers, and fixtures for cleanup. It suggests tests for critical measured gaps but does not add them during the cleanup comparison: new coverage would conceal coverage lost by pruning. A later implementation starts from the cleaned suite's baseline and must prove the predicted increase. The skill does not change production code to make cleanup or coverage work. A source defect or a design that prevents relevant behavior from being tested is a finding, not permission to refactor the product.
 
-Read repository instructions and the `.context.md` files covering the scope before judging its tests. Use the project's language for the behavior it owns.
+Read repository instructions covering the scope before judging its tests. Use the project's language for the behavior it owns.
 
 ## Guard against the default
 

@@ -1,6 +1,6 @@
 ---
 name: triage
-description: "Move issues on the project tracker through the triage role state machine — evaluate incoming bugs and requests, reproduce, classify, and route to an agent or a human. Also configures the tracker, labels, and domain docs for a repo."
+description: "Move issues on the project tracker through the triage role state machine — evaluate incoming bugs and requests, reproduce, classify, and route to an agent or a human. Also configures the tracker and labels for a repo."
 ---
 
 # Triage
@@ -15,7 +15,7 @@ Every comment or issue posted to the tracker **must** open with this disclaimer:
 
 The issue tracker and triage label vocabulary should have been provided to you. If they haven't, run the setup mode first.
 
-Before fetching or updating issues, read `AGENTS.md` and — if they exist — `docs/agents/issue-tracker.md`, `docs/agents/triage-labels.md`, and `docs/agents/domain.md`.
+Before fetching or updating issues, read `AGENTS.md` and — if they exist — `docs/agents/issue-tracker.md` and `docs/agents/triage-labels.md`.
 
 ## Roles
 
@@ -54,7 +54,7 @@ Show counts and a one-line summary per issue. Let the maintainer pick.
 
 ### Triage a specific issue
 
-1. **Gather context.** Read the full issue — body, comments, labels, reporter, dates. Parse prior triage notes so you don't re-ask resolved questions. Explore the codebase using the project's domain glossary, respecting the decisions recorded in the area. Read `.out-of-scope/*.md` and surface any prior rejection that resembles this issue.
+1. **Gather context.** Read the full issue — body, comments, labels, reporter, dates. Parse prior triage notes so you don't re-ask resolved questions. Explore the codebase, using its own vocabulary and respecting the decisions documented in the area. Read `.out-of-scope/*.md` and surface any prior rejection that resembles this issue.
 
 2. **Recommend.** Give your category and state recommendation with reasoning, plus a brief codebase summary relevant to the issue. Wait for direction.
 
@@ -100,9 +100,8 @@ If prior triage notes exist, read them, check whether the reporter has answered 
 
 ## Reference map
 
-- [setup.md](./references/setup.md) — configuring tracker, labels, and domain docs.
+- [setup.md](./references/setup.md) — configuring tracker and labels.
 - [agent-brief.md](./references/agent-brief.md) — how to write durable agent briefs.
 - [out-of-scope.md](./references/out-of-scope.md) — how the `.out-of-scope/` knowledge base works.
 - [tracker-github.md](./references/tracker-github.md), [tracker-gitlab.md](./references/tracker-gitlab.md), [tracker-local.md](./references/tracker-local.md) — seed templates for `docs/agents/issue-tracker.md`.
 - [triage-labels.md](./references/triage-labels.md) — label mapping seed template.
-- [domain.md](./references/domain.md) — domain doc consumer rules and layout.
