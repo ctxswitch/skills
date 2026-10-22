@@ -1,0 +1,4 @@
+interface:
+  display_name: "Zebra"
+  short_description: "Write or review code for the common failure modes"
+  default_prompt: "Use $zebra to implement or review this change."

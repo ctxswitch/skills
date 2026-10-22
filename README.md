@@ -47,6 +47,7 @@ Every skill's name and description sit in context in every session, whether or n
 Engineering:
 
 - `engineer` — write or review code; per-language references load on demand
+- `zebra` — write or review code for the common failure modes; detect the rare ones, do not handle them
 - `test-review` — review test value, reduce footprint, and surface critical coverage gaps
 - `architecture` — survey for shallow modules and design the replacement interface
 - `diagnose` — disciplined loop for hard bugs and performance regressions
